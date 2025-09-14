@@ -1,0 +1,42 @@
+{
+    "delhi": {
+        "width": "720px"
+    },
+    "maharashtra": {
+        "width": "480px"
+    },
+    "uttar pradesh": {
+        "width": "1200px"
+    },
+    "gujarat": {
+        "width": "1080px"
+    },
+    "karnataka": {
+        "width": "1080px"
+    },
+    "madhya pradesh": {
+        "width": "720px"
+    },
+    "uttarakhand": {
+        "width": "480px"
+    },
+    "rajasthan": {
+        "width": "480px"
+    },
+    "bihar": {
+        "width": "720px"
+    },
+    "haryana": {
+        "width": "480px"
+    },
+    "west bengal": {
+        "width": "480px"
+    },
+    "chhattisgarh": {
+        "width": "480px"
+    },
+    "assam":{
+        "width": "480px"
+    }
+
+}

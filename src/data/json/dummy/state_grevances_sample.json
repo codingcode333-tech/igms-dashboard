@@ -1,0 +1,162 @@
+[
+    {
+        "state": "---select state---",
+        "count": 519
+    },
+    {
+        "state": "andaman and nicobar islands",
+        "count": 1579
+    },
+    {
+        "state": "andhra pradesh",
+        "count": 25048
+    },
+    {
+        "state": "arunachal pradesh",
+        "count": 531
+    },
+    {
+        "state": "assam",
+        "count": 51412
+    },
+    {
+        "state": "bihar",
+        "count": 136817
+    },
+    {
+        "state": "chandigarh",
+        "count": 10140
+    },
+    {
+        "state": "chhattisgarh",
+        "count": 21002
+    },
+    {
+        "state": "dadra and nagar haveli",
+        "count": 336
+    },
+    {
+        "state": "daman and diu",
+        "count": 303
+    },
+    {
+        "state": "delhi",
+        "count": 133269
+    },
+    {
+        "state": "goa",
+        "count": 2759
+    },
+    {
+        "state": "gujarat",
+        "count": 102883
+    },
+    {
+        "state": "haryana",
+        "count": 73581
+    },
+    {
+        "state": "himachal pradesh",
+        "count": 10105
+    },
+    {
+        "state": "jammu and kashmir",
+        "count": 14295
+    },
+    {
+        "state": "jharkhand",
+        "count": 43180
+    },
+    {
+        "state": "karnataka",
+        "count": 60927
+    },
+    {
+        "state": "kerala",
+        "count": 28815
+    },
+    {
+        "state": "ladakh",
+        "count": 165
+    },
+    {
+        "state": "lakshadweep",
+        "count": 30
+    },
+    {
+        "state": "madhya pradesh",
+        "count": 102018
+    },
+    {
+        "state": "maharashtra",
+        "count": 158748
+    },
+    {
+        "state": "manipur",
+        "count": 3686
+    },
+    {
+        "state": "meghalaya",
+        "count": 733
+    },
+    {
+        "state": "mizoram",
+        "count": 291
+    },
+    {
+        "state": "nagaland",
+        "count": 775
+    },
+    {
+        "state": "not known",
+        "count": 26152
+    },
+    {
+        "state": "odisha",
+        "count": 38651
+    },
+    {
+        "state": "puducherry",
+        "count": 3000
+    },
+    {
+        "state": "punjab",
+        "count": 62382
+    },
+    {
+        "state": "rajasthan",
+        "count": 97706
+    },
+    {
+        "state": "sikkim",
+        "count": 185
+    },
+    {
+        "state": "tamilnadu",
+        "count": 79499
+    },
+    {
+        "state": "telangana",
+        "count": 31612
+    },
+    {
+        "state": "tripura",
+        "count": 2481
+    },
+    {
+        "state": "unknown",
+        "count": 1638
+    },
+    {
+        "state": "uttar pradesh",
+        "count": 443368
+    },
+    {
+        "state": "uttarakhand",
+        "count": 29599
+    },
+    {
+        "state": "west bengal",
+        "count": 120091
+    }
+]

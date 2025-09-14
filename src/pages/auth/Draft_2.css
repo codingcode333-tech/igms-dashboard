@@ -1,0 +1,339 @@
+.form-style input {
+  border: 0;
+  height: 50px;
+  border-radius: 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.form-style input:focus {
+  border-bottom: 1px solid #007bff;
+  box-shadow: none;
+  outline: 0;
+  background-color: #ebebeb;
+}
+
+.sideline {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ccc;
+}
+
+button {
+  height: 50px;
+}
+
+.sideline:before,
+.sideline:after {
+  content: '';
+  border-top: 1px solid #ebebeb;
+  margin: 0 20px 0 0;
+  flex: 1 0 20px;
+}
+
+.sideline:after {
+  margin: 0 0 0 20px;
+}
+
+.pb-3 {
+  text-align: center;
+}
+
+header {
+  width: 100vw;
+}
+
+.header_background {
+  width: 100%;
+  height: 300px;
+
+
+}
+
+.top {
+  display: flex;
+  padding: 30px;
+}
+
+.container1 {
+  position: absolute;
+  right: 15px;
+}
+
+
+/* .header_background{
+    position: absolute;
+    z-index: -1;
+   } */
+
+.top img {
+  position: absolute;
+  top: 105px;
+}
+
+.g20 {
+  right: 20px;
+}
+
+.year {
+  right: 170px;
+}
+
+.iitk_logo {
+  border-radius: 50px;
+
+}
+
+.emb {
+  left: 150px;
+}
+
+.top h1 {
+  position: absolute;
+  left: 30%;
+  top: 216px;
+  font-size: 35px;
+  color: whitesmoke;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.back {
+  position: absolute;
+  z-index: -2;
+}
+
+.form-section {
+  width: 100%;
+
+  /* Add the image as the background */
+
+  /* You can use other background properties to control the image's position and size */
+  background-size: cover;
+  /* or contain, or specify a custom size */
+  background-position: center center;
+  /* or any other position you prefer */
+  background-repeat: no-repeat;
+  /* to prevent image repetition */
+  background-image: url("images/back.jpg");
+}
+
+.sv_div svg {
+  font-family: 'Russo One', sans-serif;
+  /* position: absolute; 
+    width: 38%; height: 40%; */
+}
+
+.sv_div svg text {
+  text-transform: uppercase;
+  animation: stroke 7s infinite alternate;
+  stroke-width: 2;
+  stroke: rgb(242, 244, 247);
+  font-size: 70px;
+}
+
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgb(230, 235, 243);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 2;
+  }
+
+  50% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgb(162, 172, 189);
+  }
+
+  65% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgb(162, 172, 189);
+    stroke-width: 3;
+  }
+
+  70% {
+    fill: rgb(255, 255, 255);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+
+  100% {
+    fill: rgb(255, 255, 255);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+
+
+.form-style input {
+  border: 0;
+  height: 50px;
+  border-radius: 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.form-style input:focus {
+  border-bottom: 1px solid #007bff;
+  box-shadow: none;
+  outline: 0;
+  background-color: #ebebeb;
+}
+
+.sideline {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ccc;
+}
+
+button {
+  height: 50px;
+}
+
+.sideline:before,
+.sideline:after {
+  content: '';
+  border-top: 1px solid #ebebeb;
+  margin: 0 20px 0 0;
+  flex: 1 0 20px;
+}
+
+.sideline:after {
+  margin: 0 0 0 20px;
+}
+
+@media (max-width: 1550px) {
+
+  .container {
+    left: 1em;
+    bottom: 30px;
+  }
+
+  svg {
+    top: 20%;
+    left: 30%;
+  }
+
+
+}
+
+.bg-sign-in {
+  background: url("images/neural-network-bg.png");
+  background-color: #040a28;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-flag {
+  background: url("images/flag2.jpg");
+  background-color: #fff;
+}
+
+.bg-pmopg {
+  background: url("images/side_img.jpg");
+}
+
+.svg-animation {
+  text-transform: uppercase;
+  animation: stroke 10s infinite alternate;
+  stroke-width: 1;
+  stroke: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.svg-animation.text-black {
+  stroke: #000;
+  animation: stroke-black 5s infinite alternate;
+}
+
+.basic-input:focus~label .input-placeholder,
+.basic-input:not([value=''])~label .input-placeholder {
+  background-color: #000;
+  height: 0.8rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.4rem 0.4rem 0 0;
+  background-color: #fff;
+}
+
+.basic-input:not([value=''])~label .input-placeholder.bordered {
+  border-top: solid 1px #999;
+}
+
+.basic-input:focus~label .input-placeholder.bordered {
+  border-top: solid 2px #007bff;
+}
+
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(256, 256, 256, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 1;
+  }
+
+  35% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(256, 256, 256, 1);
+  }
+
+  40% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(256, 256, 256, 1);
+    stroke-width: 2;
+  }
+
+  50% {
+    fill: rgba(256, 256, 256, 1);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+
+  100% {
+    fill: rgba(256, 256, 256, 1);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+
+@keyframes stroke-black {
+  0% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(0, 0, 0, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 1;
+  }
+
+  70% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(0, 0, 0, 1);
+  }
+
+  80% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(0, 0, 0, 1);
+    stroke-width: 2;
+  }
+
+  100% {
+    fill: rgba(0, 0, 0, 1);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}

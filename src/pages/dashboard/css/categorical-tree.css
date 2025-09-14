@@ -1,0 +1,71 @@
+.input-date>input {
+    border: solid 1px #aaa;
+    border-radius: 4px;
+}
+
+/* Dark theme datepicker styling - More aggressive targeting */
+html.dark div[class*="bg-white"],
+html.dark .bg-white {
+    background-color: #1e293b !important;
+}
+
+html.dark div[class*="text-gray-900"],
+html.dark .text-gray-900,
+html.dark div[class*="text-black"],
+html.dark .text-black {
+    color: white !important;
+}
+
+/* Target datepicker popup specifically */
+html.dark [class*="datepicker"] div,
+html.dark [class*="date-picker"] div,
+html.dark [class*="react-datepicker"] div {
+    background-color: #1e293b !important;
+    color: white !important;
+}
+
+/* Target all text elements in datepicker */
+html.dark [class*="datepicker"] span,
+html.dark [class*="datepicker"] p,
+html.dark [class*="datepicker"] button,
+html.dark [class*="datepicker"] div {
+    color: white !important;
+}
+
+/* Specific targeting for react-tailwindcss-datepicker */
+html.dark .rtd-dropdown,
+html.dark .rtd-container,
+html.dark [data-testid*="datepicker"],
+html.dark [role="dialog"] {
+    background-color: #1e293b !important;
+    border-color: #374151 !important;
+}
+
+html.dark .rtd-dropdown *,
+html.dark .rtd-container *,
+html.dark [data-testid*="datepicker"] *,
+html.dark [role="dialog"] * {
+    color: white !important;
+    background-color: transparent !important;
+}
+
+/* Override any blue text */
+html.dark [class*="datepicker"] [class*="text-blue"],
+html.dark .rtd-dropdown [class*="text-blue"] {
+    color: #60a5fa !important;
+}
+
+/* Button hover states */
+html.dark [class*="datepicker"] button:hover,
+html.dark .rtd-dropdown button:hover {
+    background-color: #374151 !important;
+}
+
+/* Force white text on all elements inside datepicker popups */
+html.dark div[class*="absolute"][class*="z-"][class*="bg-white"] {
+    background-color: #1e293b !important;
+}
+
+html.dark div[class*="absolute"][class*="z-"][class*="bg-white"] * {
+    color: white !important;
+}

@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Leaflet map styles */
+.map {
+    height: 100%;
+    width: 100%;
+}
+
+.leaflet-container {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.text-grey {
+    color: #3b4175;
+}
+
+.treemap-fitting>div {
+    transform: scaleY(1.15) scaleX(0.99);
+}
+
+.border-sky {
+    border-color: #0053a3;
+}
+
+.text-blue-900 {
+    color: #2254fa
+}
+
+.svg-text-pointer text {
+    cursor: pointer;
+}
+
+.svg-text-pointer {
+    display: flex;
+    justify-content: center;
+}
+
+.login-header {
+    --tw-gradient-to: #00010a;
+    --tw-gradient-from: #003a6d;
+    background-color: #003a6d;
+}
+
+.bg-blur {
+    background-color: #ddd5;
+}
+
+.hide-before-after~label::after,
+.hide-before-after~label::before {
+    display: none;
+}
+
+.bg-white-transparent {
+    background-color: #0002;
+}
+
+.bg-white-input {
+    background-color: white !important;
+}
+
+.filter-date-box>div {
+    min-width: 100px;
+}
+
+.filter-checkbox label {
+    padding: 0.5rem;
+}
+
+.leaflet-pane,
+.leaflet-top {
+    z-index: 1 !important;
+}
+
+.leaflet-control-attribution {
+    display: none;
+}
+
+.h-\[85vh\] {
+    height: 85vh;
+}
+
+.tooltip {
+    @apply invisible relative h-0 w-0;
+}
+
+.has-tooltip:hover .tooltip {
+    @apply visible z-50;
+}
+
+.top-repeater {
+    .action-icon {
+        @apply cursor-pointer hover:shadow hover:shadow-[#b30000] hover:rounded;
+    }
+
+    .action-icon.disabled {
+        @apply hover:shadow-none fill-[#b3000099] cursor-default
+    }
+}
+
+.short-popup> :nth-child(3)> :nth-child(2) {
+    @apply h-[30vh] overflow-y-scroll;
+}
+
+.child-font-bold>* {
+    @apply font-bold;
+}
+
+.font-autosuggest input {
+    font-family: sans-serif;
+    @apply font-bold text-gray-700 text-sm;
+}
+
+/* .grievance-modal-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+.grievance-modal-content::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+.grievance-modal-content::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border: 2px solid #555555;
+} */
+.grievance-modal-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.grievance-modal-scroll::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+.grievance-modal-scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #696969;
+}
+
+.rca-category-autocomplete input {
+    height: 1.5rem;
+}
+
+.react-tooltip {
+    max-width: 300px !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    z-index: 1000 !important;
+}
+
+/* Dark theme datepicker global overrides */
+html.dark div[style*="position: absolute"],
+html.dark div[style*="position:absolute"] {
+    background-color: #1e293b !important;
+    color: white !important;
+}
+
+html.dark div[style*="position: absolute"] *,
+html.dark div[style*="position:absolute"] * {
+    color: white !important;
+}
+
+html.dark div[style*="position: absolute"][style*="background"] {
+    background-color: #1e293b !important;
+}
+
+/* Specific targeting for react-tailwindcss-datepicker elements */
+html.dark div[class*="z-"][class*="absolute"][class*="bg-white"] {
+    background-color: #1e293b !important;
+    border: 1px solid #374151 !important;
+}
+
+html.dark div[class*="z-"][class*="absolute"][class*="bg-white"] * {
+    color: white !important;
+}
+
+html.dark div[class*="z-"][class*="absolute"] button:hover {
+    background-color: #374151 !important;
+}
+
+/* Enhanced navbar theme switch animation */
+.theme-toggle-track {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-thumb {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Notification badge animation */
+@keyframes notification-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.notification-badge {
+    animation: notification-pulse 2s infinite;
+}

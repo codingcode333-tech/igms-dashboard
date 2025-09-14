@@ -1,0 +1,68 @@
+.map {
+    width: 100%;
+    height: 100%;
+}
+
+.number {
+    height: 30px !important;
+    width: 100px !important;
+}
+
+.legend {
+    z-index: 400;
+}
+
+.bg-legend-red {
+    background-color: #f20000;
+}
+
+.bg-legend-pink {
+    background-color: #e64b98;
+}
+
+.bg-legend-yellow {
+    background-color: #f5ed00;
+}
+
+.bg-legend-green {
+    background-color: #76f507;
+}
+
+.bg-legend-red-1 {
+    background-color: #dc1c13;
+}
+
+.bg-legend-red-2 {
+    background-color: #ea4c46;
+}
+
+.bg-legend-red-3 {
+    background-color: #f07470;
+}
+
+.bg-legend-red-4 {
+    background-color: #f6bdc0;
+}
+
+.bg-legend-blue-1 {
+    background-color: #001b87;
+}
+
+.bg-legend-blue-2 {
+    background-color: #0058b3;
+}
+
+.bg-legend-blue-3 {
+    background-color: #00a6d7;
+}
+
+.bg-legend-blue-4 {
+    background-color: #30e7ed;
+}
+
+.bg-legend-orange {
+    background-color: orange;
+}
+ul[role="listbox"] {
+    z-index: 1100 !important;
+}

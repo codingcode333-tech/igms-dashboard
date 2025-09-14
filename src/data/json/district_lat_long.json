@@ -1,0 +1,5301 @@
+[
+  {
+    "idx": 1,
+    "district": "nicobar",
+    "state": "andaman and nicobar islands",
+    "latitude": 7.1205,
+    "longitude": 93.7842
+  },
+  {
+    "idx": 2,
+    "district": "north and middle andaman",
+    "state": "andaman and nicobar islands",
+    "latitude": 12.5601,
+    "longitude": 92.8976
+  },
+  {
+    "idx": 3,
+    "district": "south andaman",
+    "state": "andaman and nicobar islands",
+    "latitude": 10.7449,
+    "longitude": 92.5
+  },
+  {
+    "idx": 4,
+    "district": "alluri sitharama raju",
+    "state": "andhra pradesh",
+    "latitude": 17.863553,
+    "longitude": 82.880913
+  },
+  {
+    "idx": 5,
+    "district": "anakapalli",
+    "state": "andhra pradesh",
+    "latitude": 17.6896,
+    "longitude": 83.0024
+  },
+  {
+    "idx": 6,
+    "district": "anantapur",
+    "state": "andhra pradesh",
+    "latitude": 14.679395,
+    "longitude": 77.598252
+  },
+  {
+    "idx": 7,
+    "district": "annamayya",
+    "state": "andhra pradesh",
+    "latitude": 79.340556,
+    "longitude": 78.315278
+  },
+  {
+    "idx": 8,
+    "district": "bapatla",
+    "state": "andhra pradesh",
+    "latitude": 15.9039,
+    "longitude": 80.4671
+  },
+  {
+    "idx": 9,
+    "district": "chittoor",
+    "state": "andhra pradesh",
+    "latitude": 13.215319,
+    "longitude": 79.100032
+  },
+  {
+    "idx": 10,
+    "district": "east godavari",
+    "state": "andhra pradesh",
+    "latitude": 16.969397,
+    "longitude": 82.236435
+  },
+  {
+    "idx": 11,
+    "district": "eluru",
+    "state": "andhra pradesh",
+    "latitude": 16.7107,
+    "longitude": 81.0952
+  },
+  {
+    "idx": 12,
+    "district": "guntur",
+    "state": "andhra pradesh",
+    "latitude": 16.297356,
+    "longitude": 80.447394
+  },
+  {
+    "idx": 13,
+    "district": "kakinada",
+    "state": "andhra pradesh",
+    "latitude": 16.9891,
+    "longitude": 82.2475
+  },
+  {
+    "idx": 14,
+    "district": "konaseema",
+    "state": "andhra pradesh",
+    "latitude": 7.5564,
+    "longitude": 39.8628
+  },
+  {
+    "idx": 15,
+    "district": "krishna",
+    "state": "andhra pradesh",
+    "latitude": 16.189204,
+    "longitude": 81.136184
+  },
+  {
+    "idx": 16,
+    "district": "kurnool",
+    "state": "andhra pradesh",
+    "latitude": 15.834985,
+    "longitude": 78.041533
+  },
+  {
+    "idx": 17,
+    "district": "nandyal",
+    "state": "andhra pradesh",
+    "latitude": 15.4777,
+    "longitude": 78.4873
+  },
+  {
+    "idx": 18,
+    "district": "nellore",
+    "state": "andhra pradesh",
+    "latitude": 14.449206,
+    "longitude": 79.983616
+  },
+  {
+    "idx": 19,
+    "district": "ntr",
+    "state": "andhra pradesh",
+    "latitude": 16.29409,
+    "longitude": 80.45571
+  },
+  {
+    "idx": 20,
+    "district": "palnadu",
+    "state": "andhra pradesh",
+    "latitude": 16.36195,
+    "longitude": 79.81062
+  },
+  {
+    "idx": 21,
+    "district": "parvathipuram manyam",
+    "state": "andhra pradesh",
+    "latitude": 18.8,
+    "longitude": 83.4
+  },
+  {
+    "idx": 22,
+    "district": "prakasam",
+    "state": "andhra pradesh",
+    "latitude": 15.514451,
+    "longitude": 80.048738
+  },
+  {
+    "idx": 23,
+    "district": "sri sathya sai",
+    "state": "andhra pradesh",
+    "latitude": 14.1501,
+    "longitude": 77.7836
+  },
+  {
+    "idx": 24,
+    "district": "srikakulam",
+    "state": "andhra pradesh",
+    "latitude": 18.296866,
+    "longitude": 83.891833
+  },
+  {
+    "idx": 25,
+    "district": "tirupati",
+    "state": "andhra pradesh",
+    "latitude": 13.6288,
+    "longitude": 79.4192
+  },
+  {
+    "idx": 26,
+    "district": "visakhapatnam",
+    "state": "andhra pradesh",
+    "latitude": 17.724253,
+    "longitude": 83.305865
+  },
+  {
+    "idx": 27,
+    "district": "vizianagaram",
+    "state": "andhra pradesh",
+    "latitude": 18.124612,
+    "longitude": 83.406912
+  },
+  {
+    "idx": 28,
+    "district": "west godavari",
+    "state": "andhra pradesh",
+    "latitude": 16.719836,
+    "longitude": 81.100761
+  },
+  {
+    "idx": 29,
+    "district": "y.s.r (kadapa)",
+    "state": "andhra pradesh",
+    "latitude": 14.5767,
+    "longitude": 78.8383
+  },
+  {
+    "idx": 30,
+    "district": "anjaw",
+    "state": "arunachal pradesh",
+    "latitude": 27.894204,
+    "longitude": 96.790213
+  },
+  {
+    "idx": 31,
+    "district": "changlang",
+    "state": "arunachal pradesh",
+    "latitude": 27.087745,
+    "longitude": 95.731123
+  },
+  {
+    "idx": 32,
+    "district": "dibang valley",
+    "state": "arunachal pradesh",
+    "latitude": 28.850861,
+    "longitude": 95.871559
+  },
+  {
+    "idx": 33,
+    "district": "east kameng",
+    "state": "arunachal pradesh",
+    "latitude": 27.333113,
+    "longitude": 93.063248
+  },
+  {
+    "idx": 34,
+    "district": "east siang",
+    "state": "arunachal pradesh",
+    "latitude": 28.065355,
+    "longitude": 95.333325
+  },
+  {
+    "idx": 35,
+    "district": "Kra Daadi",
+    "state": "Arunachal Pradesh",
+    "latitude": 28.0158,
+    "longitude": 93.7029
+  },
+  {
+    "idx": 36,
+    "district": "Kurung Kumey",
+    "state": "Arunachal Pradesh",
+    "latitude": 27.861258,
+    "longitude": 93.499644
+  },
+  {
+    "idx": 37,
+    "district": "lepa rada",
+    "state": "arunachal pradesh",
+    "latitude": 27.8895,
+    "longitude": 94.7692
+  },
+  {
+    "idx": 38,
+    "district": "lohit",
+    "state": "arunachal pradesh",
+    "latitude": 27.925439,
+    "longitude": 96.166869
+  },
+  {
+    "idx": 39,
+    "district": "Longding",
+    "state": "Arunachal Pradesh",
+    "latitude": 26.8372,
+    "longitude": 95.3521
+  },
+  {
+    "idx": 40,
+    "district": "lower dibang valley",
+    "state": "arunachal pradesh",
+    "latitude": 28.1375,
+    "longitude": 95.798781
+  },
+  {
+    "idx": 41,
+    "district": "Lower Siang",
+    "state": "Arunachal Pradesh",
+    "latitude": 27.8016,
+    "longitude": 94.6037
+  },
+  {
+    "idx": 42,
+    "district": "Lower Subansiri",
+    "state": "Arunachal Pradesh",
+    "latitude": 27.5556,
+    "longitude": 93.812343
+  },
+  {
+    "idx": 43,
+    "district": "namsai",
+    "state": "arunachal pradesh",
+    "latitude": 27.6692,
+    "longitude": 95.8644
+  },
+  {
+    "idx": 44,
+    "district": "papum pare",
+    "state": "arunachal pradesh",
+    "latitude": 27.101465,
+    "longitude": 93.597901
+  },
+  {
+    "idx": 45,
+    "district": "shi yomi",
+    "state": "arunachal pradesh",
+    "latitude": 28.6979,
+    "longitude": 94.3154
+  },
+  {
+    "idx": 46,
+    "district": "Siang",
+    "state": "Arunachal Pradesh",
+    "latitude": 28.5007,
+    "longitude": 94.645
+  },
+  {
+    "idx": 47,
+    "district": "tawang",
+    "state": "arunachal pradesh",
+    "latitude": 27.587899,
+    "longitude": 91.885444
+  },
+  {
+    "idx": 48,
+    "district": "tirap",
+    "state": "arunachal pradesh",
+    "latitude": 26.991189,
+    "longitude": 95.50663
+  },
+  {
+    "idx": 49,
+    "district": "Upper Siang",
+    "state": "Arunachal Pradesh",
+    "latitude": 28.613345,
+    "longitude": 95.066152
+  },
+  {
+    "idx": 50,
+    "district": "Upper Subansiri",
+    "state": "Arunachal Pradesh",
+    "latitude": 28.029687,
+    "longitude": 94.216858
+  },
+  {
+    "idx": 51,
+    "district": "west kameng",
+    "state": "arunachal pradesh",
+    "latitude": 27.264281,
+    "longitude": 92.425854
+  },
+  {
+    "idx": 52,
+    "district": "west siang",
+    "state": "arunachal pradesh",
+    "latitude": 28.168599,
+    "longitude": 94.80047
+  },
+  {
+    "idx": 53,
+    "district": "bajali",
+    "state": "assam",
+    "latitude": 26.5439,
+    "longitude": 91.187
+  },
+  {
+    "idx": 54,
+    "district": "baksa",
+    "state": "assam",
+    "latitude": 26.6935,
+    "longitude": 91.5984
+  },
+  {
+    "idx": 55,
+    "district": "barpeta",
+    "state": "assam",
+    "latitude": 26.318438,
+    "longitude": 91.012313
+  },
+  {
+    "idx": 56,
+    "district": "biswanath",
+    "state": "assam",
+    "latitude": 26.8518,
+    "longitude": 93.3389
+  },
+  {
+    "idx": 57,
+    "district": "bongaigaon",
+    "state": "assam",
+    "latitude": 26.502443,
+    "longitude": 90.564968
+  },
+  {
+    "idx": 58,
+    "district": "cachar",
+    "state": "assam",
+    "latitude": 24.820025,
+    "longitude": 92.795038
+  },
+  {
+    "idx": 59,
+    "district": "charaideo",
+    "state": "assam",
+    "latitude": 27.0373,
+    "longitude": 95.0182
+  },
+  {
+    "idx": 60,
+    "district": "chirang",
+    "state": "assam",
+    "latitude": 26.5387,
+    "longitude": 90.6939
+  },
+  {
+    "idx": 61,
+    "district": "darrang",
+    "state": "assam",
+    "latitude": 26.441811,
+    "longitude": 92.033565
+  },
+  {
+    "idx": 62,
+    "district": "dhemaji",
+    "state": "assam",
+    "latitude": 27.4844,
+    "longitude": 94.594933
+  },
+  {
+    "idx": 63,
+    "district": "dhubri",
+    "state": "assam",
+    "latitude": 26.019042,
+    "longitude": 89.991086
+  },
+  {
+    "idx": 64,
+    "district": "dibrugarh",
+    "state": "assam",
+    "latitude": 27.480193,
+    "longitude": 94.912419
+  },
+  {
+    "idx": 65,
+    "district": "dima hasao",
+    "state": "assam",
+    "latitude": 25.3478,
+    "longitude": 93.0176
+  },
+  {
+    "idx": 66,
+    "district": "goalpara",
+    "state": "assam",
+    "latitude": 26.176465,
+    "longitude": 90.631164
+  },
+  {
+    "idx": 67,
+    "district": "golaghat",
+    "state": "assam",
+    "latitude": 26.509522,
+    "longitude": 93.974001
+  },
+  {
+    "idx": 68,
+    "district": "hailakandi",
+    "state": "assam",
+    "latitude": 24.709416,
+    "longitude": 92.568191
+  },
+  {
+    "idx": 69,
+    "district": "hojai",
+    "state": "assam",
+    "latitude": 26.0017,
+    "longitude": 92.8477
+  },
+  {
+    "idx": 70,
+    "district": "jorhat",
+    "state": "assam",
+    "latitude": 26.754666,
+    "longitude": 94.218519
+  },
+  {
+    "idx": 71,
+    "district": "kamrup",
+    "state": "assam",
+    "latitude": 26.181061,
+    "longitude": 91.751916
+  },
+  {
+    "idx": 72,
+    "district": "kamrup metropolitan",
+    "state": "assam",
+    "latitude": 26.1701,
+    "longitude": 91.949
+  },
+  {
+    "idx": 73,
+    "district": "karbi anglong",
+    "state": "assam",
+    "latitude": 25.838215,
+    "longitude": 93.446934
+  },
+  {
+    "idx": 74,
+    "district": "karimganj",
+    "state": "assam",
+    "latitude": 24.871588,
+    "longitude": 92.353828
+  },
+  {
+    "idx": 75,
+    "district": "kokrajhar",
+    "state": "assam",
+    "latitude": 26.40281,
+    "longitude": 90.273819
+  },
+  {
+    "idx": 76,
+    "district": "lakhimpur",
+    "state": "assam",
+    "latitude": 27.236148,
+    "longitude": 94.105136
+  },
+  {
+    "idx": 77,
+    "district": "majuli",
+    "state": "assam",
+    "latitude": 27.0016,
+    "longitude": 94.2243
+  },
+  {
+    "idx": 78,
+    "district": "marigaon",
+    "state": "assam",
+    "latitude": 26.255106,
+    "longitude": 92.337553
+  },
+  {
+    "idx": 79,
+    "district": "nagaon",
+    "state": "assam",
+    "latitude": 26.355771,
+    "longitude": 92.686525
+  },
+  {
+    "idx": 80,
+    "district": "nalbari",
+    "state": "assam",
+    "latitude": 26.444776,
+    "longitude": 91.445234
+  },
+  {
+    "idx": 81,
+    "district": "North Cachar Hills",
+    "state": "Assam",
+    "latitude": 25.167627,
+    "longitude": 93.015884
+  },
+  {
+    "idx": 82,
+    "district": "shonitpur",
+    "state": "assam",
+    "latitude": 26.677,
+    "longitude": 92.6984
+  },
+  {
+    "idx": 83,
+    "district": "sivasagar",
+    "state": "assam",
+    "latitude": 26.984297,
+    "longitude": 94.639508
+  },
+  {
+    "idx": 84,
+    "district": "south salamara-mankachar",
+    "state": "assam",
+    "latitude": 25.8048,
+    "longitude": 89.8879
+  },
+  {
+    "idx": 85,
+    "district": "tinsukia",
+    "state": "assam",
+    "latitude": 27.49208,
+    "longitude": 95.370027
+  },
+  {
+    "idx": 86,
+    "district": "udalgudi",
+    "state": "assam",
+    "latitude": 26.746,
+    "longitude": 92.0959
+  },
+  {
+    "idx": 87,
+    "district": "west karbi anglong",
+    "state": "assam",
+    "latitude": 25.9273,
+    "longitude": 92.3814
+  },
+  {
+    "idx": 88,
+    "district": "araria",
+    "state": "bihar",
+    "latitude": 26.137794,
+    "longitude": 87.464469
+  },
+  {
+    "idx": 89,
+    "district": "arwal",
+    "state": "bihar",
+    "latitude": 25.2428,
+    "longitude": 84.6656
+  },
+  {
+    "idx": 90,
+    "district": "aurangabad",
+    "state": "bihar",
+    "latitude": 24.749745,
+    "longitude": 84.379225
+  },
+  {
+    "idx": 91,
+    "district": "banka",
+    "state": "bihar",
+    "latitude": 24.880617,
+    "longitude": 86.919712
+  },
+  {
+    "idx": 92,
+    "district": "begusarai",
+    "state": "bihar",
+    "latitude": 25.409515,
+    "longitude": 86.135757
+  },
+  {
+    "idx": 93,
+    "district": "bhagalpur",
+    "state": "bihar",
+    "latitude": 25.239305,
+    "longitude": 86.974522
+  },
+  {
+    "idx": 94,
+    "district": "bhojpur",
+    "state": "bihar",
+    "latitude": 25.565465,
+    "longitude": 84.677244
+  },
+  {
+    "idx": 95,
+    "district": "buxar",
+    "state": "bihar",
+    "latitude": 25.571102,
+    "longitude": 83.98059
+  },
+  {
+    "idx": 96,
+    "district": "darbhanga",
+    "state": "bihar",
+    "latitude": 26.164221,
+    "longitude": 85.910612
+  },
+  {
+    "idx": 97,
+    "district": "east champaran",
+    "state": "bihar",
+    "latitude": 26.6098,
+    "longitude": 84.8568
+  },
+  {
+    "idx": 98,
+    "district": "gaya",
+    "state": "bihar",
+    "latitude": 24.79151,
+    "longitude": 85.004475
+  },
+  {
+    "idx": 99,
+    "district": "gopalganj",
+    "state": "bihar",
+    "latitude": 26.465323,
+    "longitude": 84.444294
+  },
+  {
+    "idx": 100,
+    "district": "jamui",
+    "state": "bihar",
+    "latitude": 24.925934,
+    "longitude": 86.216344
+  },
+  {
+    "idx": 101,
+    "district": "jehanabad",
+    "state": "bihar",
+    "latitude": 25.212198,
+    "longitude": 84.982009
+  },
+  {
+    "idx": 102,
+    "district": "kaimur (bhabua)",
+    "state": "bihar",
+    "latitude": 25.040295,
+    "longitude": 83.602718
+  },
+  {
+    "idx": 103,
+    "district": "katihar",
+    "state": "bihar",
+    "latitude": 25.537374,
+    "longitude": 87.583497
+  },
+  {
+    "idx": 104,
+    "district": "khagaria",
+    "state": "bihar",
+    "latitude": 25.508751,
+    "longitude": 86.472735
+  },
+  {
+    "idx": 105,
+    "district": "kishanganj",
+    "state": "bihar",
+    "latitude": 26.112966,
+    "longitude": 87.9283
+  },
+  {
+    "idx": 106,
+    "district": "lakhisarai",
+    "state": "bihar",
+    "latitude": 25.176411,
+    "longitude": 86.090783
+  },
+  {
+    "idx": 107,
+    "district": "madhepura",
+    "state": "bihar",
+    "latitude": 25.921099,
+    "longitude": 86.792579
+  },
+  {
+    "idx": 108,
+    "district": "madhubani",
+    "state": "bihar",
+    "latitude": 26.356596,
+    "longitude": 86.070431
+  },
+  {
+    "idx": 109,
+    "district": "munger",
+    "state": "bihar",
+    "latitude": 25.37403,
+    "longitude": 86.47675
+  },
+  {
+    "idx": 110,
+    "district": "muzaffarpur",
+    "state": "bihar",
+    "latitude": 26.117382,
+    "longitude": 85.406908
+  },
+  {
+    "idx": 111,
+    "district": "nalanda",
+    "state": "bihar",
+    "latitude": 25.194764,
+    "longitude": 85.521417
+  },
+  {
+    "idx": 112,
+    "district": "nawada",
+    "state": "bihar",
+    "latitude": 24.887955,
+    "longitude": 85.543198
+  },
+  {
+    "idx": 113,
+    "district": "patna",
+    "state": "bihar",
+    "latitude": 25.603125,
+    "longitude": 85.119195
+  },
+  {
+    "idx": 114,
+    "district": "purnea",
+    "state": "bihar",
+    "latitude": 25.777226,
+    "longitude": 87.47066
+  },
+  {
+    "idx": 115,
+    "district": "rohtas",
+    "state": "bihar",
+    "latitude": 24.92088,
+    "longitude": 84.039698
+  },
+  {
+    "idx": 116,
+    "district": "saharsa",
+    "state": "bihar",
+    "latitude": 25.872235,
+    "longitude": 86.59889
+  },
+  {
+    "idx": 117,
+    "district": "samastipur",
+    "state": "bihar",
+    "latitude": 25.846512,
+    "longitude": 85.779185
+  },
+  {
+    "idx": 118,
+    "district": "Santhal Paraganas",
+    "state": "Bihar",
+    "latitude": 24.27861,
+    "longitude": 87.26631
+  },
+  {
+    "idx": 119,
+    "district": "saran",
+    "state": "bihar",
+    "latitude": 25.777293,
+    "longitude": 84.751385
+  },
+  {
+    "idx": 120,
+    "district": "sheikhpura",
+    "state": "bihar",
+    "latitude": 25.147495,
+    "longitude": 85.839471
+  },
+  {
+    "idx": 121,
+    "district": "sheohar",
+    "state": "bihar",
+    "latitude": 26.514445,
+    "longitude": 85.29636
+  },
+  {
+    "idx": 122,
+    "district": "sitamarhi",
+    "state": "bihar",
+    "latitude": 26.59391,
+    "longitude": 85.496766
+  },
+  {
+    "idx": 123,
+    "district": "siwan",
+    "state": "bihar",
+    "latitude": 26.22132,
+    "longitude": 84.361494
+  },
+  {
+    "idx": 124,
+    "district": "supaul",
+    "state": "bihar",
+    "latitude": 26.246247,
+    "longitude": 86.644513
+  },
+  {
+    "idx": 125,
+    "district": "vaishali",
+    "state": "bihar",
+    "latitude": 25.676599,
+    "longitude": 85.219298
+  },
+  {
+    "idx": 126,
+    "district": "west champaran",
+    "state": "bihar",
+    "latitude": 27.1543,
+    "longitude": 84.3542
+  },
+  {
+    "idx": 127,
+    "district": "chandigarh",
+    "state": "chandigarh",
+    "latitude": 30.731928,
+    "longitude": 76.785486
+  },
+  {
+    "idx": 128,
+    "district": "balod",
+    "state": "chhattisgarh",
+    "latitude": 20.7271,
+    "longitude": 81.2056
+  },
+  {
+    "idx": 129,
+    "district": "baloda bazar",
+    "state": "chhattisgarh",
+    "latitude": 21.6571,
+    "longitude": 82.1612
+  },
+  {
+    "idx": 130,
+    "district": "balrampur",
+    "state": "chhattisgarh",
+    "latitude": 23.6082,
+    "longitude": 83.619
+  },
+  {
+    "idx": 131,
+    "district": "baster",
+    "state": "chhattisgarh",
+    "latitude": 19.086747,
+    "longitude": 82.039276
+  },
+  {
+    "idx": 132,
+    "district": "bemetara",
+    "state": "chhattisgarh",
+    "latitude": 21.714,
+    "longitude": 81.5356
+  },
+  {
+    "idx": 133,
+    "district": "bijapur",
+    "state": "chhattisgarh",
+    "latitude": 18.7963,
+    "longitude": 80.8156
+  },
+  {
+    "idx": 134,
+    "district": "bilaspur",
+    "state": "chhattisgarh",
+    "latitude": 22.074605,
+    "longitude": 82.176189
+  },
+  {
+    "idx": 135,
+    "district": "dhamtari",
+    "state": "chhattisgarh",
+    "latitude": 20.703812,
+    "longitude": 81.567596
+  },
+  {
+    "idx": 136,
+    "district": "durg",
+    "state": "chhattisgarh",
+    "latitude": 21.188278,
+    "longitude": 81.275855
+  },
+  {
+    "idx": 137,
+    "district": "gariaband",
+    "state": "chhattisgarh",
+    "latitude": 20.6348,
+    "longitude": 82.0615
+  },
+  {
+    "idx": 138,
+    "district": "gaurela - pendra - marwahi",
+    "state": "chhattisgarh",
+    "latitude": 22.8475,
+    "longitude": 81.9971
+  },
+  {
+    "idx": 139,
+    "district": "janjgir - champa",
+    "state": "chhattisgarh",
+    "latitude": 22.003783,
+    "longitude": 82.594618
+  },
+  {
+    "idx": 140,
+    "district": "jashpur",
+    "state": "chhattisgarh",
+    "latitude": 22.892329,
+    "longitude": 84.158393
+  },
+  {
+    "idx": 141,
+    "district": "kabirdham-kawardha",
+    "state": "chhattisgarh",
+    "latitude": 22.0106,
+    "longitude": 81.2359
+  },
+  {
+    "idx": 142,
+    "district": "khairgarh chhuikhadan gandai",
+    "state": "chhattisgarh",
+    "latitude": 23.250001,
+    "longitude": 68.250001
+  },
+  {
+    "idx": 143,
+    "district": "kondagaon",
+    "state": "chhattisgarh",
+    "latitude": 19.5954,
+    "longitude": 81.6646
+  },
+  {
+    "idx": 144,
+    "district": "korba",
+    "state": "chhattisgarh",
+    "latitude": 22.337193,
+    "longitude": 82.715651
+  },
+  {
+    "idx": 145,
+    "district": "korea",
+    "state": "chhattisgarh",
+    "latitude": 23.244843,
+    "longitude": 82.570516
+  },
+  {
+    "idx": 146,
+    "district": "mahasamund",
+    "state": "chhattisgarh",
+    "latitude": 21.09393,
+    "longitude": 82.111104
+  },
+  {
+    "idx": 147,
+    "district": "manendragarh chirimiri bharatpur",
+    "state": "chhattisgarh",
+    "latitude": 40.28,
+    "longitude": 32.29
+  },
+  {
+    "idx": 148,
+    "district": "mohla manpur ambagarh chouk",
+    "state": "chhattisgarh",
+    "latitude": 20.59,
+    "longitude": 80.75
+  },
+  {
+    "idx": 149,
+    "district": "mungeli",
+    "state": "chhattisgarh",
+    "latitude": 22.0662,
+    "longitude": 81.6839
+  },
+  {
+    "idx": 150,
+    "district": "Naravanpur",
+    "state": "Chhattisgarh",
+    "latitude": 19.7196,
+    "longitude": 81.2472
+  },
+  {
+    "idx": 151,
+    "district": "norh bastar-kanker",
+    "state": "chhattisgarh",
+    "latitude": 20.199,
+    "longitude": 81.0755
+  },
+  {
+    "idx": 152,
+    "district": "raigarh",
+    "state": "chhattisgarh",
+    "latitude": 21.908949,
+    "longitude": 83.395958
+  },
+  {
+    "idx": 153,
+    "district": "raipur",
+    "state": "chhattisgarh",
+    "latitude": 21.227374,
+    "longitude": 81.629069
+  },
+  {
+    "idx": 154,
+    "district": "rajnandgaon",
+    "state": "chhattisgarh",
+    "latitude": 21.089426,
+    "longitude": 81.034625
+  },
+  {
+    "idx": 155,
+    "district": "sakti",
+    "state": "chhattisgarh",
+    "latitude": 22.0238,
+    "longitude": 82.9602
+  },
+  {
+    "idx": 156,
+    "district": "sarangarh bilaigarh",
+    "state": "chhattisgarh",
+    "latitude": 21.5893,
+    "longitude": 83.0775
+  },
+  {
+    "idx": 157,
+    "district": "south bastar-dantewada",
+    "state": "chhattisgarh",
+    "latitude": 18.8998,
+    "longitude": 81.3474
+  },
+  {
+    "idx": 158,
+    "district": "sukma",
+    "state": "chhattisgarh",
+    "latitude": 18.3909,
+    "longitude": 81.6588
+  },
+  {
+    "idx": 159,
+    "district": "surajpur",
+    "state": "chhattisgarh",
+    "latitude": 23.2136,
+    "longitude": 82.868
+  },
+  {
+    "idx": 160,
+    "district": "surguja",
+    "state": "chhattisgarh",
+    "latitude": 23.118939,
+    "longitude": 83.207362
+  },
+  {
+    "idx": 161,
+    "district": "dadra & nagar haveli",
+    "state": "dadra and nagar haveli",
+    "latitude": 20.284446,
+    "longitude": 72.998942
+  },
+  {
+    "idx": 162,
+    "district": "daman",
+    "state": "daman and diu",
+    "latitude": 20.424388,
+    "longitude": 72.846682
+  },
+  {
+    "idx": 163,
+    "district": "diu",
+    "state": "daman and diu",
+    "latitude": 20.713309,
+    "longitude": 70.979548
+  },
+  {
+    "idx": 164,
+    "district": "central delhi",
+    "state": "delhi",
+    "latitude": 28.6818,
+    "longitude": 77.229
+  },
+  {
+    "idx": 165,
+    "district": "east delhi",
+    "state": "delhi",
+    "latitude": 28.6258,
+    "longitude": 77.3037
+  },
+  {
+    "idx": 166,
+    "district": "new delhi",
+    "state": "delhi",
+    "latitude": 28.6139,
+    "longitude": 77.209
+  },
+  {
+    "idx": 167,
+    "district": "north delhi",
+    "state": "delhi",
+    "latitude": 28.775,
+    "longitude": 77.1255
+  },
+  {
+    "idx": 168,
+    "district": "north east delhi",
+    "state": "delhi",
+    "latitude": 28.7247,
+    "longitude": 77.2578
+  },
+  {
+    "idx": 169,
+    "district": "north west delhi",
+    "state": "delhi",
+    "latitude": 28.7306,
+    "longitude": 77.0219
+  },
+  {
+    "idx": 170,
+    "district": "shahdara",
+    "state": "delhi",
+    "latitude": 28.6714,
+    "longitude": 77.2692
+  },
+  {
+    "idx": 171,
+    "district": "south delhi",
+    "state": "delhi",
+    "latitude": 28.4709,
+    "longitude": 77.183
+  },
+  {
+    "idx": 172,
+    "district": "south east delhi",
+    "state": "delhi",
+    "latitude": 28.5485,
+    "longitude": 77.275
+  },
+  {
+    "idx": 173,
+    "district": "south west delhi",
+    "state": "delhi",
+    "latitude": 28.5783,
+    "longitude": 76.9873
+  },
+  {
+    "idx": 174,
+    "district": "west delhi",
+    "state": "delhi",
+    "latitude": 28.6663,
+    "longitude": 77.068
+  },
+  {
+    "idx": 175,
+    "district": "north goa",
+    "state": "goa",
+    "latitude": 15.480081,
+    "longitude": 73.822329
+  },
+  {
+    "idx": 176,
+    "district": "south goa",
+    "state": "goa",
+    "latitude": 15.304936,
+    "longitude": 73.959411
+  },
+  {
+    "idx": 177,
+    "district": "ahmadabad",
+    "state": "gujarat",
+    "latitude": 23.026157,
+    "longitude": 72.589687
+  },
+  {
+    "idx": 178,
+    "district": "amreli",
+    "state": "gujarat",
+    "latitude": 21.598002,
+    "longitude": 71.216081
+  },
+  {
+    "idx": 179,
+    "district": "anand",
+    "state": "gujarat",
+    "latitude": 22.566883,
+    "longitude": 72.953775
+  },
+  {
+    "idx": 180,
+    "district": "aravalli",
+    "state": "gujarat",
+    "latitude": 23.5205,
+    "longitude": 73.3709
+  },
+  {
+    "idx": 181,
+    "district": "banas kantha",
+    "state": "gujarat",
+    "latitude": 24.185024,
+    "longitude": 72.444088
+  },
+  {
+    "idx": 182,
+    "district": "baroda",
+    "state": "gujarat",
+    "latitude": 22.3072,
+    "longitude": 73.1812
+  },
+  {
+    "idx": 183,
+    "district": "bharuch",
+    "state": "gujarat",
+    "latitude": 21.69417,
+    "longitude": 72.978556
+  },
+  {
+    "idx": 184,
+    "district": "bhavnagar",
+    "state": "gujarat",
+    "latitude": 21.77414,
+    "longitude": 72.139722
+  },
+  {
+    "idx": 185,
+    "district": "botad",
+    "state": "gujarat",
+    "latitude": 22.1723,
+    "longitude": 71.6636
+  },
+  {
+    "idx": 186,
+    "district": "chhota udepur",
+    "state": "gujarat",
+    "latitude": 22.3085,
+    "longitude": 74.012
+  },
+  {
+    "idx": 187,
+    "district": "dahod",
+    "state": "gujarat",
+    "latitude": 22.8345,
+    "longitude": 74.2606
+  },
+  {
+    "idx": 188,
+    "district": "dang",
+    "state": "gujarat",
+    "latitude": 20.8254,
+    "longitude": 73.7007
+  },
+  {
+    "idx": 189,
+    "district": "debhoomi dwarka",
+    "state": "gujarat",
+    "latitude": 22.1232,
+    "longitude": 69.3831
+  },
+  {
+    "idx": 190,
+    "district": "gandhinagar",
+    "state": "gujarat",
+    "latitude": 23.235737,
+    "longitude": 72.671374
+  },
+  {
+    "idx": 191,
+    "district": "gir somnath",
+    "state": "gujarat",
+    "latitude": 20.8803,
+    "longitude": 70.7644
+  },
+  {
+    "idx": 192,
+    "district": "jamnagar",
+    "state": "gujarat",
+    "latitude": 22.471076,
+    "longitude": 70.07265
+  },
+  {
+    "idx": 193,
+    "district": "junagadh",
+    "state": "gujarat",
+    "latitude": 21.522705,
+    "longitude": 70.461296
+  },
+  {
+    "idx": 194,
+    "district": "kachchh",
+    "state": "gujarat",
+    "latitude": 23.251213,
+    "longitude": 69.666108
+  },
+  {
+    "idx": 195,
+    "district": "kheda",
+    "state": "gujarat",
+    "latitude": 22.747316,
+    "longitude": 72.695273
+  },
+  {
+    "idx": 196,
+    "district": "mahisagar",
+    "state": "gujarat",
+    "latitude": 23.1711,
+    "longitude": 73.5594
+  },
+  {
+    "idx": 197,
+    "district": "mehsana",
+    "state": "gujarat",
+    "latitude": 23.588,
+    "longitude": 72.3693
+  },
+  {
+    "idx": 198,
+    "district": "morbi",
+    "state": "gujarat",
+    "latitude": 22.8252,
+    "longitude": 70.8491
+  },
+  {
+    "idx": 199,
+    "district": "narmada",
+    "state": "gujarat",
+    "latitude": 21.875823,
+    "longitude": 73.499823
+  },
+  {
+    "idx": 200,
+    "district": "navsari",
+    "state": "gujarat",
+    "latitude": 20.948755,
+    "longitude": 72.925226
+  },
+  {
+    "idx": 201,
+    "district": "panchmahal",
+    "state": "gujarat",
+    "latitude": 22.772915,
+    "longitude": 73.60953
+  },
+  {
+    "idx": 202,
+    "district": "patan",
+    "state": "gujarat",
+    "latitude": 23.845103,
+    "longitude": 72.111466
+  },
+  {
+    "idx": 203,
+    "district": "porbandar",
+    "state": "gujarat",
+    "latitude": 21.636581,
+    "longitude": 69.59674
+  },
+  {
+    "idx": 204,
+    "district": "rajkot",
+    "state": "gujarat",
+    "latitude": 24.005868,
+    "longitude": 76.739744
+  },
+  {
+    "idx": 205,
+    "district": "sabarkantha (himmatnagar)",
+    "state": "gujarat",
+    "latitude": 23.605115,
+    "longitude": 72.96492
+  },
+  {
+    "idx": 206,
+    "district": "surat",
+    "state": "gujarat",
+    "latitude": 21.205128,
+    "longitude": 72.847119
+  },
+  {
+    "idx": 207,
+    "district": "surendranagar",
+    "state": "gujarat",
+    "latitude": 22.732978,
+    "longitude": 71.614645
+  },
+  {
+    "idx": 208,
+    "district": "tapi",
+    "state": "gujarat",
+    "latitude": 21.2789,
+    "longitude": 73.6065
+  },
+  {
+    "idx": 209,
+    "district": "the dangs",
+    "state": "gujarat",
+    "latitude": 20.756817,
+    "longitude": 73.689483
+  },
+  {
+    "idx": 210,
+    "district": "vadodara",
+    "state": "gujarat",
+    "latitude": 22.287726,
+    "longitude": 73.206027
+  },
+  {
+    "idx": 211,
+    "district": "valsad",
+    "state": "gujarat",
+    "latitude": 20.631227,
+    "longitude": 72.933378
+  },
+  {
+    "idx": 212,
+    "district": "ambala",
+    "state": "haryana",
+    "latitude": 30.376076,
+    "longitude": 76.78821
+  },
+  {
+    "idx": 213,
+    "district": "bhiwani",
+    "state": "haryana",
+    "latitude": 28.791052,
+    "longitude": 76.143875
+  },
+  {
+    "idx": 214,
+    "district": "charkhi dadri",
+    "state": "haryana",
+    "latitude": 28.5921,
+    "longitude": 76.2653
+  },
+  {
+    "idx": 215,
+    "district": "faridabad",
+    "state": "haryana",
+    "latitude": 28.427902,
+    "longitude": 77.329409
+  },
+  {
+    "idx": 216,
+    "district": "fatehabad",
+    "state": "haryana",
+    "latitude": 29.516385,
+    "longitude": 75.4548
+  },
+  {
+    "idx": 217,
+    "district": "gurugram",
+    "state": "haryana",
+    "latitude": 28.466248,
+    "longitude": 77.028569
+  },
+  {
+    "idx": 218,
+    "district": "hisar",
+    "state": "haryana",
+    "latitude": 29.151765,
+    "longitude": 75.725027
+  },
+  {
+    "idx": 219,
+    "district": "jhajjar",
+    "state": "haryana",
+    "latitude": 28.601349,
+    "longitude": 76.6536
+  },
+  {
+    "idx": 220,
+    "district": "jind",
+    "state": "haryana",
+    "latitude": 29.318821,
+    "longitude": 76.313347
+  },
+  {
+    "idx": 221,
+    "district": "kaithal",
+    "state": "haryana",
+    "latitude": 29.804185,
+    "longitude": 76.399321
+  },
+  {
+    "idx": 222,
+    "district": "karnal",
+    "state": "haryana",
+    "latitude": 29.692495,
+    "longitude": 76.985142
+  },
+  {
+    "idx": 223,
+    "district": "kurukshetra",
+    "state": "haryana",
+    "latitude": 29.962444,
+    "longitude": 76.838151
+  },
+  {
+    "idx": 224,
+    "district": "mahendragarh",
+    "state": "haryana",
+    "latitude": 28.045836,
+    "longitude": 76.11006
+  },
+  {
+    "idx": 225,
+    "district": "mewat",
+    "state": "haryana",
+    "latitude": 28.0107,
+    "longitude": 77.0564
+  },
+  {
+    "idx": 226,
+    "district": "palwal",
+    "state": "haryana",
+    "latitude": 28.1473,
+    "longitude": 77.326
+  },
+  {
+    "idx": 227,
+    "district": "panchkula",
+    "state": "haryana",
+    "latitude": 30.722619,
+    "longitude": 76.880191
+  },
+  {
+    "idx": 228,
+    "district": "panipat",
+    "state": "haryana",
+    "latitude": 29.387951,
+    "longitude": 76.968552
+  },
+  {
+    "idx": 229,
+    "district": "rewari",
+    "state": "haryana",
+    "latitude": 28.198138,
+    "longitude": 76.615433
+  },
+  {
+    "idx": 230,
+    "district": "rohtak",
+    "state": "haryana",
+    "latitude": 28.888214,
+    "longitude": 76.587935
+  },
+  {
+    "idx": 231,
+    "district": "sirsa",
+    "state": "haryana",
+    "latitude": 29.531177,
+    "longitude": 75.026343
+  },
+  {
+    "idx": 232,
+    "district": "sonipat",
+    "state": "haryana",
+    "latitude": 28.979449,
+    "longitude": 77.024728
+  },
+  {
+    "idx": 233,
+    "district": "yamunanagar",
+    "state": "haryana",
+    "latitude": 30.30369,
+    "longitude": 77.307789
+  },
+  {
+    "idx": 234,
+    "district": "bilaspur",
+    "state": "himachal pradesh",
+    "latitude": 31.323902,
+    "longitude": 76.761527
+  },
+  {
+    "idx": 235,
+    "district": "chamba",
+    "state": "himachal pradesh",
+    "latitude": 32.558843,
+    "longitude": 76.126097
+  },
+  {
+    "idx": 236,
+    "district": "hamirpur",
+    "state": "himachal pradesh",
+    "latitude": 31.672705,
+    "longitude": 76.521404
+  },
+  {
+    "idx": 237,
+    "district": "kangra",
+    "state": "himachal pradesh",
+    "latitude": 32.217751,
+    "longitude": 76.31406
+  },
+  {
+    "idx": 238,
+    "district": "kinnaur",
+    "state": "himachal pradesh",
+    "latitude": 31.546954,
+    "longitude": 78.26285
+  },
+  {
+    "idx": 239,
+    "district": "kullu",
+    "state": "himachal pradesh",
+    "latitude": 31.960573,
+    "longitude": 77.107897
+  },
+  {
+    "idx": 240,
+    "district": "lahul & spiti",
+    "state": "himachal pradesh",
+    "latitude": 32.574709,
+    "longitude": 77.040806
+  },
+  {
+    "idx": 241,
+    "district": "mandi",
+    "state": "himachal pradesh",
+    "latitude": 31.711956,
+    "longitude": 76.932031
+  },
+  {
+    "idx": 242,
+    "district": "shimla",
+    "state": "himachal pradesh",
+    "latitude": 31.10003,
+    "longitude": 77.171181
+  },
+  {
+    "idx": 243,
+    "district": "sirmaur",
+    "state": "himachal pradesh",
+    "latitude": 30.525617,
+    "longitude": 77.230732
+  },
+  {
+    "idx": 244,
+    "district": "solan",
+    "state": "himachal pradesh",
+    "latitude": 30.910522,
+    "longitude": 77.108405
+  },
+  {
+    "idx": 245,
+    "district": "una",
+    "state": "himachal pradesh",
+    "latitude": 31.46426,
+    "longitude": 76.268458
+  },
+  {
+    "idx": 246,
+    "district": "anantnag",
+    "state": "jammu and kashmir",
+    "latitude": 33.738528,
+    "longitude": 75.16328
+  },
+  {
+    "idx": 247,
+    "district": "badgam",
+    "state": "jammu and kashmir",
+    "latitude": 33.9349,
+    "longitude": 74.64
+  },
+  {
+    "idx": 248,
+    "district": "bandipora",
+    "state": "jammu and kashmir",
+    "latitude": 34.5052,
+    "longitude": 74.6869
+  },
+  {
+    "idx": 249,
+    "district": "baramula",
+    "state": "jammu and kashmir",
+    "latitude": 34.200628,
+    "longitude": 74.328035
+  },
+  {
+    "idx": 250,
+    "district": "doda",
+    "state": "jammu and kashmir",
+    "latitude": 33.1457,
+    "longitude": 75.548
+  },
+  {
+    "idx": 251,
+    "district": "ganderbal",
+    "state": "jammu and kashmir",
+    "latitude": 34.2165,
+    "longitude": 74.7719
+  },
+  {
+    "idx": 252,
+    "district": "jammu",
+    "state": "jammu and kashmir",
+    "latitude": 32.727401,
+    "longitude": 74.8456
+  },
+  {
+    "idx": 253,
+    "district": "kathua",
+    "state": "jammu and kashmir",
+    "latitude": 32.359369,
+    "longitude": 75.516357
+  },
+  {
+    "idx": 254,
+    "district": "kishtwar",
+    "state": "jammu and kashmir",
+    "latitude": 33.3116,
+    "longitude": 75.7662
+  },
+  {
+    "idx": 255,
+    "district": "kulgam",
+    "state": "jammu and kashmir",
+    "latitude": 33.645,
+    "longitude": 75.018
+  },
+  {
+    "idx": 256,
+    "district": "kupwara",
+    "state": "jammu and kashmir",
+    "latitude": 34.5262,
+    "longitude": 74.2546
+  },
+  {
+    "idx": 257,
+    "district": "poonch",
+    "state": "jammu and kashmir",
+    "latitude": 33.773791,
+    "longitude": 74.081247
+  },
+  {
+    "idx": 258,
+    "district": "pulwama",
+    "state": "jammu and kashmir",
+    "latitude": 33.8716,
+    "longitude": 74.8946
+  },
+  {
+    "idx": 259,
+    "district": "rajauri",
+    "state": "jammu and kashmir",
+    "latitude": 33.3716,
+    "longitude": 74.3152
+  },
+  {
+    "idx": 260,
+    "district": "ramban",
+    "state": "jammu and kashmir",
+    "latitude": 33.2464,
+    "longitude": 75.1939
+  },
+  {
+    "idx": 261,
+    "district": "reasi",
+    "state": "jammu and kashmir",
+    "latitude": 33.0804,
+    "longitude": 74.8364
+  },
+  {
+    "idx": 262,
+    "district": "samba",
+    "state": "jammu and kashmir",
+    "latitude": 32.553,
+    "longitude": 75.1108
+  },
+  {
+    "idx": 263,
+    "district": "shopian",
+    "state": "jammu and kashmir",
+    "latitude": 33.717,
+    "longitude": 74.8361
+  },
+  {
+    "idx": 264,
+    "district": "srinagar",
+    "state": "jammu and kashmir",
+    "latitude": 34.083627,
+    "longitude": 74.810746
+  },
+  {
+    "idx": 265,
+    "district": "udhampur",
+    "state": "jammu and kashmir",
+    "latitude": 32.91258,
+    "longitude": 75.108491
+  },
+  {
+    "idx": 266,
+    "district": "bokaro",
+    "state": "jharkhand",
+    "latitude": 23.640657,
+    "longitude": 86.162947
+  },
+  {
+    "idx": 267,
+    "district": "chatra",
+    "state": "jharkhand",
+    "latitude": 24.208676,
+    "longitude": 84.866295
+  },
+  {
+    "idx": 268,
+    "district": "deoghar",
+    "state": "jharkhand",
+    "latitude": 24.481265,
+    "longitude": 86.700615
+  },
+  {
+    "idx": 269,
+    "district": "dhanbad",
+    "state": "jharkhand",
+    "latitude": 23.797727,
+    "longitude": 86.436225
+  },
+  {
+    "idx": 270,
+    "district": "dumka",
+    "state": "jharkhand",
+    "latitude": 24.271014,
+    "longitude": 87.249367
+  },
+  {
+    "idx": 271,
+    "district": "east singhbhum",
+    "state": "jharkhand",
+    "latitude": 22.4867,
+    "longitude": 86.4997
+  },
+  {
+    "idx": 272,
+    "district": "garhwa",
+    "state": "jharkhand",
+    "latitude": 24.17351,
+    "longitude": 83.81231
+  },
+  {
+    "idx": 273,
+    "district": "giridih",
+    "state": "jharkhand",
+    "latitude": 24.189967,
+    "longitude": 86.313267
+  },
+  {
+    "idx": 274,
+    "district": "godda",
+    "state": "jharkhand",
+    "latitude": 24.829078,
+    "longitude": 87.215924
+  },
+  {
+    "idx": 275,
+    "district": "gumla",
+    "state": "jharkhand",
+    "latitude": 23.026635,
+    "longitude": 84.534374
+  },
+  {
+    "idx": 276,
+    "district": "hazaribag",
+    "state": "jharkhand",
+    "latitude": 23.988567,
+    "longitude": 85.36671
+  },
+  {
+    "idx": 277,
+    "district": "jamtara",
+    "state": "jharkhand",
+    "latitude": 23.959798,
+    "longitude": 86.788385
+  },
+  {
+    "idx": 278,
+    "district": "khunti",
+    "state": "jharkhand",
+    "latitude": 23.0798,
+    "longitude": 85.2774
+  },
+  {
+    "idx": 279,
+    "district": "koderma",
+    "state": "jharkhand",
+    "latitude": 24.463,
+    "longitude": 85.587047
+  },
+  {
+    "idx": 280,
+    "district": "latehar",
+    "state": "jharkhand",
+    "latitude": 23.75162,
+    "longitude": 84.509376
+  },
+  {
+    "idx": 281,
+    "district": "lohardaga",
+    "state": "jharkhand",
+    "latitude": 23.432486,
+    "longitude": 84.681568
+  },
+  {
+    "idx": 282,
+    "district": "pakaur",
+    "state": "jharkhand",
+    "latitude": 24.635842,
+    "longitude": 87.834711
+  },
+  {
+    "idx": 283,
+    "district": "palamu",
+    "state": "jharkhand",
+    "latitude": 24.040242,
+    "longitude": 84.069328
+  },
+  {
+    "idx": 284,
+    "district": "ramgarh",
+    "state": "jharkhand",
+    "latitude": 23.6363,
+    "longitude": 85.5124
+  },
+  {
+    "idx": 285,
+    "district": "ranchi",
+    "state": "jharkhand",
+    "latitude": 23.363068,
+    "longitude": 85.340321
+  },
+  {
+    "idx": 286,
+    "district": "sahibganj",
+    "state": "jharkhand",
+    "latitude": 25.244524,
+    "longitude": 87.632966
+  },
+  {
+    "idx": 287,
+    "district": "saraikela-kharsawan",
+    "state": "jharkhand",
+    "latitude": 22.715002,
+    "longitude": 85.939556
+  },
+  {
+    "idx": 288,
+    "district": "simdega",
+    "state": "jharkhand",
+    "latitude": 22.615172,
+    "longitude": 84.502538
+  },
+  {
+    "idx": 289,
+    "district": "west singhbhum",
+    "state": "jharkhand",
+    "latitude": 22.3651,
+    "longitude": 85.4376
+  },
+  {
+    "idx": 290,
+    "district": "bagalkot",
+    "state": "karnataka",
+    "latitude": 16.202963,
+    "longitude": 75.707787
+  },
+  {
+    "idx": 291,
+    "district": "ballari (bellary)",
+    "state": "karnataka",
+    "latitude": 15.1394,
+    "longitude": 76.9214
+  },
+  {
+    "idx": 292,
+    "district": "belagavi (belgaum)",
+    "state": "karnataka",
+    "latitude": 15.8497,
+    "longitude": 74.4977
+  },
+  {
+    "idx": 293,
+    "district": "bengaluru (bangalore) rural",
+    "state": "karnataka",
+    "latitude": 12.9716,
+    "longitude": 77.5946
+  },
+  {
+    "idx": 294,
+    "district": "bengaluru (bangalore) urban",
+    "state": "karnataka",
+    "latitude": 12.9716,
+    "longitude": 77.5946
+  },
+  {
+    "idx": 295,
+    "district": "bidar",
+    "state": "karnataka",
+    "latitude": 17.915869,
+    "longitude": 77.531757
+  },
+  {
+    "idx": 296,
+    "district": "chamrajnagar",
+    "state": "karnataka",
+    "latitude": 11.936475,
+    "longitude": 76.939171
+  },
+  {
+    "idx": 297,
+    "district": "chikballapur",
+    "state": "karnataka",
+    "latitude": 13.4355,
+    "longitude": 77.7315
+  },
+  {
+    "idx": 298,
+    "district": "chikkamagaluru (chikmagalur)",
+    "state": "karnataka",
+    "latitude": 13.3161,
+    "longitude": 75.772
+  },
+  {
+    "idx": 299,
+    "district": "chitradurga",
+    "state": "karnataka",
+    "latitude": 14.227245,
+    "longitude": 76.402839
+  },
+  {
+    "idx": 300,
+    "district": "dakshina kannada",
+    "state": "karnataka",
+    "latitude": 12.863889,
+    "longitude": 74.841219
+  },
+  {
+    "idx": 301,
+    "district": "davangere",
+    "state": "karnataka",
+    "latitude": 14.492934,
+    "longitude": 75.936375
+  },
+  {
+    "idx": 302,
+    "district": "dharwad",
+    "state": "karnataka",
+    "latitude": 15.452454,
+    "longitude": 75.012073
+  },
+  {
+    "idx": 303,
+    "district": "gadag",
+    "state": "karnataka",
+    "latitude": 15.441432,
+    "longitude": 75.646857
+  },
+  {
+    "idx": 304,
+    "district": "hassan",
+    "state": "karnataka",
+    "latitude": 13.008913,
+    "longitude": 76.098149
+  },
+  {
+    "idx": 305,
+    "district": "haveri",
+    "state": "karnataka",
+    "latitude": 14.810215,
+    "longitude": 75.407562
+  },
+  {
+    "idx": 306,
+    "district": "kalaburagi ( gulbarga)",
+    "state": "karnataka",
+    "latitude": 17.3297,
+    "longitude": 76.8343
+  },
+  {
+    "idx": 307,
+    "district": "kodagu",
+    "state": "karnataka",
+    "latitude": 12.422433,
+    "longitude": 75.744027
+  },
+  {
+    "idx": 308,
+    "district": "kolar",
+    "state": "karnataka",
+    "latitude": 13.135759,
+    "longitude": 78.136263
+  },
+  {
+    "idx": 309,
+    "district": "koppal",
+    "state": "karnataka",
+    "latitude": 15.362997,
+    "longitude": 76.167916
+  },
+  {
+    "idx": 310,
+    "district": "mandya",
+    "state": "karnataka",
+    "latitude": 12.517368,
+    "longitude": 76.898666
+  },
+  {
+    "idx": 311,
+    "district": "mysuru (mysore)",
+    "state": "karnataka",
+    "latitude": 12.309442,
+    "longitude": 76.654533
+  },
+  {
+    "idx": 312,
+    "district": "raichur",
+    "state": "karnataka",
+    "latitude": 16.207752,
+    "longitude": 77.358779
+  },
+  {
+    "idx": 313,
+    "district": "ramanagara",
+    "state": "karnataka",
+    "latitude": 12.7209,
+    "longitude": 77.2799
+  },
+  {
+    "idx": 314,
+    "district": "shivamogga ( shimoga)",
+    "state": "karnataka",
+    "latitude": 13.930893,
+    "longitude": 75.576068
+  },
+  {
+    "idx": 315,
+    "district": "tumakuru ( tumkur)",
+    "state": "karnataka",
+    "latitude": 13.353655,
+    "longitude": 77.096527
+  },
+  {
+    "idx": 316,
+    "district": "udupi",
+    "state": "karnataka",
+    "latitude": 13.359567,
+    "longitude": 74.759237
+  },
+  {
+    "idx": 317,
+    "district": "uttara kannada",
+    "state": "karnataka",
+    "latitude": 14.804209,
+    "longitude": 74.131214
+  },
+  {
+    "idx": 318,
+    "district": "vijayapura (bijapur)",
+    "state": "karnataka",
+    "latitude": 16.8302,
+    "longitude": 75.71
+  },
+  {
+    "idx": 319,
+    "district": "yadgir",
+    "state": "karnataka",
+    "latitude": 16.7487,
+    "longitude": 77.1309
+  },
+  {
+    "idx": 320,
+    "district": "alappuzha",
+    "state": "kerala",
+    "latitude": 9.501632,
+    "longitude": 76.329606
+  },
+  {
+    "idx": 321,
+    "district": "ernakulam",
+    "state": "kerala",
+    "latitude": 9.956764,
+    "longitude": 76.292401
+  },
+  {
+    "idx": 322,
+    "district": "idukki",
+    "state": "kerala",
+    "latitude": 9.900515,
+    "longitude": 77.176271
+  },
+  {
+    "idx": 323,
+    "district": "kannur",
+    "state": "kerala",
+    "latitude": 11.868687,
+    "longitude": 75.36639
+  },
+  {
+    "idx": 324,
+    "district": "kasaragod",
+    "state": "kerala",
+    "latitude": 12.498305,
+    "longitude": 74.990213
+  },
+  {
+    "idx": 325,
+    "district": "kollam",
+    "state": "kerala",
+    "latitude": 8.888392,
+    "longitude": 76.609021
+  },
+  {
+    "idx": 326,
+    "district": "kottayam",
+    "state": "kerala",
+    "latitude": 9.595602,
+    "longitude": 76.521426
+  },
+  {
+    "idx": 327,
+    "district": "kozhikode",
+    "state": "kerala",
+    "latitude": 11.239895,
+    "longitude": 75.795215
+  },
+  {
+    "idx": 328,
+    "district": "malappuram",
+    "state": "kerala",
+    "latitude": 11.043786,
+    "longitude": 76.085683
+  },
+  {
+    "idx": 329,
+    "district": "palakkad",
+    "state": "kerala",
+    "latitude": 10.772089,
+    "longitude": 76.658319
+  },
+  {
+    "idx": 330,
+    "district": "pathanamthitta",
+    "state": "kerala",
+    "latitude": 9.294782,
+    "longitude": 76.75528
+  },
+  {
+    "idx": 331,
+    "district": "thiruvananthapuram",
+    "state": "kerala",
+    "latitude": 8.490191,
+    "longitude": 76.917805
+  },
+  {
+    "idx": 332,
+    "district": "thrissur",
+    "state": "kerala",
+    "latitude": 10.522671,
+    "longitude": 76.21865
+  },
+  {
+    "idx": 333,
+    "district": "wayanad",
+    "state": "kerala",
+    "latitude": 11.606117,
+    "longitude": 76.088347
+  },
+  {
+    "idx": 334,
+    "district": "kargil",
+    "state": "ladakh",
+    "latitude": 34.5539,
+    "longitude": 76.1349
+  },
+  {
+    "idx": 335,
+    "district": "Ladakh",
+    "state": "Ladakh",
+    "latitude": 34.2268,
+    "longitude": 77.5619
+  },
+  {
+    "idx": 336,
+    "district": "leh (ladakh)",
+    "state": "ladakh",
+    "latitude": 34.138736,
+    "longitude": 77.565158
+  },
+  {
+    "idx": 337,
+    "district": "lakshadweep",
+    "state": "lakshadweep",
+    "latitude": 10.568609,
+    "longitude": 72.640306
+  },
+  {
+    "idx": 338,
+    "district": "agarmalwa",
+    "state": "madhya pradesh",
+    "latitude": 23.7845,
+    "longitude": 75.9928
+  },
+  {
+    "idx": 339,
+    "district": "alirajpur",
+    "state": "madhya pradesh",
+    "latitude": 22.306,
+    "longitude": 74.3558
+  },
+  {
+    "idx": 340,
+    "district": "anuppur",
+    "state": "madhya pradesh",
+    "latitude": 23.097789,
+    "longitude": 81.701139
+  },
+  {
+    "idx": 341,
+    "district": "ashoknagar",
+    "state": "madhya pradesh",
+    "latitude": 24.568718,
+    "longitude": 77.728572
+  },
+  {
+    "idx": 342,
+    "district": "balaghat",
+    "state": "madhya pradesh",
+    "latitude": 21.815447,
+    "longitude": 80.1932
+  },
+  {
+    "idx": 343,
+    "district": "barwani",
+    "state": "madhya pradesh",
+    "latitude": 22.02929,
+    "longitude": 74.891275
+  },
+  {
+    "idx": 344,
+    "district": "betul",
+    "state": "madhya pradesh",
+    "latitude": 21.903513,
+    "longitude": 77.902064
+  },
+  {
+    "idx": 345,
+    "district": "bhind",
+    "state": "madhya pradesh",
+    "latitude": 26.564114,
+    "longitude": 78.789336
+  },
+  {
+    "idx": 346,
+    "district": "bhopal",
+    "state": "madhya pradesh",
+    "latitude": 23.266323,
+    "longitude": 77.414303
+  },
+  {
+    "idx": 347,
+    "district": "burhanpur",
+    "state": "madhya pradesh",
+    "latitude": 21.33186,
+    "longitude": 76.20459
+  },
+  {
+    "idx": 348,
+    "district": "chhatarpur",
+    "state": "madhya pradesh",
+    "latitude": 24.915425,
+    "longitude": 79.592243
+  },
+  {
+    "idx": 349,
+    "district": "chhindwara",
+    "state": "madhya pradesh",
+    "latitude": 22.057572,
+    "longitude": 78.940098
+  },
+  {
+    "idx": 350,
+    "district": "damoh",
+    "state": "madhya pradesh",
+    "latitude": 23.824248,
+    "longitude": 79.455215
+  },
+  {
+    "idx": 351,
+    "district": "datia",
+    "state": "madhya pradesh",
+    "latitude": 25.673026,
+    "longitude": 78.458158
+  },
+  {
+    "idx": 352,
+    "district": "dewas",
+    "state": "madhya pradesh",
+    "latitude": 22.962736,
+    "longitude": 76.071156
+  },
+  {
+    "idx": 353,
+    "district": "dhar",
+    "state": "madhya pradesh",
+    "latitude": 22.598554,
+    "longitude": 75.314536
+  },
+  {
+    "idx": 354,
+    "district": "dindori",
+    "state": "madhya pradesh",
+    "latitude": 22.939702,
+    "longitude": 81.083584
+  },
+  {
+    "idx": 355,
+    "district": "east nimar",
+    "state": "madhya pradesh",
+    "latitude": 21.827574,
+    "longitude": 76.356018
+  },
+  {
+    "idx": 356,
+    "district": "guna",
+    "state": "madhya pradesh",
+    "latitude": 24.644351,
+    "longitude": 77.313136
+  },
+  {
+    "idx": 357,
+    "district": "gwalior",
+    "state": "madhya pradesh",
+    "latitude": 26.222524,
+    "longitude": 78.168463
+  },
+  {
+    "idx": 358,
+    "district": "harda",
+    "state": "madhya pradesh",
+    "latitude": 22.336719,
+    "longitude": 77.085484
+  },
+  {
+    "idx": 359,
+    "district": "hoshangabad",
+    "state": "madhya pradesh",
+    "latitude": 22.740101,
+    "longitude": 77.713729
+  },
+  {
+    "idx": 360,
+    "district": "indore",
+    "state": "madhya pradesh",
+    "latitude": 22.716881,
+    "longitude": 75.867271
+  },
+  {
+    "idx": 361,
+    "district": "itarsi",
+    "state": "madhya pradesh",
+    "latitude": 22.6115,
+    "longitude": 77.7623
+  },
+  {
+    "idx": 362,
+    "district": "jabalpur",
+    "state": "madhya pradesh",
+    "latitude": 23.172246,
+    "longitude": 79.937619
+  },
+  {
+    "idx": 363,
+    "district": "jhabua",
+    "state": "madhya pradesh",
+    "latitude": 22.769906,
+    "longitude": 74.599553
+  },
+  {
+    "idx": 364,
+    "district": "katni",
+    "state": "madhya pradesh",
+    "latitude": 23.841092,
+    "longitude": 80.397878
+  },
+  {
+    "idx": 365,
+    "district": "khandwa",
+    "state": "madhya pradesh",
+    "latitude": 21.8314,
+    "longitude": 76.3498
+  },
+  {
+    "idx": 366,
+    "district": "khargone",
+    "state": "madhya pradesh",
+    "latitude": 21.8257,
+    "longitude": 75.6184
+  },
+  {
+    "idx": 367,
+    "district": "mandla",
+    "state": "madhya pradesh",
+    "latitude": 22.605889,
+    "longitude": 80.370917
+  },
+  {
+    "idx": 368,
+    "district": "mandsaur",
+    "state": "madhya pradesh",
+    "latitude": 24.063675,
+    "longitude": 75.074883
+  },
+  {
+    "idx": 369,
+    "district": "morena",
+    "state": "madhya pradesh",
+    "latitude": 26.500863,
+    "longitude": 78.001752
+  },
+  {
+    "idx": 370,
+    "district": "narsinghpur",
+    "state": "madhya pradesh",
+    "latitude": 22.948386,
+    "longitude": 79.193312
+  },
+  {
+    "idx": 371,
+    "district": "neemuch",
+    "state": "madhya pradesh",
+    "latitude": 24.473691,
+    "longitude": 74.876342
+  },
+  {
+    "idx": 372,
+    "district": "panna",
+    "state": "madhya pradesh",
+    "latitude": 24.719464,
+    "longitude": 80.189266
+  },
+  {
+    "idx": 373,
+    "district": "raisen",
+    "state": "madhya pradesh",
+    "latitude": 23.33011,
+    "longitude": 77.780588
+  },
+  {
+    "idx": 374,
+    "district": "rajgarh",
+    "state": "madhya pradesh",
+    "latitude": 24.005868,
+    "longitude": 76.739744
+  },
+  {
+    "idx": 375,
+    "district": "ratlam",
+    "state": "madhya pradesh",
+    "latitude": 23.327034,
+    "longitude": 75.040755
+  },
+  {
+    "idx": 376,
+    "district": "rewa",
+    "state": "madhya pradesh",
+    "latitude": 24.540725,
+    "longitude": 81.288305
+  },
+  {
+    "idx": 377,
+    "district": "sagar",
+    "state": "madhya pradesh",
+    "latitude": 23.837188,
+    "longitude": 78.749867
+  },
+  {
+    "idx": 378,
+    "district": "satna",
+    "state": "madhya pradesh",
+    "latitude": 24.566488,
+    "longitude": 80.833433
+  },
+  {
+    "idx": 379,
+    "district": "sehore",
+    "state": "madhya pradesh",
+    "latitude": 23.206208,
+    "longitude": 77.085006
+  },
+  {
+    "idx": 380,
+    "district": "seoni",
+    "state": "madhya pradesh",
+    "latitude": 22.088143,
+    "longitude": 79.548337
+  },
+  {
+    "idx": 381,
+    "district": "shahdol",
+    "state": "madhya pradesh",
+    "latitude": 23.294345,
+    "longitude": 81.360684
+  },
+  {
+    "idx": 382,
+    "district": "shajapur",
+    "state": "madhya pradesh",
+    "latitude": 23.423091,
+    "longitude": 76.280682
+  },
+  {
+    "idx": 383,
+    "district": "sheopur",
+    "state": "madhya pradesh",
+    "latitude": 25.676035,
+    "longitude": 76.698332
+  },
+  {
+    "idx": 384,
+    "district": "shivpuri",
+    "state": "madhya pradesh",
+    "latitude": 25.42602,
+    "longitude": 77.653283
+  },
+  {
+    "idx": 385,
+    "district": "sidhi",
+    "state": "madhya pradesh",
+    "latitude": 24.409558,
+    "longitude": 81.883792
+  },
+  {
+    "idx": 386,
+    "district": "singrauli",
+    "state": "madhya pradesh",
+    "latitude": 24.199,
+    "longitude": 82.6676
+  },
+  {
+    "idx": 387,
+    "district": "tikamgarh",
+    "state": "madhya pradesh",
+    "latitude": 24.743252,
+    "longitude": 78.831962
+  },
+  {
+    "idx": 388,
+    "district": "ujjain",
+    "state": "madhya pradesh",
+    "latitude": 23.185696,
+    "longitude": 75.779601
+  },
+  {
+    "idx": 389,
+    "district": "umaria",
+    "state": "madhya pradesh",
+    "latitude": 23.525654,
+    "longitude": 80.837774
+  },
+  {
+    "idx": 390,
+    "district": "vidisha",
+    "state": "madhya pradesh",
+    "latitude": 12.909641,
+    "longitude": 79.139241
+  },
+  {
+    "idx": 391,
+    "district": "west nimar",
+    "state": "madhya pradesh",
+    "latitude": 21.825248,
+    "longitude": 75.61635
+  },
+  {
+    "idx": 392,
+    "district": "ahmadnagar",
+    "state": "maharashtra",
+    "latitude": 19.093412,
+    "longitude": 74.746855
+  },
+  {
+    "idx": 393,
+    "district": "akola",
+    "state": "maharashtra",
+    "latitude": 20.710576,
+    "longitude": 77.00373
+  },
+  {
+    "idx": 394,
+    "district": "amravati",
+    "state": "maharashtra",
+    "latitude": 20.937346,
+    "longitude": 77.760249
+  },
+  {
+    "idx": 395,
+    "district": "aurangabad",
+    "state": "maharashtra",
+    "latitude": 19.885543,
+    "longitude": 75.333441
+  },
+  {
+    "idx": 396,
+    "district": "beed",
+    "state": "maharashtra",
+    "latitude": 18.9901,
+    "longitude": 75.7531
+  },
+  {
+    "idx": 397,
+    "district": "bhandara",
+    "state": "maharashtra",
+    "latitude": 21.169245,
+    "longitude": 79.657152
+  },
+  {
+    "idx": 398,
+    "district": "buldhana",
+    "state": "maharashtra",
+    "latitude": 20.532223,
+    "longitude": 76.181689
+  },
+  {
+    "idx": 399,
+    "district": "chandrapur",
+    "state": "maharashtra",
+    "latitude": 19.951685,
+    "longitude": 79.295823
+  },
+  {
+    "idx": 400,
+    "district": "dhule",
+    "state": "maharashtra",
+    "latitude": 20.90441,
+    "longitude": 74.781243
+  },
+  {
+    "idx": 401,
+    "district": "gadchiroli",
+    "state": "maharashtra",
+    "latitude": 20.184794,
+    "longitude": 80.007887
+  },
+  {
+    "idx": 402,
+    "district": "gondia",
+    "state": "maharashtra",
+    "latitude": 21.448734,
+    "longitude": 80.1972
+  },
+  {
+    "idx": 403,
+    "district": "hingoli",
+    "state": "maharashtra",
+    "latitude": 19.713154,
+    "longitude": 77.153409
+  },
+  {
+    "idx": 404,
+    "district": "jalgaon",
+    "state": "maharashtra",
+    "latitude": 21.009559,
+    "longitude": 75.570044
+  },
+  {
+    "idx": 405,
+    "district": "jalna",
+    "state": "maharashtra",
+    "latitude": 19.848844,
+    "longitude": 75.901627
+  },
+  {
+    "idx": 406,
+    "district": "kolhapur",
+    "state": "maharashtra",
+    "latitude": 16.694394,
+    "longitude": 74.22406
+  },
+  {
+    "idx": 407,
+    "district": "latur",
+    "state": "maharashtra",
+    "latitude": 18.401122,
+    "longitude": 76.576955
+  },
+  {
+    "idx": 408,
+    "district": "mumbai (suburban)",
+    "state": "maharashtra",
+    "latitude": 19.054135,
+    "longitude": 72.832678
+  },
+  {
+    "idx": 409,
+    "district": "mumbai city",
+    "state": "maharashtra",
+    "latitude": 18.987074,
+    "longitude": 72.830007
+  },
+  {
+    "idx": 410,
+    "district": "nagpur",
+    "state": "maharashtra",
+    "latitude": 21.148204,
+    "longitude": 79.096814
+  },
+  {
+    "idx": 411,
+    "district": "nanded",
+    "state": "maharashtra",
+    "latitude": 19.159314,
+    "longitude": 77.313188
+  },
+  {
+    "idx": 412,
+    "district": "nandurbar",
+    "state": "maharashtra",
+    "latitude": 21.36675,
+    "longitude": 74.244736
+  },
+  {
+    "idx": 413,
+    "district": "nashik",
+    "state": "maharashtra",
+    "latitude": 20.006006,
+    "longitude": 73.795878
+  },
+  {
+    "idx": 414,
+    "district": "osmanabad",
+    "state": "maharashtra",
+    "latitude": 18.181663,
+    "longitude": 76.041686
+  },
+  {
+    "idx": 415,
+    "district": "palghar",
+    "state": "maharashtra",
+    "latitude": 19.6967,
+    "longitude": 72.7699
+  },
+  {
+    "idx": 416,
+    "district": "parbhani",
+    "state": "maharashtra",
+    "latitude": 19.268358,
+    "longitude": 76.777025
+  },
+  {
+    "idx": 417,
+    "district": "pune",
+    "state": "maharashtra",
+    "latitude": 18.525994,
+    "longitude": 73.862602
+  },
+  {
+    "idx": 418,
+    "district": "raigad",
+    "state": "maharashtra",
+    "latitude": 18.646539,
+    "longitude": 72.875994
+  },
+  {
+    "idx": 419,
+    "district": "ratnagiri",
+    "state": "maharashtra",
+    "latitude": 16.990597,
+    "longitude": 73.297537
+  },
+  {
+    "idx": 420,
+    "district": "sangli",
+    "state": "maharashtra",
+    "latitude": 16.860757,
+    "longitude": 74.57878
+  },
+  {
+    "idx": 421,
+    "district": "satara",
+    "state": "maharashtra",
+    "latitude": 17.690393,
+    "longitude": 74.010744
+  },
+  {
+    "idx": 422,
+    "district": "sindhudurg",
+    "state": "maharashtra",
+    "latitude": 16.107985,
+    "longitude": 73.714977
+  },
+  {
+    "idx": 423,
+    "district": "solapur",
+    "state": "maharashtra",
+    "latitude": 17.672099,
+    "longitude": 75.907906
+  },
+  {
+    "idx": 424,
+    "district": "thane",
+    "state": "maharashtra",
+    "latitude": 19.205931,
+    "longitude": 72.971198
+  },
+  {
+    "idx": 425,
+    "district": "wardha",
+    "state": "maharashtra",
+    "latitude": 20.735221,
+    "longitude": 78.604456
+  },
+  {
+    "idx": 426,
+    "district": "washim",
+    "state": "maharashtra",
+    "latitude": 20.108935,
+    "longitude": 77.142117
+  },
+  {
+    "idx": 427,
+    "district": "yavatmal",
+    "state": "maharashtra",
+    "latitude": 20.3876,
+    "longitude": 78.131472
+  },
+  {
+    "idx": 428,
+    "district": "bishnupur",
+    "state": "manipur",
+    "latitude": 24.6304,
+    "longitude": 93.7598
+  },
+  {
+    "idx": 429,
+    "district": "chandel",
+    "state": "manipur",
+    "latitude": 24.320947,
+    "longitude": 93.989857
+  },
+  {
+    "idx": 430,
+    "district": "churachandpur",
+    "state": "manipur",
+    "latitude": 24.334438,
+    "longitude": 93.658102
+  },
+  {
+    "idx": 431,
+    "district": "imphal east",
+    "state": "manipur",
+    "latitude": 24.811571,
+    "longitude": 93.950799
+  },
+  {
+    "idx": 432,
+    "district": "imphal west",
+    "state": "manipur",
+    "latitude": 24.811571,
+    "longitude": 93.950799
+  },
+  {
+    "idx": 433,
+    "district": "jiribam",
+    "state": "manipur",
+    "latitude": 24.7864,
+    "longitude": 93.1539
+  },
+  {
+    "idx": 434,
+    "district": "kakching",
+    "state": "manipur",
+    "latitude": 24.4969,
+    "longitude": 93.9831
+  },
+  {
+    "idx": 435,
+    "district": "Kamjong",
+    "state": "Manipur",
+    "latitude": 24.857,
+    "longitude": 94.5135
+  },
+  {
+    "idx": 436,
+    "district": "kangpokpi",
+    "state": "manipur",
+    "latitude": 25.1519,
+    "longitude": 93.97
+  },
+  {
+    "idx": 437,
+    "district": "noney",
+    "state": "manipur",
+    "latitude": 24.8547,
+    "longitude": 93.6167
+  },
+  {
+    "idx": 438,
+    "district": "Pherzawl",
+    "state": "Manipur",
+    "latitude": 24.2637,
+    "longitude": 93.1893
+  },
+  {
+    "idx": 439,
+    "district": "senapati",
+    "state": "manipur",
+    "latitude": 25.302888,
+    "longitude": 94.048471
+  },
+  {
+    "idx": 440,
+    "district": "tamenglong",
+    "state": "manipur",
+    "latitude": 24.996325,
+    "longitude": 93.502375
+  },
+  {
+    "idx": 441,
+    "district": "tengnoupal",
+    "state": "manipur",
+    "latitude": 24.3838,
+    "longitude": 94.1482
+  },
+  {
+    "idx": 442,
+    "district": "thoubal",
+    "state": "manipur",
+    "latitude": 24.637889,
+    "longitude": 94.006052
+  },
+  {
+    "idx": 443,
+    "district": "ukhrul",
+    "state": "manipur",
+    "latitude": 25.091234,
+    "longitude": 94.363891
+  },
+  {
+    "idx": 444,
+    "district": "east garo hills",
+    "state": "meghalaya",
+    "latitude": 25.528369,
+    "longitude": 90.593784
+  },
+  {
+    "idx": 445,
+    "district": "east jaintia hills",
+    "state": "meghalaya",
+    "latitude": 25.3101,
+    "longitude": 92.5
+  },
+  {
+    "idx": 446,
+    "district": "east khasi hills",
+    "state": "meghalaya",
+    "latitude": 25.588025,
+    "longitude": 91.887356
+  },
+  {
+    "idx": 447,
+    "district": "North Garo Hills",
+    "state": "Meghalaya",
+    "latitude": 25.827,
+    "longitude": 90.6583
+  },
+  {
+    "idx": 448,
+    "district": "ri bhoi",
+    "state": "meghalaya",
+    "latitude": 25.915944,
+    "longitude": 91.88132
+  },
+  {
+    "idx": 449,
+    "district": "south garo hills",
+    "state": "meghalaya",
+    "latitude": 25.200104,
+    "longitude": 90.645557
+  },
+  {
+    "idx": 450,
+    "district": "south west garo hills",
+    "state": "meghalaya",
+    "latitude": 25.426,
+    "longitude": 89.9627
+  },
+  {
+    "idx": 451,
+    "district": "South West Khasi Hills",
+    "state": "Meghalaya",
+    "latitude": 25.3259,
+    "longitude": 91.2506
+  },
+  {
+    "idx": 452,
+    "district": "west garo hills",
+    "state": "meghalaya",
+    "latitude": 25.505214,
+    "longitude": 90.280827
+  },
+  {
+    "idx": 453,
+    "district": "West Jaintia Hills",
+    "state": "Meghalaya",
+    "latitude": 25.5488,
+    "longitude": 92.3814
+  },
+  {
+    "idx": 454,
+    "district": "West Khasi Hills",
+    "state": "Meghalaya",
+    "latitude": 25.518083,
+    "longitude": 91.269445
+  },
+  {
+    "idx": 455,
+    "district": "aizawl",
+    "state": "mizoram",
+    "latitude": 23.748659,
+    "longitude": 92.728016
+  },
+  {
+    "idx": 456,
+    "district": "Champhai",
+    "state": "Mizoram",
+    "latitude": 23.489023,
+    "longitude": 93.345186
+  },
+  {
+    "idx": 457,
+    "district": "Kolasib",
+    "state": "Mizoram",
+    "latitude": 24.252182,
+    "longitude": 92.690303
+  },
+  {
+    "idx": 458,
+    "district": "Lawngtlai",
+    "state": "Mizoram",
+    "latitude": 22.5284,
+    "longitude": 92.8926
+  },
+  {
+    "idx": 459,
+    "district": "Lunglei",
+    "state": "Mizoram",
+    "latitude": 22.888359,
+    "longitude": 92.746609
+  },
+  {
+    "idx": 460,
+    "district": "mamit",
+    "state": "mizoram",
+    "latitude": 23.942233,
+    "longitude": 92.499553
+  },
+  {
+    "idx": 461,
+    "district": "Saiha",
+    "state": "Mizoram",
+    "latitude": 22.513447,
+    "longitude": 92.979389
+  },
+  {
+    "idx": 462,
+    "district": "serchhip",
+    "state": "mizoram",
+    "latitude": 23.3256,
+    "longitude": 92.864991
+  },
+  {
+    "idx": 463,
+    "district": "dimapur",
+    "state": "nagaland",
+    "latitude": 25.91789,
+    "longitude": 93.746839
+  },
+  {
+    "idx": 464,
+    "district": "Kiphrie",
+    "state": "Nagaland",
+    "latitude": 25.8689,
+    "longitude": 94.7853
+  },
+  {
+    "idx": 465,
+    "district": "kohima",
+    "state": "nagaland",
+    "latitude": 25.684924,
+    "longitude": 94.118903
+  },
+  {
+    "idx": 466,
+    "district": "Longleng",
+    "state": "Nagaland",
+    "latitude": 26.4902,
+    "longitude": 94.8197
+  },
+  {
+    "idx": 467,
+    "district": "mokokchung",
+    "state": "nagaland",
+    "latitude": 26.321208,
+    "longitude": 94.519572
+  },
+  {
+    "idx": 468,
+    "district": "mon",
+    "state": "nagaland",
+    "latitude": 26.723923,
+    "longitude": 95.031768
+  },
+  {
+    "idx": 469,
+    "district": "Peren",
+    "state": "Nagaland",
+    "latitude": 25.5125,
+    "longitude": 93.7391
+  },
+  {
+    "idx": 470,
+    "district": "phek",
+    "state": "nagaland",
+    "latitude": 25.701797,
+    "longitude": 94.465739
+  },
+  {
+    "idx": 471,
+    "district": "Tuensang",
+    "state": "Nagaland",
+    "latitude": 26.229854,
+    "longitude": 94.814512
+  },
+  {
+    "idx": 472,
+    "district": "Wokha",
+    "state": "Nagaland",
+    "latitude": 26.0917,
+    "longitude": 94.258877
+  },
+  {
+    "idx": 473,
+    "district": "Zunheboto",
+    "state": "Nagaland",
+    "latitude": 26.009562,
+    "longitude": 94.521241
+  },
+  {
+    "idx": 474,
+    "district": "anugul",
+    "state": "odisha",
+    "latitude": 20.836481,
+    "longitude": 85.099192
+  },
+  {
+    "idx": 475,
+    "district": "balangir",
+    "state": "odisha",
+    "latitude": 20.705399,
+    "longitude": 83.496116
+  },
+  {
+    "idx": 476,
+    "district": "balasore",
+    "state": "odisha",
+    "latitude": 21.4934,
+    "longitude": 86.9135
+  },
+  {
+    "idx": 477,
+    "district": "bargarh",
+    "state": "odisha",
+    "latitude": 21.339228,
+    "longitude": 83.63098
+  },
+  {
+    "idx": 478,
+    "district": "bhadrak",
+    "state": "odisha",
+    "latitude": 21.068425,
+    "longitude": 86.503508
+  },
+  {
+    "idx": 479,
+    "district": "boudh",
+    "state": "odisha",
+    "latitude": 20.8418,
+    "longitude": 84.32
+  },
+  {
+    "idx": 480,
+    "district": "cuttack",
+    "state": "odisha",
+    "latitude": 20.478116,
+    "longitude": 85.85389
+  },
+  {
+    "idx": 481,
+    "district": "deogarh",
+    "state": "odisha",
+    "latitude": 21.5383,
+    "longitude": 84.7289
+  },
+  {
+    "idx": 482,
+    "district": "dhenkanal",
+    "state": "odisha",
+    "latitude": 20.654734,
+    "longitude": 85.588016
+  },
+  {
+    "idx": 483,
+    "district": "gajapati",
+    "state": "odisha",
+    "latitude": 18.776646,
+    "longitude": 84.080324
+  },
+  {
+    "idx": 484,
+    "district": "ganjam",
+    "state": "odisha",
+    "latitude": 19.350441,
+    "longitude": 84.985993
+  },
+  {
+    "idx": 485,
+    "district": "jagatsinghapur",
+    "state": "odisha",
+    "latitude": 20.26385,
+    "longitude": 86.166024
+  },
+  {
+    "idx": 486,
+    "district": "jajapur",
+    "state": "odisha",
+    "latitude": 20.844687,
+    "longitude": 86.32523
+  },
+  {
+    "idx": 487,
+    "district": "jharsuguda",
+    "state": "odisha",
+    "latitude": 21.851989,
+    "longitude": 84.025951
+  },
+  {
+    "idx": 488,
+    "district": "kalahandi",
+    "state": "odisha",
+    "latitude": 19.910373,
+    "longitude": 83.176494
+  },
+  {
+    "idx": 489,
+    "district": "kandhamal",
+    "state": "odisha",
+    "latitude": 20.467657,
+    "longitude": 84.240574
+  },
+  {
+    "idx": 490,
+    "district": "kendrapara",
+    "state": "odisha",
+    "latitude": 20.508399,
+    "longitude": 86.417262
+  },
+  {
+    "idx": 491,
+    "district": "kendujhar",
+    "state": "odisha",
+    "latitude": 21.644926,
+    "longitude": 85.583459
+  },
+  {
+    "idx": 492,
+    "district": "khordha",
+    "state": "odisha",
+    "latitude": 20.187781,
+    "longitude": 85.622131
+  },
+  {
+    "idx": 493,
+    "district": "koraput",
+    "state": "odisha",
+    "latitude": 18.80694,
+    "longitude": 82.719909
+  },
+  {
+    "idx": 494,
+    "district": "malkangiri",
+    "state": "odisha",
+    "latitude": 18.357914,
+    "longitude": 81.897509
+  },
+  {
+    "idx": 495,
+    "district": "mayurbhanj",
+    "state": "odisha",
+    "latitude": 21.944929,
+    "longitude": 86.725858
+  },
+  {
+    "idx": 496,
+    "district": "nabarangapur",
+    "state": "odisha",
+    "latitude": 19.224792,
+    "longitude": 82.557829
+  },
+  {
+    "idx": 497,
+    "district": "nayagarh",
+    "state": "odisha",
+    "latitude": 20.120189,
+    "longitude": 85.098925
+  },
+  {
+    "idx": 498,
+    "district": "nuapada",
+    "state": "odisha",
+    "latitude": 20.819327,
+    "longitude": 82.555776
+  },
+  {
+    "idx": 499,
+    "district": "puri",
+    "state": "odisha",
+    "latitude": 19.79549,
+    "longitude": 85.838807
+  },
+  {
+    "idx": 500,
+    "district": "rayagada",
+    "state": "odisha",
+    "latitude": 19.165286,
+    "longitude": 83.412105
+  },
+  {
+    "idx": 501,
+    "district": "sambalpur",
+    "state": "odisha",
+    "latitude": 21.466623,
+    "longitude": 83.986047
+  },
+  {
+    "idx": 502,
+    "district": "subarnapur",
+    "state": "odisha",
+    "latitude": 20.841,
+    "longitude": 83.8974
+  },
+  {
+    "idx": 503,
+    "district": "sundargarh",
+    "state": "odisha",
+    "latitude": 22.128217,
+    "longitude": 84.048498
+  },
+  {
+    "idx": 504,
+    "district": "karaikal",
+    "state": "puducherry",
+    "latitude": 10.917964,
+    "longitude": 79.837646
+  },
+  {
+    "idx": 505,
+    "district": "mahe",
+    "state": "puducherry",
+    "latitude": 11.7002,
+    "longitude": 75.5343
+  },
+  {
+    "idx": 506,
+    "district": "pondicherry",
+    "state": "puducherry",
+    "latitude": 11.935363,
+    "longitude": 79.83229
+  },
+  {
+    "idx": 507,
+    "district": "yanam",
+    "state": "puducherry",
+    "latitude": 16.734771,
+    "longitude": 82.213971
+  },
+  {
+    "idx": 508,
+    "district": "amritsar",
+    "state": "punjab",
+    "latitude": 31.623088,
+    "longitude": 74.87248
+  },
+  {
+    "idx": 509,
+    "district": "barnala",
+    "state": "punjab",
+    "latitude": 30.3819,
+    "longitude": 75.5468
+  },
+  {
+    "idx": 510,
+    "district": "bathinda",
+    "state": "punjab",
+    "latitude": 30.293282,
+    "longitude": 74.951926
+  },
+  {
+    "idx": 511,
+    "district": "faridkot",
+    "state": "punjab",
+    "latitude": 30.67333,
+    "longitude": 74.758547
+  },
+  {
+    "idx": 512,
+    "district": "fatehgarh sahib",
+    "state": "punjab",
+    "latitude": 30.647528,
+    "longitude": 76.406922
+  },
+  {
+    "idx": 513,
+    "district": "fazilka",
+    "state": "punjab",
+    "latitude": 30.4036,
+    "longitude": 74.028
+  },
+  {
+    "idx": 514,
+    "district": "ferozepur",
+    "state": "punjab",
+    "latitude": 30.939516,
+    "longitude": 74.619239
+  },
+  {
+    "idx": 515,
+    "district": "gurdaspur",
+    "state": "punjab",
+    "latitude": 32.045131,
+    "longitude": 75.408744
+  },
+  {
+    "idx": 516,
+    "district": "hoshiarpur",
+    "state": "punjab",
+    "latitude": 31.535053,
+    "longitude": 75.914418
+  },
+  {
+    "idx": 517,
+    "district": "jalandhar",
+    "state": "punjab",
+    "latitude": 31.339673,
+    "longitude": 75.581698
+  },
+  {
+    "idx": 518,
+    "district": "kapurthala",
+    "state": "punjab",
+    "latitude": 31.379585,
+    "longitude": 75.385678
+  },
+  {
+    "idx": 519,
+    "district": "ludhiana",
+    "state": "punjab",
+    "latitude": 30.908679,
+    "longitude": 75.851626
+  },
+  {
+    "idx": 520,
+    "district": "mansa",
+    "state": "punjab",
+    "latitude": 29.986894,
+    "longitude": 75.390143
+  },
+  {
+    "idx": 521,
+    "district": "moga",
+    "state": "punjab",
+    "latitude": 30.801361,
+    "longitude": 75.162775
+  },
+  {
+    "idx": 522,
+    "district": "muktsar",
+    "state": "punjab",
+    "latitude": 30.463978,
+    "longitude": 74.517016
+  },
+  {
+    "idx": 523,
+    "district": "nawanshahr",
+    "state": "punjab",
+    "latitude": 31.120012,
+    "longitude": 76.130554
+  },
+  {
+    "idx": 524,
+    "district": "pathankot",
+    "state": "punjab",
+    "latitude": 32.2733,
+    "longitude": 75.6522
+  },
+  {
+    "idx": 525,
+    "district": "patiala",
+    "state": "punjab",
+    "latitude": 30.317367,
+    "longitude": 76.407038
+  },
+  {
+    "idx": 526,
+    "district": "rupnagar",
+    "state": "punjab",
+    "latitude": 30.964466,
+    "longitude": 76.526375
+  },
+  {
+    "idx": 527,
+    "district": "s.a.s. nagar",
+    "state": "punjab",
+    "latitude": 30.7046,
+    "longitude": 76.7179
+  },
+  {
+    "idx": 528,
+    "district": "sangrur",
+    "state": "punjab",
+    "latitude": 30.241479,
+    "longitude": 75.841924
+  },
+  {
+    "idx": 529,
+    "district": "tarn taran",
+    "state": "punjab",
+    "latitude": 31.4539,
+    "longitude": 74.9268
+  },
+  {
+    "idx": 530,
+    "district": "ajmer",
+    "state": "rajasthan",
+    "latitude": 26.460578,
+    "longitude": 74.641756
+  },
+  {
+    "idx": 531,
+    "district": "alwar",
+    "state": "rajasthan",
+    "latitude": 27.566581,
+    "longitude": 76.610602
+  },
+  {
+    "idx": 532,
+    "district": "banswara",
+    "state": "rajasthan",
+    "latitude": 23.545683,
+    "longitude": 74.448134
+  },
+  {
+    "idx": 533,
+    "district": "baran",
+    "state": "rajasthan",
+    "latitude": 25.113409,
+    "longitude": 76.513669
+  },
+  {
+    "idx": 534,
+    "district": "barmer",
+    "state": "rajasthan",
+    "latitude": 25.743971,
+    "longitude": 71.393059
+  },
+  {
+    "idx": 535,
+    "district": "bharatpur",
+    "state": "rajasthan",
+    "latitude": 27.213921,
+    "longitude": 77.500799
+  },
+  {
+    "idx": 536,
+    "district": "bhilwara",
+    "state": "rajasthan",
+    "latitude": 25.347483,
+    "longitude": 74.637973
+  },
+  {
+    "idx": 537,
+    "district": "bikaner",
+    "state": "rajasthan",
+    "latitude": 28.016543,
+    "longitude": 73.317199
+  },
+  {
+    "idx": 538,
+    "district": "bundi",
+    "state": "rajasthan",
+    "latitude": 25.442985,
+    "longitude": 75.643423
+  },
+  {
+    "idx": 539,
+    "district": "chittaurgarh",
+    "state": "rajasthan",
+    "latitude": 24.876434,
+    "longitude": 74.619443
+  },
+  {
+    "idx": 540,
+    "district": "churu",
+    "state": "rajasthan",
+    "latitude": 28.300078,
+    "longitude": 74.966601
+  },
+  {
+    "idx": 541,
+    "district": "dausa",
+    "state": "rajasthan",
+    "latitude": 26.899411,
+    "longitude": 76.334441
+  },
+  {
+    "idx": 542,
+    "district": "dholpur",
+    "state": "rajasthan",
+    "latitude": 26.6966,
+    "longitude": 77.8908
+  },
+  {
+    "idx": 543,
+    "district": "dungarpur",
+    "state": "rajasthan",
+    "latitude": 23.837104,
+    "longitude": 73.716702
+  },
+  {
+    "idx": 544,
+    "district": "hanumangarh",
+    "state": "rajasthan",
+    "latitude": 29.577336,
+    "longitude": 74.320427
+  },
+  {
+    "idx": 545,
+    "district": "jaipur",
+    "state": "rajasthan",
+    "latitude": 26.914736,
+    "longitude": 75.810664
+  },
+  {
+    "idx": 546,
+    "district": "jaisalmer",
+    "state": "rajasthan",
+    "latitude": 26.911481,
+    "longitude": 70.91459
+  },
+  {
+    "idx": 547,
+    "district": "jalore",
+    "state": "rajasthan",
+    "latitude": 25.342919,
+    "longitude": 72.620614
+  },
+  {
+    "idx": 548,
+    "district": "jhalawar",
+    "state": "rajasthan",
+    "latitude": 24.592312,
+    "longitude": 76.165807
+  },
+  {
+    "idx": 549,
+    "district": "jhunjhunun",
+    "state": "rajasthan",
+    "latitude": 28.129504,
+    "longitude": 75.400108
+  },
+  {
+    "idx": 550,
+    "district": "jodhpur",
+    "state": "rajasthan",
+    "latitude": 26.279624,
+    "longitude": 73.022778
+  },
+  {
+    "idx": 551,
+    "district": "karauli",
+    "state": "rajasthan",
+    "latitude": 26.4987,
+    "longitude": 77.022184
+  },
+  {
+    "idx": 552,
+    "district": "kota",
+    "state": "rajasthan",
+    "latitude": 25.179993,
+    "longitude": 75.846204
+  },
+  {
+    "idx": 553,
+    "district": "nagaur",
+    "state": "rajasthan",
+    "latitude": 27.200302,
+    "longitude": 73.736974
+  },
+  {
+    "idx": 554,
+    "district": "pali",
+    "state": "rajasthan",
+    "latitude": 25.777043,
+    "longitude": 73.322215
+  },
+  {
+    "idx": 555,
+    "district": "pratapgarh",
+    "state": "rajasthan",
+    "latitude": 24.0317,
+    "longitude": 74.7787
+  },
+  {
+    "idx": 556,
+    "district": "rajsamand",
+    "state": "rajasthan",
+    "latitude": 25.075336,
+    "longitude": 73.860393
+  },
+  {
+    "idx": 557,
+    "district": "sawai madhopur",
+    "state": "rajasthan",
+    "latitude": 25.987844,
+    "longitude": 76.381194
+  },
+  {
+    "idx": 558,
+    "district": "sikar",
+    "state": "rajasthan",
+    "latitude": 27.610617,
+    "longitude": 75.147048
+  },
+  {
+    "idx": 559,
+    "district": "sirohi",
+    "state": "rajasthan",
+    "latitude": 24.89138,
+    "longitude": 72.857774
+  },
+  {
+    "idx": 560,
+    "district": "sri ganganagar",
+    "state": "rajasthan",
+    "latitude": 29.9094,
+    "longitude": 73.88
+  },
+  {
+    "idx": 561,
+    "district": "tonk",
+    "state": "rajasthan",
+    "latitude": 26.171361,
+    "longitude": 75.788097
+  },
+  {
+    "idx": 562,
+    "district": "udaipur",
+    "state": "rajasthan",
+    "latitude": 24.585424,
+    "longitude": 73.686924
+  },
+  {
+    "idx": 563,
+    "district": "east sikkim",
+    "state": "sikkim",
+    "latitude": 27.3084,
+    "longitude": 88.6724
+  },
+  {
+    "idx": 564,
+    "district": "North Sikkim",
+    "state": "Sikkim",
+    "latitude": 27.50395,
+    "longitude": 88.536203
+  },
+  {
+    "idx": 565,
+    "district": "south sikkim",
+    "state": "sikkim",
+    "latitude": 27.163151,
+    "longitude": 88.359601
+  },
+  {
+    "idx": 566,
+    "district": "west sikkim",
+    "state": "sikkim",
+    "latitude": 27.290085,
+    "longitude": 88.244703
+  },
+  {
+    "idx": 567,
+    "district": "ariyalur",
+    "state": "tamilnadu",
+    "latitude": 11.1401,
+    "longitude": 79.0786
+  },
+  {
+    "idx": 568,
+    "district": "chengalpet",
+    "state": "tamilnadu",
+    "latitude": 12.6819,
+    "longitude": 79.9888
+  },
+  {
+    "idx": 569,
+    "district": "chennai",
+    "state": "tamilnadu",
+    "latitude": 13.074737,
+    "longitude": 80.267689
+  },
+  {
+    "idx": 570,
+    "district": "coimbatore",
+    "state": "tamilnadu",
+    "latitude": 10.994743,
+    "longitude": 76.96688
+  },
+  {
+    "idx": 571,
+    "district": "cuddalore",
+    "state": "tamilnadu",
+    "latitude": 11.75553,
+    "longitude": 79.762325
+  },
+  {
+    "idx": 572,
+    "district": "dharmapuri",
+    "state": "tamilnadu",
+    "latitude": 12.134803,
+    "longitude": 78.161203
+  },
+  {
+    "idx": 573,
+    "district": "dindigul",
+    "state": "tamilnadu",
+    "latitude": 10.361936,
+    "longitude": 77.968908
+  },
+  {
+    "idx": 574,
+    "district": "erode",
+    "state": "tamilnadu",
+    "latitude": 11.334348,
+    "longitude": 77.72772
+  },
+  {
+    "idx": 575,
+    "district": "kallakurichi",
+    "state": "tamilnadu",
+    "latitude": 11.7384,
+    "longitude": 78.9639
+  },
+  {
+    "idx": 576,
+    "district": "kanchipuram",
+    "state": "tamilnadu",
+    "latitude": 12.834822,
+    "longitude": 79.715697
+  },
+  {
+    "idx": 577,
+    "district": "kanyakumari",
+    "state": "tamilnadu",
+    "latitude": 8.175865,
+    "longitude": 77.440953
+  },
+  {
+    "idx": 578,
+    "district": "karur",
+    "state": "tamilnadu",
+    "latitude": 10.948948,
+    "longitude": 78.086832
+  },
+  {
+    "idx": 579,
+    "district": "krishnagiri",
+    "state": "tamilnadu",
+    "latitude": 12.533802,
+    "longitude": 78.228528
+  },
+  {
+    "idx": 580,
+    "district": "madurai",
+    "state": "tamilnadu",
+    "latitude": 9.924937,
+    "longitude": 78.129356
+  },
+  {
+    "idx": 581,
+    "district": "mayiladuthurai",
+    "state": "tamilnadu",
+    "latitude": 11.1018,
+    "longitude": 79.6526
+  },
+  {
+    "idx": 582,
+    "district": "nagapattinam",
+    "state": "tamilnadu",
+    "latitude": 10.770587,
+    "longitude": 79.834871
+  },
+  {
+    "idx": 583,
+    "district": "namakkal",
+    "state": "tamilnadu",
+    "latitude": 11.225821,
+    "longitude": 78.171836
+  },
+  {
+    "idx": 584,
+    "district": "nilgiris",
+    "state": "tamilnadu",
+    "latitude": 11.4916,
+    "longitude": 76.7337
+  },
+  {
+    "idx": 585,
+    "district": "perambalur",
+    "state": "tamilnadu",
+    "latitude": 11.243109,
+    "longitude": 78.866417
+  },
+  {
+    "idx": 586,
+    "district": "pudukkottai",
+    "state": "tamilnadu",
+    "latitude": 10.383944,
+    "longitude": 78.81216
+  },
+  {
+    "idx": 587,
+    "district": "ramanathapuram",
+    "state": "tamilnadu",
+    "latitude": 9.363516,
+    "longitude": 78.840969
+  },
+  {
+    "idx": 588,
+    "district": "ranipet",
+    "state": "tamilnadu",
+    "latitude": 12.9487,
+    "longitude": 79.319
+  },
+  {
+    "idx": 589,
+    "district": "salem",
+    "state": "tamilnadu",
+    "latitude": 11.65821,
+    "longitude": 78.152968
+  },
+  {
+    "idx": 590,
+    "district": "sivaganga",
+    "state": "tamilnadu",
+    "latitude": 9.860311,
+    "longitude": 78.481581
+  },
+  {
+    "idx": 591,
+    "district": "tenkasi",
+    "state": "tamilnadu",
+    "latitude": 8.9564,
+    "longitude": 77.3152
+  },
+  {
+    "idx": 592,
+    "district": "thanjavur",
+    "state": "tamilnadu",
+    "latitude": 10.785111,
+    "longitude": 79.138403
+  },
+  {
+    "idx": 593,
+    "district": "theni",
+    "state": "tamilnadu",
+    "latitude": 9.999588,
+    "longitude": 77.464364
+  },
+  {
+    "idx": 594,
+    "district": "thoothukkudi",
+    "state": "tamilnadu",
+    "latitude": 8.810166,
+    "longitude": 78.148882
+  },
+  {
+    "idx": 595,
+    "district": "tiruchirappalli",
+    "state": "tamilnadu",
+    "latitude": 10.82225,
+    "longitude": 78.681043
+  },
+  {
+    "idx": 596,
+    "district": "tirunelveli",
+    "state": "tamilnadu",
+    "latitude": 8.730059,
+    "longitude": 77.692464
+  },
+  {
+    "idx": 597,
+    "district": "tirupathur",
+    "state": "tamilnadu",
+    "latitude": 12.495,
+    "longitude": 78.5678
+  },
+  {
+    "idx": 598,
+    "district": "tiruppur",
+    "state": "tamilnadu",
+    "latitude": 11.1085,
+    "longitude": 77.3411
+  },
+  {
+    "idx": 599,
+    "district": "tiruvallur",
+    "state": "tamilnadu",
+    "latitude": 13.1231,
+    "longitude": 79.912
+  },
+  {
+    "idx": 600,
+    "district": "tiruvannamalai",
+    "state": "tamilnadu",
+    "latitude": 12.233386,
+    "longitude": 79.07432
+  },
+  {
+    "idx": 601,
+    "district": "tiruvarur",
+    "state": "tamilnadu",
+    "latitude": 10.7661,
+    "longitude": 79.6344
+  },
+  {
+    "idx": 602,
+    "district": "vellore",
+    "state": "tamilnadu",
+    "latitude": 12.909641,
+    "longitude": 79.139241
+  },
+  {
+    "idx": 603,
+    "district": "viluppuram",
+    "state": "tamilnadu",
+    "latitude": 11.936979,
+    "longitude": 79.487333
+  },
+  {
+    "idx": 604,
+    "district": "virudhunagar",
+    "state": "tamilnadu",
+    "latitude": 11.936979,
+    "longitude": 79.487333
+  },
+  {
+    "idx": 605,
+    "district": "adilabad",
+    "state": "telangana",
+    "latitude": 19.663259,
+    "longitude": 78.555315
+  },
+  {
+    "idx": 606,
+    "district": "asifabad",
+    "state": "telangana",
+    "latitude": 19.3619,
+    "longitude": 79.293
+  },
+  {
+    "idx": 607,
+    "district": "bhadradri kothagudem",
+    "state": "telangana",
+    "latitude": 17.7331,
+    "longitude": 80.7214
+  },
+  {
+    "idx": 608,
+    "district": "bhupalpally  (jayashankar)",
+    "state": "telangana",
+    "latitude": 18.4293,
+    "longitude": 79.8635
+  },
+  {
+    "idx": 609,
+    "district": "hyderabad",
+    "state": "telangana",
+    "latitude": 17.399667,
+    "longitude": 78.488244
+  },
+  {
+    "idx": 610,
+    "district": "jagtial",
+    "state": "telangana",
+    "latitude": 18.7895,
+    "longitude": 78.912
+  },
+  {
+    "idx": 611,
+    "district": "jangaon",
+    "state": "telangana",
+    "latitude": 17.7227,
+    "longitude": 79.1518
+  },
+  {
+    "idx": 612,
+    "district": "jogulamba gajwel",
+    "state": "telangana",
+    "latitude": 44.7648,
+    "longitude": 53.3124
+  },
+  {
+    "idx": 613,
+    "district": "kamareddy",
+    "state": "telangana",
+    "latitude": 18.3205,
+    "longitude": 78.337
+  },
+  {
+    "idx": 614,
+    "district": "karimnagar",
+    "state": "telangana",
+    "latitude": 18.431912,
+    "longitude": 79.144791
+  },
+  {
+    "idx": 615,
+    "district": "khammam",
+    "state": "telangana",
+    "latitude": 17.245344,
+    "longitude": 80.140567
+  },
+  {
+    "idx": 616,
+    "district": "mahabubabad",
+    "state": "telangana",
+    "latitude": 17.6026,
+    "longitude": 80.0036
+  },
+  {
+    "idx": 617,
+    "district": "mahbubnagar",
+    "state": "telangana",
+    "latitude": 16.744426,
+    "longitude": 77.991612
+  },
+  {
+    "idx": 618,
+    "district": "mancherial",
+    "state": "telangana",
+    "latitude": 18.8714,
+    "longitude": 79.4443
+  },
+  {
+    "idx": 619,
+    "district": "medak",
+    "state": "telangana",
+    "latitude": 17.625811,
+    "longitude": 78.082342
+  },
+  {
+    "idx": 620,
+    "district": "medchal",
+    "state": "telangana",
+    "latitude": 17.6323,
+    "longitude": 78.4805
+  },
+  {
+    "idx": 621,
+    "district": "mulugu",
+    "state": "telangana",
+    "latitude": 18.1932,
+    "longitude": 79.9414
+  },
+  {
+    "idx": 622,
+    "district": "nagarkurnool",
+    "state": "telangana",
+    "latitude": 16.4939,
+    "longitude": 78.3102
+  },
+  {
+    "idx": 623,
+    "district": "nalgonda",
+    "state": "telangana",
+    "latitude": 17.061325,
+    "longitude": 79.267503
+  },
+  {
+    "idx": 624,
+    "district": "Narayanpet",
+    "state": "Telangana",
+    "latitude": 16.7445,
+    "longitude": 77.496
+  },
+  {
+    "idx": 625,
+    "district": "nirmal",
+    "state": "telangana",
+    "latitude": 19.0964,
+    "longitude": 78.343
+  },
+  {
+    "idx": 626,
+    "district": "nizamabad",
+    "state": "telangana",
+    "latitude": 18.654235,
+    "longitude": 78.09389
+  },
+  {
+    "idx": 627,
+    "district": "peddapalli",
+    "state": "telangana",
+    "latitude": 16.3761,
+    "longitude": 78.4056
+  },
+  {
+    "idx": 628,
+    "district": "ranga reddy",
+    "state": "telangana",
+    "latitude": 17.0497,
+    "longitude": 78.3842
+  },
+  {
+    "idx": 629,
+    "district": "sangareddy",
+    "state": "telangana",
+    "latitude": 17.6075,
+    "longitude": 78.0798
+  },
+  {
+    "idx": 630,
+    "district": "siddipet",
+    "state": "telangana",
+    "latitude": 18.1018,
+    "longitude": 78.852
+  },
+  {
+    "idx": 631,
+    "district": "sircilla  (rajanna)",
+    "state": "telangana",
+    "latitude": 18.3889,
+    "longitude": 78.8092
+  },
+  {
+    "idx": 632,
+    "district": "suryapet",
+    "state": "telangana",
+    "latitude": 17.1314,
+    "longitude": 79.6336
+  },
+  {
+    "idx": 633,
+    "district": "vikarabad",
+    "state": "telangana",
+    "latitude": 17.3365,
+    "longitude": 77.9048
+  },
+  {
+    "idx": 634,
+    "district": "wanaparthy",
+    "state": "telangana",
+    "latitude": 16.3623,
+    "longitude": 78.0621
+  },
+  {
+    "idx": 635,
+    "district": "warangal rural",
+    "state": "telangana",
+    "latitude": 18.030289,
+    "longitude": 79.57543
+  },
+  {
+    "idx": 636,
+    "district": "warangal urban",
+    "state": "telangana",
+    "latitude": 18.030289,
+    "longitude": 79.57543
+  },
+  {
+    "idx": 637,
+    "district": "yadadri",
+    "state": "telangana",
+    "latitude": 17.4533,
+    "longitude": 78.9288
+  },
+  {
+    "idx": 638,
+    "district": "dhalai",
+    "state": "tripura",
+    "latitude": 23.938769,
+    "longitude": 91.868389
+  },
+  {
+    "idx": 639,
+    "district": "gomati",
+    "state": "tripura",
+    "latitude": 23.5167,
+    "longitude": 91.6372
+  },
+  {
+    "idx": 640,
+    "district": "khowai",
+    "state": "tripura",
+    "latitude": 24.0672,
+    "longitude": 91.6057
+  },
+  {
+    "idx": 641,
+    "district": "north tripura",
+    "state": "tripura",
+    "latitude": 24.342116,
+    "longitude": 92.017914
+  },
+  {
+    "idx": 642,
+    "district": "sepahijala",
+    "state": "tripura",
+    "latitude": 23.6148,
+    "longitude": 91.3276
+  },
+  {
+    "idx": 643,
+    "district": "south tripura",
+    "state": "tripura",
+    "latitude": 23.53045,
+    "longitude": 91.485363
+  },
+  {
+    "idx": 644,
+    "district": "unakoti",
+    "state": "tripura",
+    "latitude": 24.1781,
+    "longitude": 92.0273
+  },
+  {
+    "idx": 645,
+    "district": "west tripura",
+    "state": "tripura",
+    "latitude": 23.827795,
+    "longitude": 91.274175
+  },
+  {
+    "idx": 646,
+    "district": "agra",
+    "state": "uttar pradesh",
+    "latitude": 27.17568,
+    "longitude": 78.008109
+  },
+  {
+    "idx": 647,
+    "district": "aligarh",
+    "state": "uttar pradesh",
+    "latitude": 27.875204,
+    "longitude": 78.068216
+  },
+  {
+    "idx": 648,
+    "district": "allahabad",
+    "state": "uttar pradesh",
+    "latitude": 25.45399,
+    "longitude": 81.851869
+  },
+  {
+    "idx": 649,
+    "district": "ambedkar nagar",
+    "state": "uttar pradesh",
+    "latitude": 26.413411,
+    "longitude": 82.54027
+  },
+  {
+    "idx": 650,
+    "district": "amethi (chatrapati sahuji mahraj nagar)",
+    "state": "uttar pradesh",
+    "latitude": 26.1541,
+    "longitude": 81.8142
+  },
+  {
+    "idx": 651,
+    "district": "amroha (j.p. nagar)",
+    "state": "uttar pradesh",
+    "latitude": 28.902397,
+    "longitude": 78.465042
+  },
+  {
+    "idx": 652,
+    "district": "auraiya",
+    "state": "uttar pradesh",
+    "latitude": 26.460045,
+    "longitude": 79.519467
+  },
+  {
+    "idx": 653,
+    "district": "ayodhya",
+    "state": "uttar pradesh",
+    "latitude": 26.7922,
+    "longitude": 82.1998
+  },
+  {
+    "idx": 654,
+    "district": "azamgarh",
+    "state": "uttar pradesh",
+    "latitude": 26.053641,
+    "longitude": 83.181213
+  },
+  {
+    "idx": 655,
+    "district": "baghpat",
+    "state": "uttar pradesh",
+    "latitude": 28.934887,
+    "longitude": 77.226645
+  },
+  {
+    "idx": 656,
+    "district": "bahraich",
+    "state": "uttar pradesh",
+    "latitude": 27.577746,
+    "longitude": 81.598143
+  },
+  {
+    "idx": 657,
+    "district": "ballia",
+    "state": "uttar pradesh",
+    "latitude": 25.760427,
+    "longitude": 84.155791
+  },
+  {
+    "idx": 658,
+    "district": "balrampur",
+    "state": "uttar pradesh",
+    "latitude": 27.424362,
+    "longitude": 82.195912
+  },
+  {
+    "idx": 659,
+    "district": "banda",
+    "state": "uttar pradesh",
+    "latitude": 25.467372,
+    "longitude": 80.325071
+  },
+  {
+    "idx": 660,
+    "district": "barabanki",
+    "state": "uttar pradesh",
+    "latitude": 26.931977,
+    "longitude": 81.203728
+  },
+  {
+    "idx": 661,
+    "district": "bareilly",
+    "state": "uttar pradesh",
+    "latitude": 28.361856,
+    "longitude": 79.419697
+  },
+  {
+    "idx": 662,
+    "district": "basti",
+    "state": "uttar pradesh",
+    "latitude": 26.801568,
+    "longitude": 82.758574
+  },
+  {
+    "idx": 663,
+    "district": "bhadohi (sant ravidas nagar)",
+    "state": "uttar pradesh",
+    "latitude": 25.3805,
+    "longitude": 82.5677
+  },
+  {
+    "idx": 664,
+    "district": "bijnor",
+    "state": "uttar pradesh",
+    "latitude": 29.379583,
+    "longitude": 78.13407
+  },
+  {
+    "idx": 665,
+    "district": "budaun",
+    "state": "uttar pradesh",
+    "latitude": 28.034404,
+    "longitude": 79.124138
+  },
+  {
+    "idx": 666,
+    "district": "bulandshahr",
+    "state": "uttar pradesh",
+    "latitude": 28.400237,
+    "longitude": 77.861025
+  },
+  {
+    "idx": 667,
+    "district": "chandauli",
+    "state": "uttar pradesh",
+    "latitude": 25.258531,
+    "longitude": 83.270958
+  },
+  {
+    "idx": 668,
+    "district": "chitrakoot",
+    "state": "uttar pradesh",
+    "latitude": 25.210734,
+    "longitude": 80.914156
+  },
+  {
+    "idx": 669,
+    "district": "deoria",
+    "state": "uttar pradesh",
+    "latitude": 26.500556,
+    "longitude": 83.783389
+  },
+  {
+    "idx": 670,
+    "district": "etah",
+    "state": "uttar pradesh",
+    "latitude": 27.55673,
+    "longitude": 78.657582
+  },
+  {
+    "idx": 671,
+    "district": "etawah",
+    "state": "uttar pradesh",
+    "latitude": 26.77697,
+    "longitude": 79.025561
+  },
+  {
+    "idx": 672,
+    "district": "faizabad",
+    "state": "uttar pradesh",
+    "latitude": 26.781125,
+    "longitude": 82.149876
+  },
+  {
+    "idx": 673,
+    "district": "farrukhabad",
+    "state": "uttar pradesh",
+    "latitude": 27.367541,
+    "longitude": 79.635106
+  },
+  {
+    "idx": 674,
+    "district": "fatehpur",
+    "state": "uttar pradesh",
+    "latitude": 25.927961,
+    "longitude": 80.817369
+  },
+  {
+    "idx": 675,
+    "district": "firozabad",
+    "state": "uttar pradesh",
+    "latitude": 27.142217,
+    "longitude": 78.398303
+  },
+  {
+    "idx": 676,
+    "district": "gautam buddha nagar",
+    "state": "uttar pradesh",
+    "latitude": 28.567013,
+    "longitude": 77.327519
+  },
+  {
+    "idx": 677,
+    "district": "ghaziabad",
+    "state": "uttar pradesh",
+    "latitude": 28.660255,
+    "longitude": 77.445653
+  },
+  {
+    "idx": 678,
+    "district": "ghazipur",
+    "state": "uttar pradesh",
+    "latitude": 25.586118,
+    "longitude": 83.581496
+  },
+  {
+    "idx": 679,
+    "district": "gonda",
+    "state": "uttar pradesh",
+    "latitude": 27.133796,
+    "longitude": 81.962471
+  },
+  {
+    "idx": 680,
+    "district": "gorakhpur",
+    "state": "uttar pradesh",
+    "latitude": 26.759828,
+    "longitude": 83.370935
+  },
+  {
+    "idx": 681,
+    "district": "hamirpur",
+    "state": "uttar pradesh",
+    "latitude": 25.959941,
+    "longitude": 80.117055
+  },
+  {
+    "idx": 682,
+    "district": "hapur (panchsheel nagar)",
+    "state": "uttar pradesh",
+    "latitude": 28.7306,
+    "longitude": 77.7759
+  },
+  {
+    "idx": 683,
+    "district": "hardoi",
+    "state": "uttar pradesh",
+    "latitude": 27.395551,
+    "longitude": 80.127149
+  },
+  {
+    "idx": 684,
+    "district": "hathras",
+    "state": "uttar pradesh",
+    "latitude": 27.585241,
+    "longitude": 78.05918
+  },
+  {
+    "idx": 685,
+    "district": "jalaun",
+    "state": "uttar pradesh",
+    "latitude": 25.989945,
+    "longitude": 79.454191
+  },
+  {
+    "idx": 686,
+    "district": "jaunpur",
+    "state": "uttar pradesh",
+    "latitude": 25.748744,
+    "longitude": 82.687741
+  },
+  {
+    "idx": 687,
+    "district": "jhansi",
+    "state": "uttar pradesh",
+    "latitude": 25.462975,
+    "longitude": 78.57546
+  },
+  {
+    "idx": 688,
+    "district": "jyotiba phule nagar",
+    "state": "uttar pradesh",
+    "latitude": 28.906416,
+    "longitude": 78.462509
+  },
+  {
+    "idx": 689,
+    "district": "kannauj",
+    "state": "uttar pradesh",
+    "latitude": 27.056124,
+    "longitude": 79.926694
+  },
+  {
+    "idx": 690,
+    "district": "kanpur dehat",
+    "state": "uttar pradesh",
+    "latitude": 26.375967,
+    "longitude": 79.955267
+  },
+  {
+    "idx": 691,
+    "district": "kanpur nagar",
+    "state": "uttar pradesh",
+    "latitude": 26.461855,
+    "longitude": 80.344194
+  },
+  {
+    "idx": 692,
+    "district": "kanshiram nagar (kasganj)",
+    "state": "uttar pradesh",
+    "latitude": 27.8085,
+    "longitude": 78.6461
+  },
+  {
+    "idx": 693,
+    "district": "kaushambi",
+    "state": "uttar pradesh",
+    "latitude": 25.524545,
+    "longitude": 81.383437
+  },
+  {
+    "idx": 694,
+    "district": "kushinagar",
+    "state": "uttar pradesh",
+    "latitude": 26.907172,
+    "longitude": 83.985134
+  },
+  {
+    "idx": 695,
+    "district": "lakhimpur - kheri",
+    "state": "uttar pradesh",
+    "latitude": 27.9462,
+    "longitude": 80.7787
+  },
+  {
+    "idx": 696,
+    "district": "lalitpur",
+    "state": "uttar pradesh",
+    "latitude": 24.691585,
+    "longitude": 78.418609
+  },
+  {
+    "idx": 697,
+    "district": "lucknow",
+    "state": "uttar pradesh",
+    "latitude": 26.83323,
+    "longitude": 80.943614
+  },
+  {
+    "idx": 698,
+    "district": "maharajganj",
+    "state": "uttar pradesh",
+    "latitude": 27.146858,
+    "longitude": 83.567801
+  },
+  {
+    "idx": 699,
+    "district": "mahoba",
+    "state": "uttar pradesh",
+    "latitude": 25.286105,
+    "longitude": 79.880627
+  },
+  {
+    "idx": 700,
+    "district": "mainpuri",
+    "state": "uttar pradesh",
+    "latitude": 27.229325,
+    "longitude": 79.049369
+  },
+  {
+    "idx": 701,
+    "district": "mathura",
+    "state": "uttar pradesh",
+    "latitude": 27.494256,
+    "longitude": 77.684411
+  },
+  {
+    "idx": 702,
+    "district": "mau",
+    "state": "uttar pradesh",
+    "latitude": 25.947961,
+    "longitude": 83.561419
+  },
+  {
+    "idx": 703,
+    "district": "meerut",
+    "state": "uttar pradesh",
+    "latitude": 28.986554,
+    "longitude": 77.70386
+  },
+  {
+    "idx": 704,
+    "district": "mirzapur",
+    "state": "uttar pradesh",
+    "latitude": 25.143896,
+    "longitude": 82.562668
+  },
+  {
+    "idx": 705,
+    "district": "moradabad",
+    "state": "uttar pradesh",
+    "latitude": 28.832848,
+    "longitude": 78.780652
+  },
+  {
+    "idx": 706,
+    "district": "muzaffarnagar",
+    "state": "uttar pradesh",
+    "latitude": 29.471716,
+    "longitude": 77.700412
+  },
+  {
+    "idx": 707,
+    "district": "pilibhit",
+    "state": "uttar pradesh",
+    "latitude": 28.634994,
+    "longitude": 79.812128
+  },
+  {
+    "idx": 708,
+    "district": "pratapgarh",
+    "state": "uttar pradesh",
+    "latitude": 25.93741,
+    "longitude": 81.995137
+  },
+  {
+    "idx": 709,
+    "district": "rae bareli",
+    "state": "uttar pradesh",
+    "latitude": 26.231689,
+    "longitude": 81.230631
+  },
+  {
+    "idx": 710,
+    "district": "rampur",
+    "state": "uttar pradesh",
+    "latitude": 28.791807,
+    "longitude": 79.029148
+  },
+  {
+    "idx": 711,
+    "district": "saharanpur",
+    "state": "uttar pradesh",
+    "latitude": 29.965049,
+    "longitude": 77.553476
+  },
+  {
+    "idx": 712,
+    "district": "sambhal (bhim nagar)",
+    "state": "uttar pradesh",
+    "latitude": 28.5904,
+    "longitude": 78.5718
+  },
+  {
+    "idx": 713,
+    "district": "sant kabir nagar",
+    "state": "uttar pradesh",
+    "latitude": 26.778133,
+    "longitude": 83.086966
+  },
+  {
+    "idx": 714,
+    "district": "shahjahanpur",
+    "state": "uttar pradesh",
+    "latitude": 27.871092,
+    "longitude": 79.908609
+  },
+  {
+    "idx": 715,
+    "district": "shamli (prabuddh nagar)",
+    "state": "uttar pradesh",
+    "latitude": 29.448055,
+    "longitude": 77.31028
+  },
+  {
+    "idx": 716,
+    "district": "shravasti",
+    "state": "uttar pradesh",
+    "latitude": 27.700545,
+    "longitude": 81.931928
+  },
+  {
+    "idx": 717,
+    "district": "siddharth nagar",
+    "state": "uttar pradesh",
+    "latitude": 27.246253,
+    "longitude": 83.066141
+  },
+  {
+    "idx": 718,
+    "district": "sitapur",
+    "state": "uttar pradesh",
+    "latitude": 27.563585,
+    "longitude": 80.686343
+  },
+  {
+    "idx": 719,
+    "district": "sonbhadra",
+    "state": "uttar pradesh",
+    "latitude": 24.687697,
+    "longitude": 83.069029
+  },
+  {
+    "idx": 720,
+    "district": "sultanpur",
+    "state": "uttar pradesh",
+    "latitude": 26.262349,
+    "longitude": 82.073784
+  },
+  {
+    "idx": 721,
+    "district": "unnao",
+    "state": "uttar pradesh",
+    "latitude": 26.545632,
+    "longitude": 80.489814
+  },
+  {
+    "idx": 722,
+    "district": "varanasi",
+    "state": "uttar pradesh",
+    "latitude": 20.631227,
+    "longitude": 72.933378
+  },
+  {
+    "idx": 723,
+    "district": "almora",
+    "state": "uttarakhand",
+    "latitude": 29.603844,
+    "longitude": 79.665557
+  },
+  {
+    "idx": 724,
+    "district": "bageshwar",
+    "state": "uttarakhand",
+    "latitude": 29.842812,
+    "longitude": 79.770905
+  },
+  {
+    "idx": 725,
+    "district": "chamoli",
+    "state": "uttarakhand",
+    "latitude": 30.401381,
+    "longitude": 79.331112
+  },
+  {
+    "idx": 726,
+    "district": "champawat",
+    "state": "uttarakhand",
+    "latitude": 29.333337,
+    "longitude": 80.103959
+  },
+  {
+    "idx": 727,
+    "district": "dehradun",
+    "state": "uttarakhand",
+    "latitude": 30.325264,
+    "longitude": 78.041576
+  },
+  {
+    "idx": 728,
+    "district": "haridwar",
+    "state": "uttarakhand",
+    "latitude": 29.9457,
+    "longitude": 78.1642
+  },
+  {
+    "idx": 729,
+    "district": "nainital",
+    "state": "uttarakhand",
+    "latitude": 29.380565,
+    "longitude": 79.470524
+  },
+  {
+    "idx": 730,
+    "district": "pauri garhwal",
+    "state": "uttarakhand",
+    "latitude": 29.8688,
+    "longitude": 78.8383
+  },
+  {
+    "idx": 731,
+    "district": "pithoragarh",
+    "state": "uttarakhand",
+    "latitude": 29.583696,
+    "longitude": 80.203698
+  },
+  {
+    "idx": 732,
+    "district": "rudraprayag",
+    "state": "uttarakhand",
+    "latitude": 30.29541,
+    "longitude": 78.986665
+  },
+  {
+    "idx": 733,
+    "district": "tehri garhwal",
+    "state": "uttarakhand",
+    "latitude": 30.376102,
+    "longitude": 78.498598
+  },
+  {
+    "idx": 734,
+    "district": "udham singh nagar",
+    "state": "uttarakhand",
+    "latitude": 28.966203,
+    "longitude": 79.396914
+  },
+  {
+    "idx": 735,
+    "district": "uttarkashi",
+    "state": "uttarakhand",
+    "latitude": 30.715986,
+    "longitude": 78.430542
+  },
+  {
+    "idx": 736,
+    "district": "alipurduar",
+    "state": "west bengal",
+    "latitude": 26.4922,
+    "longitude": 89.532
+  },
+  {
+    "idx": 737,
+    "district": "bankura",
+    "state": "west bengal",
+    "latitude": 23.249965,
+    "longitude": 87.061434
+  },
+  {
+    "idx": 738,
+    "district": "birbhum",
+    "state": "west bengal",
+    "latitude": 23.908735,
+    "longitude": 87.534251
+  },
+  {
+    "idx": 739,
+    "district": "burdwan (bardhaman)",
+    "state": "west bengal",
+    "latitude": 23.2324,
+    "longitude": 87.8615
+  },
+  {
+    "idx": 740,
+    "district": "cooch behar",
+    "state": "west bengal",
+    "latitude": 26.3452,
+    "longitude": 89.4482
+  },
+  {
+    "idx": 741,
+    "district": "dakshin dinajpur",
+    "state": "west bengal",
+    "latitude": 25.230003,
+    "longitude": 88.789755
+  },
+  {
+    "idx": 742,
+    "district": "dakshin dinajpur (south dinajpur)",
+    "state": "west bengal",
+    "latitude": 25.230003,
+    "longitude": 88.789755
+  },
+  {
+    "idx": 743,
+    "district": "darjeeling",
+    "state": "west bengal",
+    "latitude": 27.041527,
+    "longitude": 88.272768
+  },
+  {
+    "idx": 744,
+    "district": "hooghly",
+    "state": "west bengal",
+    "latitude": 22.900631,
+    "longitude": 88.396631
+  },
+  {
+    "idx": 745,
+    "district": "howrah",
+    "state": "west bengal",
+    "latitude": 22.5958,
+    "longitude": 88.2636
+  },
+  {
+    "idx": 746,
+    "district": "jalpaiguri",
+    "state": "west bengal",
+    "latitude": 26.527845,
+    "longitude": 88.719039
+  },
+  {
+    "idx": 747,
+    "district": "kalimpong",
+    "state": "west bengal",
+    "latitude": 27.0594,
+    "longitude": 88.4695
+  },
+  {
+    "idx": 748,
+    "district": "kolkata",
+    "state": "west bengal",
+    "latitude": 22.548783,
+    "longitude": 88.39894
+  },
+  {
+    "idx": 749,
+    "district": "malda",
+    "state": "west bengal",
+    "latitude": 25.010231,
+    "longitude": 88.147599
+  },
+  {
+    "idx": 750,
+    "district": "murshidabad",
+    "state": "west bengal",
+    "latitude": 24.100513,
+    "longitude": 88.278789
+  },
+  {
+    "idx": 751,
+    "district": "nadia",
+    "state": "west bengal",
+    "latitude": 23.418592,
+    "longitude": 88.504458
+  },
+  {
+    "idx": 752,
+    "district": "north 24 parganas",
+    "state": "west bengal",
+    "latitude": 22.724797,
+    "longitude": 88.507529
+  },
+  {
+    "idx": 753,
+    "district": "paschim medinipur (west medinipur)",
+    "state": "west bengal",
+    "latitude": 22.42833,
+    "longitude": 87.323882
+  },
+  {
+    "idx": 754,
+    "district": "purba medinipur (east medinipur)",
+    "state": "west bengal",
+    "latitude": 22.301044,
+    "longitude": 87.919817
+  },
+  {
+    "idx": 755,
+    "district": "purulia",
+    "state": "west bengal",
+    "latitude": 23.332193,
+    "longitude": 86.366718
+  },
+  {
+    "idx": 756,
+    "district": "south 24 parganas",
+    "state": "west bengal",
+    "latitude": 22.484754,
+    "longitude": 88.265534
+  },
+  {
+    "idx": 757,
+    "district": "uttar dinajpur (north dinajpur)",
+    "state": "west bengal",
+    "latitude": 25.609131,
+    "longitude": 88.125952
+  }
+]

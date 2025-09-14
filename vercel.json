@@ -1,0 +1,32 @@
+{
+  "buildCommand": "npm run build",
+  "installCommand": "npm install --legacy-peer-deps",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "public": true,
+  "rewrites": [
+    {
+      "source": "/igms2/(.*)",
+      "destination": "/igms2/$1"
+    },
+    {
+      "source": "/igms2",
+      "destination": "/igms2/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/igms2/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}
