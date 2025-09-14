@@ -256,19 +256,26 @@ export const searchGrievancesUsingCDIS = async (query, options = {}) => {
         // Transform CDIS API data to match expected grievance list format
         const transformedData = (data.grievanceData || []).map(item => ({
             // Map CDIS fields to expected fields  
-            registration_no: item.id || item.complaintId || item.grievanceId || `CDIS-${Math.random().toString(36).substr(2, 9)}`,
+            registration_no: item.id || item.complaintId || item.grievanceId || item.registration_no || `CDIS-${Math.random().toString(36).substr(2, 9)}`,
             state: item.stateName || item.state || item.location || 'Unknown',
             district: item.CityName || item.district || item.city || 'Unknown', 
-            recvd_date: item.complaintRegDate || item.dateOfRegistration || item.registrationDate || '',
+            recvd_date: item.complaintRegDate || item.dateOfRegistration || item.registrationDate || new Date().toISOString().split('T')[0],
             closing_date: item.updationDate || item.lastUpdationDate || item.closureDate || '',
             name: item.fullName || item.name || item.complainantName || 'Unknown',
-            ministry: item.ministry || 'DOCAF',
+            ministry: item.ministry || item.nodal_ministry || item.department || 'DOCAF',
             
-            // Additional fields
+            // Additional fields with better mapping
             status: item.status || 'Active',
             userType: item.userType || 'Citizen',
             country: item.country || 'India',
-            complaintDetails: item.complaintDetails || '',
+            complaintDetails: item.complaintDetails || item.subject || item.description || '',
+            complaintType: item.complaintType || item.category || item.subject || 'General',
+            companyName: item.companyName || item.company || item.organization || 'Unknown',
+            
+            // CDIS specific fields
+            id: item.id,
+            subject: item.subject || '',
+            description: item.description || '',
             
             // Original CDIS data for reference
             originalData: item

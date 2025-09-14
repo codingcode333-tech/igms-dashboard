@@ -73,22 +73,46 @@ const SemanticRCA = () => {
                             const registration_no_list = [];
                             
                             semanticResponse.data.forEach(item => {
-                                registration_no_list.push(item.id);
-                                
-                                // Group by company name
-                                const company = item.companyName || 'Unknown Company';
-                                if (!categoryGroups[company]) {
-                                    categoryGroups[company] = 0;
+                                // Use proper field mapping for CDIS data
+                                const regNo = item.id || item.complaintId || item.grievanceId || item.registration_no;
+                                if (regNo) {
+                                    registration_no_list.push(regNo);
                                 }
-                                categoryGroups[company]++;
                                 
-                                // Also group by complaint type
-                                const complaintType = item.complaintType || 'General Complaint';
-                                const categoryKey = `${complaintType} (${company})`;
-                                if (!categoryGroups[categoryKey]) {
-                                    categoryGroups[categoryKey] = 0;
+                                // Group by ministry/department
+                                const ministry = item.ministry || item.nodal_ministry || item.department || 'DOCAF';
+                                if (!categoryGroups[ministry]) {
+                                    categoryGroups[ministry] = 0;
                                 }
-                                categoryGroups[categoryKey]++;
+                                categoryGroups[ministry]++;
+                                
+                                // Group by state
+                                const state = item.stateName || item.state || item.location || 'Unknown State';
+                                const stateKey = `${state} (State)`;
+                                if (!categoryGroups[stateKey]) {
+                                    categoryGroups[stateKey] = 0;
+                                }
+                                categoryGroups[stateKey]++;
+                                
+                                // Group by complaint type/category if available
+                                if (item.complaintType || item.category || item.subject) {
+                                    const complaintType = item.complaintType || item.category || item.subject;
+                                    const typeKey = `${complaintType} (Complaint Type)`;
+                                    if (!categoryGroups[typeKey]) {
+                                        categoryGroups[typeKey] = 0;
+                                    }
+                                    categoryGroups[typeKey]++;
+                                }
+                                
+                                // Group by company if available
+                                if (item.companyName || item.company) {
+                                    const company = item.companyName || item.company;
+                                    const companyKey = `${company} (Company)`;
+                                    if (!categoryGroups[companyKey]) {
+                                        categoryGroups[companyKey] = 0;
+                                    }
+                                    categoryGroups[companyKey]++;
+                                }
                             });
                             
                             treeData = {
@@ -190,32 +214,58 @@ const SemanticRCA = () => {
     };
 
     const fetchBatch = async (ids) => {
+        console.log('📦 Fetching batch data for IDs:', ids.slice(0, 5), `... (${ids.length} total)`);
+        
         const formattedTransactionIds = ids.map(id => `"${id}"`).join(',');
         const encodedTransactionIds = encodeURIComponent(formattedTransactionIds);
         const apiUrl = `http://172.30.0.186:5002/get_userdata/?transaction_ids=${encodedTransactionIds}&startDate=2024-07-01&endDate=2024-07-13`;
 
         try {
-            // const response = await fetch(apiUrl, { method: 'GET' });
+            setIsTableLoading(true);
 
-            setIsTableLoading(true)
+            // Try original API first
+            const response = await getGrievancesUsingRegNos(ids);
+            const data = response.data;
 
-            const response = await getGrievancesUsingRegNos(ids)
+            console.log('📊 Original API batch response:', data);
 
-            setIsTableLoading(false)
-            // if (!response.ok) {
-            //     throw new Error('Network response was not ok');
-            // }
-            const data = response.data //await response.json();
-
-            if (data && data.data) {
+            if (data && data.data && Object.keys(data.data).length > 0) {
                 setTableData(Object.values(data.data));
+                console.log('✅ Batch data loaded from original API:', Object.keys(data.data).length, 'items');
             } else {
                 console.warn('No grievance data found in fetchBatch response:', data);
-                setTableData([]);
+                
+                // Fallback to CDIS API for fetching individual grievances
+                console.log('🔄 Falling back to CDIS API for batch data...');
+                
+                try {
+                    // Use CDIS search API to get details for these IDs
+                    const idQuery = ids.slice(0, 10).join(' OR '); // Limit to first 10 IDs
+                    const cdisResponse = await searchGrievancesUsingCDIS(idQuery, {
+                        value: 2, // Registration number search
+                        size: 20,
+                        threshold: 1.0
+                    });
+                    
+                    if (cdisResponse?.data && Array.isArray(cdisResponse.data)) {
+                        console.log('✅ CDIS batch data loaded:', cdisResponse.data.length, 'items');
+                        setTableData(cdisResponse.data);
+                    } else {
+                        console.warn('CDIS batch search also returned no data');
+                        setTableData([]);
+                    }
+                } catch (cdisError) {
+                    console.error('CDIS batch search failed:', cdisError);
+                    setTableData([]);
+                }
             }
+            
+            setIsTableLoading(false);
             return data;
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
+            setIsTableLoading(false);
+            setTableData([]);
         }
     };
 
