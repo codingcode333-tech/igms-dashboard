@@ -68,15 +68,19 @@ export function SearchGrievanceCards({
 
   // Format date
   const formatDate = (dateString) => {
-    if (!dateString) return 'N/A';
+    if (!dateString || dateString === 'nan' || dateString === 'null' || dateString === 'undefined') return 'N/A';
     try {
-      return new Date(dateString).toLocaleDateString('en-IN', {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return 'N/A';
+      }
+      return date.toLocaleDateString('en-IN', {
         day: '2-digit',
         month: 'short',
         year: 'numeric'
       });
     } catch {
-      return dateString;
+      return 'N/A';
     }
   };
 

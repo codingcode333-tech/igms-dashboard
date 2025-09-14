@@ -188,16 +188,20 @@ export const getGrievancesByRegNosUsingCDIS = async (grievanceRegNos = []) => {
             registration_no: item.id || item.complaintId || item.grievanceId || `CDIS-${Math.random().toString(36).substr(2, 9)}`,
             state: item.stateName || item.state || item.location || 'Unknown',
             district: item.CityName || item.district || item.city || 'Unknown',
-            recvd_date: item.complaintRegDate || item.dateOfRegistration || item.registrationDate || '',
-            closing_date: item.updationDate || item.lastUpdationDate || item.closureDate || '',
+            recvd_date: safeDateFormat(item.complaintRegDate || item.dateOfRegistration || item.registrationDate),
+            closing_date: safeDateFormat(item.updationDate || item.lastUpdationDate || item.closureDate),
             name: item.fullName || item.name || item.complainantName || 'Unknown',
             ministry: item.ministry || 'DOCAF',
             
-            // Additional fields
+            // Additional fields with safe handling
             status: item.status || 'Active',
             userType: item.userType || 'Citizen',
             country: item.country || 'India',
-            complaintDetails: item.complaintDetails || '',
+            complaintDetails: item.complaintDetails || item.subject || item.description || '',
+            complaintType: item.complaintType || item.category || item.subject || 'General',
+            companyName: (item.companyName && item.companyName !== 'nan') ? item.companyName : 
+                        (item.company && item.company !== 'nan') ? item.company : 
+                        (item.organization && item.organization !== 'nan') ? item.organization : 'Unknown',
             
             // Original CDIS data for reference
             originalData: item
@@ -219,6 +223,59 @@ export const getGrievancesByRegNosUsingCDIS = async (grievanceRegNos = []) => {
         throw error;
     }
 }
+
+// Helper function to safely format dates
+const safeDateFormat = (dateString) => {
+    if (!dateString || dateString === 'nan' || dateString === 'null' || dateString === 'undefined') {
+        return '';
+    }
+    
+    try {
+        // Try to parse the date
+        const date = new Date(dateString);
+        
+        // Check if date is valid
+        if (isNaN(date.getTime())) {
+            // Try common Indian date formats
+            if (typeof dateString === 'string') {
+                // Try DD/MM/YYYY format
+                const parts = dateString.split('/');
+                if (parts.length === 3) {
+                    const day = parseInt(parts[0]);
+                    const month = parseInt(parts[1]) - 1; // Month is 0-indexed
+                    const year = parseInt(parts[2]);
+                    const parsedDate = new Date(year, month, day);
+                    
+                    if (!isNaN(parsedDate.getTime())) {
+                        return parsedDate.toISOString().split('T')[0]; // Return YYYY-MM-DD format
+                    }
+                }
+                
+                // Try DD-MM-YYYY format
+                const dashParts = dateString.split('-');
+                if (dashParts.length === 3 && dashParts[0].length <= 2) {
+                    const day = parseInt(dashParts[0]);
+                    const month = parseInt(dashParts[1]) - 1;
+                    const year = parseInt(dashParts[2]);
+                    const parsedDate = new Date(year, month, day);
+                    
+                    if (!isNaN(parsedDate.getTime())) {
+                        return parsedDate.toISOString().split('T')[0];
+                    }
+                }
+            }
+            
+            // If all parsing fails, return empty string
+            return '';
+        }
+        
+        // Return properly formatted date
+        return date.toISOString().split('T')[0];
+    } catch (error) {
+        console.warn('Date parsing error for:', dateString, error);
+        return '';
+    }
+};
 
 // New function to search grievances using CDIS API
 export const searchGrievancesUsingCDIS = async (query, options = {}) => {
@@ -259,20 +316,22 @@ export const searchGrievancesUsingCDIS = async (query, options = {}) => {
             registration_no: item.id || item.complaintId || item.grievanceId || item.registration_no || `CDIS-${Math.random().toString(36).substr(2, 9)}`,
             state: item.stateName || item.state || item.location || 'Unknown',
             district: item.CityName || item.district || item.city || 'Unknown', 
-            recvd_date: item.complaintRegDate || item.dateOfRegistration || item.registrationDate || new Date().toISOString().split('T')[0],
-            closing_date: item.updationDate || item.lastUpdationDate || item.closureDate || '',
+            recvd_date: safeDateFormat(item.complaintRegDate || item.dateOfRegistration || item.registrationDate),
+            closing_date: safeDateFormat(item.updationDate || item.lastUpdationDate || item.closureDate),
             name: item.fullName || item.name || item.complainantName || 'Unknown',
             ministry: item.ministry || item.nodal_ministry || item.department || 'DOCAF',
             
-            // Additional fields with better mapping
+            // Additional fields with better mapping and safe handling
             status: item.status || 'Active',
             userType: item.userType || 'Citizen',
             country: item.country || 'India',
             complaintDetails: item.complaintDetails || item.subject || item.description || '',
             complaintType: item.complaintType || item.category || item.subject || 'General',
-            companyName: item.companyName || item.company || item.organization || 'Unknown',
+            companyName: (item.companyName && item.companyName !== 'nan') ? item.companyName : 
+                        (item.company && item.company !== 'nan') ? item.company : 
+                        (item.organization && item.organization !== 'nan') ? item.organization : 'Unknown',
             
-            // CDIS specific fields
+            // CDIS specific fields with safe handling
             id: item.id,
             subject: item.subject || '',
             description: item.description || '',

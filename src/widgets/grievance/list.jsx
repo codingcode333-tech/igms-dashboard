@@ -164,16 +164,25 @@ export function GrievanceList({
   }
 
   const formatDate = (date, full = false) => {
-    if (date) {
-      if (full)
-        date = new Date(date).toLocaleString('en-IN')
-      else
-        date = new Date(date).toLocaleDateString("en-IN")
-      if (date != 'Invalid Date')
-        return date
+    if (!date || date === 'nan' || date === 'null' || date === 'undefined' || date === '') {
+      return "";
     }
-
-    return ""
+    
+    try {
+      const dateObj = new Date(date);
+      if (isNaN(dateObj.getTime())) {
+        return "";
+      }
+      
+      if (full) {
+        return dateObj.toLocaleString('en-IN');
+      } else {
+        return dateObj.toLocaleDateString("en-IN");
+      }
+    } catch (error) {
+      console.warn('Date formatting error:', date, error);
+      return "";
+    }
   }
 
   const setSortColumn = index => {
