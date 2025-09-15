@@ -62,11 +62,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
               <img 
                 src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" 
                 alt="Emblem of India"
-                className={`
-                  ${!sidebarExpanded ? 'w-6 h-6' : 'w-9 h-9'} 
-                  transition-all duration-300 ${!sidebarExpanded ? 'group-hover:w-9 group-hover:h-9' : ''}
-                  object-contain
-                `}
+                className="w-9 h-9 transition-all duration-300 object-contain"
                 style={{
                   filter: 'none',
                   mixBlendMode: 'normal'
