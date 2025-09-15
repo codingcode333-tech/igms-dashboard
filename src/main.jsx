@@ -21,11 +21,16 @@ import "./styles/premium-cards.css";
 import { FilterProvider } from "./context/FilterContext";
 import { UserProvider } from "./context/UserContext";
 
+// Conditional basename for development vs production
+const basename = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+  ? '/' 
+  : '/igms2';
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
     <FilterProvider>
-      <BrowserRouter basename="/igms2">
+      <BrowserRouter basename={basename}>
         <ThemeProvider>
           <MaterialTailwindControllerProvider>
             <App />

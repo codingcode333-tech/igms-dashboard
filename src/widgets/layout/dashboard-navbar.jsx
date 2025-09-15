@@ -146,7 +146,7 @@ export function DashboardNavbar() {
               e.stopPropagation();
               setOpenSidenav(dispatch, !openSidenav);
             }}
-            title={!openSidenav ? 'Expand Navigation Panel' : 'Collapse Navigation Panel'}
+            title={!openSidenav ? 'Show Navigation Panel' : 'Hide Navigation Panel'}
           >
             <Bars3Icon className="h-6 w-6" />
           </IconButton>

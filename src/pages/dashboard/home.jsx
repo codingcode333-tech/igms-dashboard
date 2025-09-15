@@ -443,100 +443,65 @@ export function Home() {
     }
   }, [BarChartSeries, stateDistributionData]);
 
-  // Separate useEffect for charts that should reload when headerAttributes change
   useEffect(() => {
-    const loadChartsData = async () => {
-      console.log('🔄 Loading charts data for:', headerAttributes);
-      setLoading(dispatch, true);
+    const BarChart = async () => {
+      setLoading(dispatch, true)
+      let jsonData = await cacheable(async () => await dashboardService.getBarGraphData(ministry, from, to), `bar-chart-${ministry}-${from}-${to}-data`, () => setLoading(dispatch, false))
+      // let jsonData = Object.values(data)
 
-      // Load Bar Chart Data
-      try {
-        console.log('🔍 Loading Bar Chart Data for:', headerAttributes.ministry, headerAttributes.from, headerAttributes.to);
-        let jsonData = await cacheable(
-          async () => await dashboardService.getBarGraphData(headerAttributes.ministry, headerAttributes.from, headerAttributes.to), 
-          `bar-chart-${headerAttributes.ministry}-${headerAttributes.from}-${headerAttributes.to}-data`, 
-          () => setLoading(dispatch, false)
-        );
-        console.log('📊 Bar Chart raw data received:', jsonData);
+      if (user.username == 'dpg') {
+        setTimeout(async () => {
+          let additional_jsonData = await cacheable(async () => await dashboardService.getBarGraphData("DARPG/D", from, to), `bar-chart-${ministry}-${from}-${to}-additional-data`, () => setLoading(dispatch, false))
+          // let additional_jsonData = Object.values(additional_data)
 
-        if (user.username === 'dpg') {
-          // For DPG user, wait for additional data before saving
-          setTimeout(async () => {
-            let additional_jsonData = await cacheable(
-              async () => await dashboardService.getBarGraphData("DARPG/D", headerAttributes.from, headerAttributes.to), 
-              `bar-chart-${headerAttributes.ministry}-${headerAttributes.from}-${headerAttributes.to}-additional-data`, 
-              () => setLoading(dispatch, false)
-            );
-            jsonData = appendStateData(jsonData, additional_jsonData, 'key');
-            console.log('📊 DPG Bar Chart combined data:', jsonData);
-            saveBarChartData(jsonData);
-          }, 2000);
-        } else {
-          // For non-DPG users, save data immediately
-          console.log('📊 Non-DPG Bar Chart data:', jsonData);
-          saveBarChartData(jsonData);
-        }
-      } catch (error) {
-        console.error('Error loading bar chart data:', error);
-        setLoading(dispatch, false);
+          jsonData = appendStateData(jsonData, additional_jsonData, 'key')
+          saveBarChartData(jsonData)
+        }, 2000)
       }
 
-      // Load Line Chart Data  
-      try {
-        console.log('📈 Loading Line Chart Data for:', headerAttributes.ministry, headerAttributes.from, headerAttributes.to);
-        let lineJsonData = await cacheable(
-          async () => await dashboardService.getLineGraphData(headerAttributes.ministry, headerAttributes.from, headerAttributes.to), 
-          `line-chart-${headerAttributes.ministry}-${headerAttributes.from}-${headerAttributes.to}-data`, 
-          () => setLoading(dispatch, false)
-        );
-        console.log('📈 Line Chart raw data received:', lineJsonData);
-
-        if (user.username === 'dpg') {
-          // For DPG user, wait for additional data before setting
-          setTimeout(async () => {
-            let additional_lineJsonData = await cacheable(
-              async () => await dashboardService.getLineGraphData("DARPG/D", headerAttributes.from, headerAttributes.to), 
-              `line-chart-${headerAttributes.ministry}-${headerAttributes.from}-${headerAttributes.to}-additional-data`, 
-              () => setLoading(dispatch, false)
-            );
-            lineJsonData = appendStateData(lineJsonData, additional_lineJsonData, 'recvd_date');
-            console.log('📈 DPG Line Chart combined data:', lineJsonData);
-            setLineChartData(lineJsonData);
-          }, 2500);
-        } else {
-          // For non-DPG users, set data immediately  
-          console.log('📈 Non-DPG Line Chart data:', lineJsonData);
-          setLineChartData(lineJsonData);
-        }
-      } catch (error) {
-        console.error('Error loading line chart data:', error);
-      }
-
-      // Load Top Categories
-      try {
-        setTopCategories(
-          await cacheable(
-            async () => await getTopCategories({ 
-              ministry: headerAttributes.ministry, 
-              startDate: headerAttributes.from, 
-              endDate: headerAttributes.to 
-            }), 
-            `categories-${headerAttributes.ministry}-${headerAttributes.from}-${headerAttributes.to}-data`
-          )
-        );
-      } catch (error) {
-        console.error('Error loading top categories:', error);
-      }
-
-      setLoading(dispatch, false);
-      setSearching(false);
-    };
-
-    // Only load if headerAttributes are properly set
-    if (headerAttributes.ministry && headerAttributes.from && headerAttributes.to) {
-      loadChartsData();
+      saveBarChartData(jsonData)
+      setSearching(false)
     }
-  }, [headerAttributes.ministry, headerAttributes.from, headerAttributes.to]);
+
+    const LineChart = async () => {
+      setLoading(dispatch, true)
+      let jsonData = await cacheable(async () => await dashboardService.getLineGraphData(ministry, from, to), `line-chart-${ministry}-${from}-${to}-data`, () => setLoading(dispatch, false))
+      // let jsonData = Object.values(data)
+
+      if (user.username == 'dpg') {
+        setTimeout(async () => {
+          let additional_jsonData = await cacheable(async () => await dashboardService.getLineGraphData("DARPG/D", from, to), `line-chart-${ministry}-${from}-${to}-additional-data`, () => setLoading(dispatch, false))
+          // let additional_jsonData = Object.values(additional_data)
+
+          jsonData = appendStateData(jsonData, additional_jsonData, 'recvd_date')
+
+          setLineChartData(jsonData)
+        }, 2500)
+      }
+
+      setLineChartData(jsonData)
+      setSearching(false)
+    }
+
+    const loadTopCategories = async () => {
+      setTopCategories(
+        await cacheable(async () => await getTopCategories({ ministry, startDate: from, endDate: to }), `categories-${ministry}-${from}-${to}-data`)
+      )
+    }
+
+    if (searching) {
+      BarChart();
+      LineChart();
+
+      // loadTopCategories()
+
+      setHeaderAttributes({
+        ministry,
+        from,
+        to
+      })
+    }
+  }, [searching])
 
   useEffect(() => {
     if (BarChartSeries) {
@@ -690,49 +655,22 @@ const TopRepeaters = ({
   }
 
   const updateDateRange = dateRange => {
-    const formattedStartDate = dateRange.startDate instanceof Date 
-      ? dateRange.startDate.toISOString().split('T')[0] 
-      : dateRange.startDate;
-    const formattedEndDate = dateRange.endDate instanceof Date 
-      ? dateRange.endDate.toISOString().split('T')[0] 
-      : dateRange.endDate;
-
-    // Update both local state and filters
-    setFrom(formattedStartDate);
-    setTo(formattedEndDate);
-    
     setFilters({
       ...filters,
-      from: formattedStartDate,
-      to: formattedEndDate
-    });
+      from: dateRange.startDate,
+      to: dateRange.endDate
+    })
 
-    // Update headerAttributes to trigger data refresh
-    setHeaderAttributes({
-      ...headerAttributes,
-      from: formattedStartDate,
-      to: formattedEndDate
-    });
-
-    setShowDateRangePicker(false);
+    setShowDateRangePicker(false)
   }
 
   const updateMinistry = ministry => {
-    // Update both local state and filters
-    setMinistry(ministry);
-    
     setFilters({
       ...filters,
       ministry: ministry
-    });
+    })
 
-    // Update headerAttributes to trigger data refresh
-    setHeaderAttributes({
-      ...headerAttributes,
-      ministry: ministry
-    });
-
-    setShowMinistryPicker(false);
+    setShowMinistryPicker(false)
   }
 
   const updateStateDistrict = ({ state, district }) => {

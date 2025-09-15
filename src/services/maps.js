@@ -78,25 +78,192 @@ const stateWiseCounts = async (filters, page_no) => {
     try {
         console.log('🗺️ Fetching state-wise counts from CDIS API:', { 
             query: filters.query, 
-            type: filters.type 
+            type: filters.type,
+            state: filters.state,
+            district: filters.district,
+            ministry: filters.ministry,
+            startDate: filters.startDate,
+            endDate: filters.endDate,
+            fullFiltersObject: JSON.stringify(filters, null, 2)
         });
 
         // Use CDIS API to get search results and calculate state distribution
+        // NOTE: CDIS API only supports: query, value, skiprecord, size, threshold
         const searchParams = {
             query: filters.query || "",
             value: filters.type || 1,
             skiprecord: 0,
-            size: 5000, // Get more data for accurate state distribution
-            threshold: filters.threshold || 0.5
+            size: 5000, // Get large dataset for state distribution
+            threshold: filters.threshold || 1.2
         };
+
+        console.log('📡 CDIS API call for state counts (only supported params):', searchParams);
 
         const result = await httpService.search.searchGrievances(searchParams);
         
         if (result.success && result.data?.grievanceData) {
-            const grievances = result.data.grievanceData;
+            let grievances = result.data.grievanceData;
             console.log('📊 Processing', grievances.length, 'grievances for state distribution');
 
-            // Calculate state-wise distribution
+            // CLIENT-SIDE FILTERING: Apply all filters since CDIS API doesn't support them
+            
+            // Apply ministry filter if specified
+            if (filters.ministry && filters.ministry !== 'All') {
+                const originalCount = grievances.length;
+                grievances = grievances.filter(grievance => {
+                    const grievanceMinistry = (grievance.ministry || '').toLowerCase().trim();
+                    const filterMinistry = filters.ministry.toLowerCase().trim();
+                    
+                    return grievanceMinistry.includes(filterMinistry) || filterMinistry.includes(grievanceMinistry);
+                });
+                console.log(`🎯 After ministry filter: ${originalCount} → ${grievances.length} grievances for "${filters.ministry}"`);
+            }
+
+                        // Apply date range filter if specified (with smart fallback for old data)
+            if (filters.startDate && filters.endDate) {
+                const originalCount = grievances.length;
+                
+                // Check available years in data
+                const uniqueYears = [...new Set(grievances.map(item => {
+                    const date = new Date(item.recvd_date);
+                    return isNaN(date.getTime()) ? 'invalid' : date.getFullYear();
+                }).filter(year => year !== 'invalid'))].sort();
+                
+                // If searching for recent dates (2024+) but data is old, skip date filtering
+                const filterStartYear = new Date(filters.startDate).getFullYear();
+                const filterEndYear = new Date(filters.endDate).getFullYear();
+                const dataMaxYear = Math.max(...uniqueYears.filter(y => y !== 'invalid'));
+                
+                if (filterStartYear > dataMaxYear && filterStartYear >= 2024) {
+                    console.log(`⚠️ Maps: Skipping date filter: Searching for ${filterStartYear}-${filterEndYear} but data only goes up to ${dataMaxYear}`);
+                    console.log('🗺️ Maps: Showing all available data instead of filtering by recent dates');
+                } else {
+                    grievances = grievances.filter(grievance => {
+                        const grievanceDate = new Date(grievance.recvd_date);
+                        
+                        // Check if date is valid
+                        if (isNaN(grievanceDate.getTime())) {
+                            return false; // Exclude items with invalid dates
+                        }
+                        
+                        let isInRange = true;
+                        
+                        if (filters.startDate) {
+                            const startDate = new Date(filters.startDate);
+                            isInRange = isInRange && grievanceDate >= startDate;
+                        }
+                        
+                        if (filters.endDate) {
+                            const endDate = new Date(filters.endDate);
+                            endDate.setHours(23, 59, 59, 999);
+                            isInRange = isInRange && grievanceDate <= endDate;
+                        }
+                        
+                        return isInRange;
+                    });
+                    console.log(`📅 Maps: After date filter: ${originalCount} → ${grievances.length} grievances for ${filters.startDate} to ${filters.endDate}`);
+                }
+            }
+
+            // Apply state filter if specified
+            if (filters.state && filters.state !== 'All') {
+                grievances = grievances.filter(grievance => {
+                    const stateFields = ['state', 'stateName', 'State', 'location'];
+                    for (const field of stateFields) {
+                        if (grievance[field]) {
+                            const grievanceState = grievance[field].toString().toLowerCase();
+                            const filterState = filters.state.toLowerCase();
+                            if (grievanceState.includes(filterState) || filterState.includes(grievanceState)) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+                console.log('🎯 After state filter, found', grievances.length, 'grievances for', filters.state);
+                
+                // Debug: Show available districts for this state and sample grievance structure
+                if (filters.district && filters.district !== 'All') {
+                    const availableDistricts = new Set();
+                    grievances.forEach(grievance => {
+                        if (grievance.district && grievance.district !== 'Unknown') {
+                            availableDistricts.add(grievance.district.toString().toLowerCase());
+                        }
+                    });
+                    console.log('🏘️ Available districts in', filters.state + ':', Array.from(availableDistricts));
+                    
+                    // Debug: Show sample grievance structure
+                    if (grievances.length > 0) {
+                        console.log('📋 Sample grievance structure:', {
+                            id: grievances[0].id,
+                            state: grievances[0].state,
+                            district: grievances[0].district,
+                            name: grievances[0].name
+                        });
+                    }
+                }
+            }
+
+            // Apply district filter if specified
+            if (filters.district && filters.district !== 'All') {
+                grievances = grievances.filter(grievance => {
+                    // Since data is already transformed, only check the 'district' field
+                    if (grievance.district && grievance.district !== 'Unknown') {
+                        const grievanceDistrict = grievance.district.toString().toLowerCase().trim();
+                        const filterDistrict = filters.district.toLowerCase().trim();
+                        
+                        // Handle common district name variations
+                        const normalizeDistrict = (name) => {
+                            return name
+                                .replace(/\s+/g, ' ') // normalize spaces
+                                .replace(/\bnagar\b/g, '') // remove "nagar" 
+                                .replace(/\bdistrict\b/g, '') // remove "district"
+                                .trim();
+                        };
+                        
+                        const normalizedGrievanceDistrict = normalizeDistrict(grievanceDistrict);
+                        const normalizedFilterDistrict = normalizeDistrict(filterDistrict);
+                        
+                        // Check exact match, partial match, or normalized match
+                        if (grievanceDistrict === filterDistrict ||
+                            grievanceDistrict.includes(filterDistrict) || 
+                            filterDistrict.includes(grievanceDistrict) ||
+                            normalizedGrievanceDistrict.includes(normalizedFilterDistrict) ||
+                            normalizedFilterDistrict.includes(normalizedGrievanceDistrict)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+                console.log('🎯 After district filter, found', grievances.length, 'grievances for', filters.district);
+                
+                // If no grievances found for specific district, fallback to state-level data
+                if (grievances.length === 0 && filters.state && filters.state !== 'All') {
+                    console.log('🔄 No data found for district, falling back to state-level data for', filters.state);
+                    // Re-get grievances with only state filter (no district filter)
+                    let stateOnlyGrievances = result.data.grievanceData;
+                    
+                    // Apply only state filter
+                    stateOnlyGrievances = stateOnlyGrievances.filter(grievance => {
+                        const stateFields = ['state', 'stateName', 'State', 'location'];
+                        for (const field of stateFields) {
+                            if (grievance[field]) {
+                                const grievanceState = grievance[field].toString().toLowerCase();
+                                const filterState = filters.state.toLowerCase();
+                                if (grievanceState.includes(filterState) || filterState.includes(grievanceState)) {
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    });
+                    
+                    console.log('🎯 Fallback: Found', stateOnlyGrievances.length, 'grievances for state', filters.state);
+                    grievances = stateOnlyGrievances;
+                }
+            }
+
+            // Calculate state-wise distribution from filtered results
             const stateWiseDistribution = {};
             
             grievances.forEach(grievance => {

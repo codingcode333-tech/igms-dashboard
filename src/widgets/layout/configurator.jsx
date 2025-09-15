@@ -310,7 +310,7 @@ export function Configurator() {
                   Advanced Options
                 </Typography>
               </div>
-              <IconButton size="sm" variant="text">
+              <div className="p-1">
                 <svg 
                   className={`h-3 w-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`} 
                   fill="none" 
@@ -319,7 +319,7 @@ export function Configurator() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </IconButton>
+              </div>
             </button>
             
             <div className={`space-y-2 transition-all duration-300 ${isExpanded ? 'block' : 'hidden'}`}>
@@ -427,75 +427,73 @@ export const SearchInput = ({
   const { isDark } = useTheme();
   
   return (
-    <div className="space-y-2">
-      {/* Search Type Selector */}
-      <div className={`
-        p-2 rounded-lg ${isDark ? 'bg-gray-700' : 'bg-gray-50'} 
-        border ${isDark ? 'border-gray-600' : 'border-gray-200'}
-      `}>
-        <Typography variant="small" color="gray" className="text-xs mb-1 font-medium">
-          Search Type
-        </Typography>
-        <Menu>
-          <MenuHandler>
-            <Button 
-              variant="outlined" 
-              size="sm" 
-              className={`
-                w-full justify-between text-left font-normal
-                ${isDark ? 'border-gray-600 text-white' : 'border-gray-300 text-gray-700'}
-              `}
-            >
-              <span className="flex items-center gap-2">
-                <Chip 
-                  value={types[type] ? types[type].name : types[1].name} 
-                  size="sm" 
-                  color="blue"
-                  className="text-xs"
-                />
-                <span className="text-xs">based search</span>
-              </span>
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </Button>
-          </MenuHandler>
-          <MenuList className="max-h-[15rem] z-[1200]">
-            {Object.keys(types).map(key => (
-              <MenuItem 
-                onClick={() => setType(key)} 
-                key={key}
-                className="text-sm"
+    <div className="flex justify-center">
+      <div className="flex items-end gap-3 w-full max-w-2xl">
+        {/* Search Type Selector - Left side, much smaller */}
+        <div className={`
+          p-1.5 rounded-lg ${isDark ? 'bg-gray-700' : 'bg-gray-50'} 
+          border ${isDark ? 'border-gray-600' : 'border-gray-200'}
+          w-fit flex-shrink-0
+        `}>
+          <Typography variant="small" color="gray" className="text-xs mb-1 font-medium text-center">
+            Search Type
+          </Typography>
+          <Menu>
+            <MenuHandler>
+              <Button 
+                variant="outlined" 
+                size="sm" 
+                className={`
+                  justify-center text-center font-normal w-auto px-2 py-1 h-8
+                  ${isDark ? 'border-gray-600 text-white' : 'border-gray-300 text-gray-700'}
+                `}
               >
-                <div className="flex items-center gap-2">
-                  <Chip value={types[key].name} size="sm" color="blue" className="text-xs" />
-                  <span>Search</span>
-                </div>
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
-      </div>
+                <span className="flex items-center gap-1">
+                  <span className="text-xs font-medium">
+                    {types[type] ? types[type].name : types[1].name}
+                  </span>
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </Button>
+            </MenuHandler>
+            <MenuList className="max-h-[15rem] z-[1200]">
+              {Object.keys(types).map(key => (
+                <MenuItem 
+                  onClick={() => setType(key)} 
+                  key={key}
+                  className="text-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <Chip value={types[key].name} size="sm" color="blue" className="text-xs" />
+                  </div>
+                </MenuItem>
+              ))}
+            </MenuList>
+          </Menu>
+        </div>
 
-      {/* Search Input */}
-      <div>
-        <Input
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          type="text"
-          label={Object.keys(types).includes(type) && types[type]?.placeholder ? types[type].placeholder : "Enter Natural Language Query..."}
-          size="md"
-          autoFocus={true}
-          className={`text-sm ${isDark ? '!text-white' : '!text-gray-900'}`}
-          labelProps={{
-            className: `${isDark ? 'text-gray-300' : 'text-gray-600'}`
-          }}
-          containerProps={{
-            className: `${isDark ? 'text-white' : 'text-gray-900'}`
-          }}
-          onKeyDownCapture={({ key }) => key == 'Enter' && onEnterPress && onEnterPress()}
-          icon={<MagnifyingGlassIcon className="h-4 w-4" />}
-        />
+        {/* Search Input - Right side, takes remaining space */}
+        <div className="flex-1">
+          <Input
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            type="text"
+            label={Object.keys(types).includes(type) && types[type]?.placeholder ? types[type].placeholder : "Enter Natural Language Query..."}
+            size="md"
+            autoFocus={true}
+            className={`text-sm ${isDark ? '!text-white' : '!text-gray-900'}`}
+            labelProps={{
+              className: `${isDark ? 'text-gray-300' : 'text-gray-600'}`
+            }}
+            containerProps={{
+              className: `${isDark ? 'text-white' : 'text-gray-900'}`
+            }}
+            onKeyDownCapture={({ key }) => key == 'Enter' && onEnterPress && onEnterPress()}
+            icon={<MagnifyingGlassIcon className="h-4 w-4" />}
+          />
+        </div>
       </div>
     </div>
   )

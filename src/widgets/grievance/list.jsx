@@ -24,7 +24,8 @@ import {
 import { useFilter } from "@/context/FilterContext";
 import GrievancesRoutes, { getClosureDetails } from "@/services/grievances";
 // import { Modal } from "@/pages/dashboard";
-import { MinistryWithToolTip, Modal } from "./modal";
+import { MinistryWithToolTip } from "./modal";
+import { CDISModal } from "@/widgets/grievance";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowTopRightOnSquareIcon, CheckBadgeIcon, CheckIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Loader } from "@/pages/dashboard/CategoricalTree";
@@ -60,14 +61,25 @@ export function GrievanceList({
   const [closureData, setClosureData] = useState(null)
   const { filters, setFilters } = useFilter();
   const recordsPerPage = max
+  
+  // Ensure total is a number - handle cases where total might be an object like {count: 123}
+  const totalCount = useMemo(() => {
+    if (typeof total === 'number') return total;
+    if (typeof total === 'object' && total !== null) {
+      // Handle various object structures
+      return total.count || total.total || total.totalCount || 0;
+    }
+    return 0;
+  }, [total]);
+  
   const from = pageno ? (((pageno - 1) * recordsPerPage) + 1) : 1
   const toRanged = pageno * recordsPerPage
-  const to = useMemo(() => pageno ? (toRanged < total ? toRanged : total) : recordsPerPage, [pageno, total])
+  const to = useMemo(() => pageno ? (toRanged < totalCount ? toRanged : totalCount) : recordsPerPage, [pageno, totalCount])
   const disableNextButton = useMemo(
-    () => count < recordsPerPage || (total != null && total <= to),
-    [count, recordsPerPage, total, to]
+    () => count < recordsPerPage || (totalCount != null && totalCount <= to),
+    [count, recordsPerPage, totalCount, to]
   )
-  const totalPages = Math.ceil(total / max)
+  const totalPages = Math.ceil(totalCount / max)
 
   const isLoading = grievances === null;
   const rowSpam = " !text-red-600"
@@ -101,26 +113,53 @@ export function GrievanceList({
   ]
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedGrievance, setSelectedGrievance] = useState(null);
 
-  const [sortOrder, setSortOrder] = useState(null)
+  const [sortOrder, setSortOrder] = useState('date_desc') // Default to newest first
   const [filteredGrievances, setFilteredGrievances] = useState([])
 
   const handleOpenModal = async (G_id) => {
-    setModalLoading(true);
-    loadModalData(G_id)
-      .catch(() => {
-        toast.error('There was an error. Please try again!')
-        setModalIsOpen(false)
-      })
-      .finally(() => {
-        setModalIsOpen(true);
-        setModalLoading(false)
-      })
+    console.log('🔍 Opening modal for grievance ID:', G_id);
+    
+    // Find the grievance data from our current list
+    const selectedGrievance = grievances.find(item => item.registration_no === G_id);
+    
+    if (selectedGrievance) {
+      console.log('✅ Found grievance data in current list:', selectedGrievance);
+      
+      // Prepare data for our new CDIS modal
+      const grievanceData = {
+        registration_no: selectedGrievance.registration_no,
+        state: selectedGrievance.state,
+        district: selectedGrievance.district,
+        name: selectedGrievance.name,
+        ministry: selectedGrievance.ministry,
+        recvd_date: selectedGrievance.recvd_date,
+        closing_date: selectedGrievance.closing_date,
+        status: selectedGrievance.status || 'Active',
+        
+        // Map CDIS fields for detailed information
+        address: selectedGrievance.originalData?.address || selectedGrievance.originalData?.location || 'Address not available',
+        emailaddr: selectedGrievance.originalData?.email || selectedGrievance.originalData?.emailId || 'Email not available',
+        mobile_no: selectedGrievance.originalData?.mobile || selectedGrievance.originalData?.phoneNumber || selectedGrievance.originalData?.contactNumber || 'Phone not available',
+        subject_content: selectedGrievance.originalData?.complaintDetails || selectedGrievance.originalData?.subject || selectedGrievance.originalData?.description || selectedGrievance.complaintDetails || 'Details not available',
+        
+        // Keep original data for additional info
+        originalData: selectedGrievance.originalData
+      };
+      
+      setSelectedGrievance(grievanceData);
+      setModalIsOpen(true);
+    } else {
+      console.error('❌ Grievance not found in current list:', G_id);
+    }
   };
 
   const loadModalData = (id, isReload = false, preload = {}) => {
+    console.log('📋 Loading modal data for ID:', id);
     return GrievancesRoutes.descGrievance(id)
       .then(async response => {
+        console.log('✅ Grievance details response:', response.data);
         if (response.data.repeat == 2) {
           response.data.parent = (await GrievancesRoutes.getRepeatParent(response.data.registration_no)).data.parent_registration_no
         }
@@ -134,11 +173,16 @@ export function GrievanceList({
           getClosureDetails(id)
             .then((response) => {
               // console.log(response)
-              console.log(response.data)
+              console.log('✅ Closure details response:', response.data)
               setClosureData(response.data)
               // setCurrentRNO(modalData?.registration_no)
-            })
-      })
+            }).catch(error => {
+              console.error('❌ Error loading closure details:', error);
+            });
+      }).catch(error => {
+        console.error('❌ Error loading grievance details:', error);
+        throw error;
+      });
   }
 
   const handleCloseModal = () => {
@@ -226,10 +270,23 @@ export function GrievanceList({
     setFilteredGrievances(filtered)
   }
 
-  const getRno = item => (item.registration_no ?? item.parent_rno ?? item.parent_registration_no ?? '')
+  const getRno = item => {
+    const rno = item.registration_no ?? item.parent_rno ?? item.parent_registration_no ?? '';
+    return rno;
+  }
 
   useEffect(() => {
-    setFilteredGrievances(grievances)
+    // Sort grievances by date (newest first) before setting them
+    const sortedGrievances = [...grievances].sort((a, b) => {
+      const dateA = new Date(a.recvd_date || a.received_date || a.date)
+      const dateB = new Date(b.recvd_date || b.received_date || b.date)
+      
+      // Sort in descending order (newest first)
+      return dateB.getTime() - dateA.getTime()
+    })
+    
+    console.log('📅 Grievance list sorted by date (newest first)')
+    setFilteredGrievances(sortedGrievances)
   }, [grievances])
 
   return (
@@ -251,8 +308,8 @@ export function GrievanceList({
             <div className={`${noDataFound && 'hidden'}`}>
               {
                 count
-                  ? total && pageno && total != count
-                    ? `${from}-${to} / ${total} records`
+                  ? totalCount && pageno && totalCount != count
+                    ? `${from}-${to} / ${totalCount} records`
                     : `${count} records` + (pageno ? ` / Page ${pageno}` : '')
                   : ''
               }
@@ -439,7 +496,11 @@ export function GrievanceList({
 
       {
         modalIsOpen && (
-          <Modal modalLoader={modalLoader} modalData={grievancesDesc} closureData={closureData} close={handleCloseModal} reload={(preload) => loadModalData(grievancesDesc?.registration_no, true, preload)} />
+          <CDISModal 
+            isOpen={modalIsOpen}
+            onClose={handleCloseModal}
+            grievanceData={selectedGrievance}
+          />
         )
       }
     </div >

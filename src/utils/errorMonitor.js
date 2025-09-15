@@ -103,7 +103,10 @@ console.warn = (...args) => {
       message.includes('componentWillReceiveProps') ||
       message.includes('unsafe-component-lifecycles') ||
       message.includes('https://reactjs.org/link/unsafe-component-lifecycles') ||
+      message.includes('https://reactjs.org/link/derived-state') ||
       message.includes('Move data fetching code or side effects to componentDidUpdate') ||
+      message.includes('refactor your code to use memoization techniques') ||
+      message.includes('static getDerivedStateFromProps') ||
       (message.includes('Please update the following components:') && 
        (message.includes('Autosuggest') || message.includes('Autowhatever')))) {
     console.log('⚠️ Known Issue: Third-party library (react-autosuggest) uses deprecated lifecycle methods - warning suppressed');

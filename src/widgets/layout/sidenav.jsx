@@ -18,8 +18,6 @@ export function Sidenav({ brandImg, brandName, routes }) {
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const { setToDefault } = useFilter();
   
-  // Responsive sidebar with toggle functionality
-  
   const sidenavTypes = {
     dark: "bg-gradient-to-br from-blue-gray-800 to-blue-gray-900",
     white: isDark ? "bg-gray-800 shadow-lg border-gray-700" : "bg-white shadow-lg",
@@ -31,16 +29,13 @@ export function Sidenav({ brandImg, brandName, routes }) {
       <aside
         className={`
           ${sidenavTypes[sidenavType]}
-          ${openSidenav ? 'w-72' : 'w-20'}
+          w-72
           fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] rounded-xl 
           transition-all duration-300 ease-in-out z-[1100]
           overflow-hidden
           shadow-xl
-          translate-x-0
+          ${openSidenav ? 'translate-x-0' : '-translate-x-full'}
         `}
-        onMouseLeave={() => {
-          // Reset any temporary hover states when mouse leaves
-        }}
       >
       <div
         className={`relative border-b ${sidenavType === "dark" ? "border-white/20" : "border-blue-gray-50"
@@ -74,10 +69,8 @@ export function Sidenav({ brandImg, brandName, routes }) {
             </div>
           </div>
           
-          {/* Title Section - Hidden when collapsed */}
-          <div className={`flex-1 min-w-0 transition-all duration-300 overflow-hidden ml-3 ${
-            openSidenav ? 'opacity-100 w-auto' : 'opacity-0 w-0 ml-0'
-          }`}>
+          {/* Title Section - Always visible */}
+          <div className="flex-1 min-w-0 transition-all duration-300 overflow-hidden opacity-100 w-auto ml-3">
             <div className="space-y-0">
               <div 
                 className={`font-bold text-sm leading-tight transition-colors duration-300 ${
@@ -113,7 +106,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 e.stopPropagation();
                 setOpenSidenav(dispatch, false);
               }}
-              title="Close Navigation Panel"
+              title="Hide Navigation Panel"
             />
           </div>
         </div>
@@ -121,9 +114,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
       <div className="m-4 overflow-hidden">
         <ul className="mb-4 flex flex-col gap-1">
           {routes[0].title && (
-            <li className={`mx-3.5 mt-4 mb-2 transition-all duration-300 ${
-              openSidenav ? 'opacity-100' : 'opacity-0 hidden'
-            }`}>
+            <li className="mx-3.5 mt-4 mb-2 transition-all duration-300 opacity-100">
               <Typography
                 variant="small"
                 color={sidenavType === "dark" ? "white" : "blue-gray"}
@@ -147,17 +138,14 @@ export function Sidenav({ brandImg, brandName, routes }) {
                             ? "white"
                             : "blue-gray"
                       }
-                      className={`px-3 capitalize ${openSidenav ? 'justify-start' : 'justify-center'}`}
+                      className="px-3 capitalize justify-start"
                       fullWidth
-                      title={!openSidenav ? name : ''}
                     >
-                      <div className="flex items-center transition-all duration-300 gap-4">
+                      <div className="flex items-center transition-all duration-300 gap-4" title={name}>
                         <div className="flex-shrink-0">
                           {icon}
                         </div>
-                        <div className={`font-medium capitalize transition-all duration-300 whitespace-nowrap ${
-                          openSidenav ? 'opacity-100 w-auto' : 'opacity-0 w-0 overflow-hidden'
-                        }`}>
+                        <div className="font-medium capitalize transition-all duration-300 whitespace-nowrap opacity-100 w-auto">
                           {name}
                         </div>
                       </div>

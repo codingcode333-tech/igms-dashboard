@@ -141,28 +141,57 @@ function queryGrievances(filters, pageno) {
     console.log('🔍 Searching grievances with CDIS API:', { 
         query: filters.query, 
         type: filters.type, 
-        pageno 
+        ministry: filters.ministry,
+        state: filters.state,
+        district: filters.district,
+        startDate: filters.startDate,
+        endDate: filters.endDate,
+        pageno,
+        fullFiltersObject: JSON.stringify(filters, null, 2)
     });
 
     // Use CDIS API directly for search
+    // NOTE: CDIS API only supports: query, value, skiprecord, size, threshold
+    // Date, state, district, ministry filters must be applied client-side
     const searchParams = {
         query: filters.query || "",
         value: filters.type || filters.value || 1, // 1=Semantic, 2=Keyword  
-        skiprecord: (pageno - 1) * (filters.size || pageSize),
-        size: filters.size || pageSize,
-        threshold: filters.threshold || 0.5 // Lower threshold for more results
+        skiprecord: 0, // Start from beginning to get maximum results for filtering
+        size: 5000, // Get large dataset for client-side filtering (max possible)
+        threshold: filters.threshold || 1.2 // Use provided threshold
     };
+
+    console.log('📡 CDIS API call (only supported params):', searchParams);
 
     return httpService.search.searchGrievances(searchParams).then(result => {
         console.log('✅ CDIS API Search Result:', {
             success: result.success,
             totalCount: result.data?.total_count,
-            grievanceCount: result.data?.grievanceData?.length,
-            sampleData: result.data?.grievanceData?.slice(0, 2)
+            grievanceCount: result.data?.grievanceData?.length
         });
 
+        // Log sample states separately for clarity
+        const sampleStates = result.data?.grievanceData?.slice(0, 10).map(item => ({
+            id: item.id || 'unknown',
+            state: item.stateName || item.state || item.location || 'unknown',
+            district: item.CityName || item.district || item.city || 'unknown',
+            ministry: item.ministry || 'unknown'
+        })) || [];
+        
+        console.log('🏛️ Sample states from CDIS API response:', sampleStates);
+        
+        // Check if API is returning mixed states despite filter
+        const uniqueStates = [...new Set(sampleStates.map(item => item.state.toLowerCase()))];
+        console.log('🎯 Unique states in API response:', uniqueStates);
+        
+        if (uniqueStates.length > 1) {
+            console.log('⚠️ WARNING: CDIS API returned multiple states despite state filter!');
+        } else {
+            console.log('✅ CDIS API correctly filtered to single state');
+        }
+
         // Transform CDIS API data to match expected format
-        const transformedData = (result.data?.grievanceData || []).map(item => ({
+        let transformedData = (result.data?.grievanceData || []).map(item => ({
             // Map CDIS fields to expected fields
             registration_no: item.id || item.complaintId || item.grievanceId || `CDIS-${Math.random().toString(36).substr(2, 9)}`,
             state: item.stateName || item.state || item.location || 'Unknown',
@@ -182,20 +211,141 @@ function queryGrievances(filters, pageno) {
             originalData: item
         }));
 
-        console.log('🔄 Transformed grievance data:', {
-            originalCount: result.data?.grievanceData?.length || 0,
-            transformedCount: transformedData.length,
-            sampleTransformed: transformedData.slice(0, 2)
+        console.log('🔄 Initial transformed data count:', transformedData.length);
+
+        // CLIENT-SIDE FILTERING: Since CDIS API ignores filters, apply them manually
+        
+        // Apply state filter if specified
+        if (filters.state && filters.state !== 'All') {
+            const originalCount = transformedData.length;
+            transformedData = transformedData.filter(item => {
+                const itemState = (item.state || '').toLowerCase().trim();
+                const filterState = filters.state.toLowerCase().trim();
+                
+                // Flexible state matching
+                return itemState.includes(filterState) || filterState.includes(itemState);
+            });
+            console.log(`🎯 Client-side state filter: ${originalCount} → ${transformedData.length} grievances for "${filters.state}"`);
+        }
+
+        // Apply district filter if specified  
+        if (filters.district && filters.district !== 'All') {
+            const originalCount = transformedData.length;
+            transformedData = transformedData.filter(item => {
+                const itemDistrict = (item.district || '').toLowerCase().trim();
+                const filterDistrict = filters.district.toLowerCase().trim();
+                
+                // Flexible district matching with common variations
+                const normalizeDistrict = (name) => name
+                    .replace(/\s+/g, ' ')
+                    .replace(/\bnagar\b/g, '')
+                    .replace(/\bdistrict\b/g, '')
+                    .trim();
+                
+                const normalizedItemDistrict = normalizeDistrict(itemDistrict);
+                const normalizedFilterDistrict = normalizeDistrict(filterDistrict);
+                
+                return itemDistrict.includes(filterDistrict) || 
+                       filterDistrict.includes(itemDistrict) ||
+                       normalizedItemDistrict.includes(normalizedFilterDistrict) ||
+                       normalizedFilterDistrict.includes(normalizedItemDistrict);
+            });
+            console.log(`🎯 Client-side district filter: ${originalCount} → ${transformedData.length} grievances for "${filters.district}"`);
+        }
+
+        // Apply ministry filter if specified
+        if (filters.ministry && filters.ministry !== 'All') {
+            const originalCount = transformedData.length;
+            transformedData = transformedData.filter(item => {
+                const itemMinistry = (item.ministry || '').toLowerCase().trim();
+                const filterMinistry = filters.ministry.toLowerCase().trim();
+                
+                return itemMinistry.includes(filterMinistry) || filterMinistry.includes(itemMinistry);
+            });
+            console.log(`🎯 Client-side ministry filter: ${originalCount} → ${transformedData.length} grievances for "${filters.ministry}"`);
+        }
+
+        // Log sample dates to understand the data
+        const sampleDates = transformedData.slice(0, 10).map(item => ({
+            registration_no: item.registration_no,
+            recvd_date: item.recvd_date,
+            parsed_date: new Date(item.recvd_date)
+        }));
+        console.log('📅 Sample dates in CDIS data:', sampleDates);
+
+        // Get all unique years from the data to understand the range
+        const uniqueYears = [...new Set(transformedData.map(item => {
+            const date = new Date(item.recvd_date);
+            return isNaN(date.getTime()) ? 'invalid' : date.getFullYear();
+        }).filter(year => year !== 'invalid'))].sort();
+        console.log('📅 Available years in CDIS data:', uniqueYears);
+
+        // Apply date range filter if specified (but be more flexible for old data)
+        if (filters.startDate && filters.endDate) {
+            const originalCount = transformedData.length;
+            
+            // If searching for recent dates (2024+) but data is old (2016-2020), 
+            // skip date filtering and show a warning
+            const filterStartYear = new Date(filters.startDate).getFullYear();
+            const filterEndYear = new Date(filters.endDate).getFullYear();
+            const dataMaxYear = Math.max(...uniqueYears.filter(y => y !== 'invalid'));
+            
+            if (filterStartYear > dataMaxYear && filterStartYear >= 2024) {
+                console.log(`⚠️ Skipping date filter: Searching for ${filterStartYear}-${filterEndYear} but data only goes up to ${dataMaxYear}`);
+                console.log('📅 Showing all available data instead of filtering by recent dates');
+            } else {
+                transformedData = transformedData.filter(item => {
+                    const itemDate = new Date(item.recvd_date);
+                    
+                    // Check if date is valid
+                    if (isNaN(itemDate.getTime())) {
+                        return false; // Exclude items with invalid dates
+                    }
+                    
+                    let isInRange = true;
+                    
+                    if (filters.startDate) {
+                        const startDate = new Date(filters.startDate);
+                        isInRange = isInRange && itemDate >= startDate;
+                    }
+                    
+                    if (filters.endDate) {
+                        const endDate = new Date(filters.endDate);
+                        // Add 23:59:59 to end date to include full day
+                        endDate.setHours(23, 59, 59, 999);
+                        isInRange = isInRange && itemDate <= endDate;
+                    }
+                    
+                    return isInRange;
+                });
+                console.log(`📅 Client-side date filter: ${originalCount} → ${transformedData.length} grievances for ${filters.startDate} to ${filters.endDate}`);
+            }
+        }
+
+        // Apply pagination after filtering
+        const startIndex = (pageno - 1) * (filters.size || pageSize);
+        const endIndex = startIndex + (filters.size || pageSize);
+        const paginatedData = transformedData.slice(startIndex, endIndex);
+        
+        console.log(`📄 Pagination: showing ${startIndex + 1}-${Math.min(endIndex, transformedData.length)} of ${transformedData.length} results (page ${pageno})`);
+
+        console.log('🔄 Final transformed data after client-side filtering:', {
+            originalAPICount: result.data?.grievanceData?.length || 0,
+            finalFilteredCount: transformedData.length,
+            paginatedCount: paginatedData.length,
+            sampleFiltered: paginatedData.slice(0, 2)
         });
+
+        // Show final state distribution after client-side filtering
+        const finalStates = [...new Set(transformedData.map(item => item.state.toLowerCase()))];
+        console.log('✅ Final states after client-side filtering:', finalStates);
 
         // Transform the response to match expected format
         return {
             data: {
-                data: transformedData,
-                count: transformedData.length,
-                total_count: { 
-                    total_count: result.data?.total_count || transformedData.length
-                }
+                data: paginatedData, // Use paginated data instead of all filtered data
+                count: paginatedData.length, // Count of current page
+                total_count: transformedData.length // Total filtered count for pagination
             },
             status: result.success ? 200 : 400
         };

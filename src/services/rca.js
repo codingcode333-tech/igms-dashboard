@@ -9,36 +9,12 @@ export const getRCAData = (ministry, financialTerm) => {
     })
 }
 
-export const getGrievancesUsingRegNos = async (grievanceRegNos = []) => {
-    console.log('🔍 getGrievancesUsingRegNos called with:', grievanceRegNos);
-    
-    try {
-        // First try CDIS API since it's working reliably
-        console.log('🔄 Trying CDIS registration search first...');
-        const cdisResponse = await getGrievancesByRegNosUsingCDIS(grievanceRegNos);
-        
-        if (cdisResponse?.data && Array.isArray(cdisResponse.data) && cdisResponse.data.length > 0) {
-            console.log('✅ CDIS search successful, returning', cdisResponse.data.length, 'grievances');
-            return {
-                data: {
-                    data: cdisResponse.data.reduce((acc, item, index) => {
-                        acc[index] = item;
-                        return acc;
-                    }, {})
-                }
-            };
-        }
-    } catch (error) {
-        console.warn('⚠️ CDIS API failed, trying original API:', error);
-    }
-    
-    // Fallback to original API
-    console.log('🔄 Falling back to original API...');
+export const getGrievancesUsingRegNos = (grievanceRegNos = []) => {
     return httpService.auth.post('/get_userdata', {}, {
         params: {
             'registration_no_list': grievanceRegNos.join(',') + ','
         }
-    });
+    })
 }
 
 export const getCategoryTree = ({
@@ -49,32 +25,10 @@ export const getCategoryTree = ({
     ministry = 'All',
     showAll = true
 }) => {
-    // Format dates to strings if they are Date objects
-    const formatDateToString = (date) => {
-        if (date instanceof Date) {
-            return date.toISOString().split('T')[0];
-        }
-        if (typeof date === 'string') {
-            // If it's already a string, check if it's a valid format
-            if (date.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                return date;
-            }
-            // Try to parse and reformat
-            const parsedDate = new Date(date);
-            if (!isNaN(parsedDate.getTime())) {
-                return parsedDate.toISOString().split('T')[0];
-            }
-        }
-        return date; // Return as-is if it can't be processed
-    };
-    
-    const formattedFrom = formatDateToString(from);
-    const formattedTo = formatDateToString(to);
-    
     return httpService.auth.get('/get_rca', {
         params: {
-            startDate: formattedFrom,
-            endDate: formattedTo,
+            startDate: from,
+            endDate: to,
             state: state,
             district: district,
             ministry: ministry,
@@ -100,37 +54,8 @@ export const getDynamicRca = (filters = {}) => {
 }
 
 export const getRealTimeRCA = (filters = {}) => {
-    // Format dates in filters if they are Date objects
-    const formatDateToString = (date) => {
-        if (date instanceof Date) {
-            return date.toISOString().split('T')[0];
-        }
-        if (typeof date === 'string') {
-            // If it's already a string, check if it's a valid format
-            if (date.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                return date;
-            }
-            // Try to parse and reformat
-            const parsedDate = new Date(date);
-            if (!isNaN(parsedDate.getTime())) {
-                return parsedDate.toISOString().split('T')[0];
-            }
-        }
-        return date; // Return as-is if it can't be processed
-    };
-    
-    const formattedFilters = { ...filters };
-    if (formattedFilters.startDate) {
-        formattedFilters.startDate = formatDateToString(formattedFilters.startDate);
-    }
-    if (formattedFilters.endDate) {
-        formattedFilters.endDate = formatDateToString(formattedFilters.endDate);
-    }
-    
-    console.log('getRealTimeRCA called with formatted filters:', formattedFilters); // Debug log
-    
     return httpService.auth.post('realtimerca', {}, {
-        params: formattedFilters
+        params: filters
     })
 }
 
@@ -149,37 +74,10 @@ export const getCachedRCA = ({
     ministry,
     number_of_clusters = 11
 }) => {
-    // Format dates to YYYY-MM-DD strings if they are Date objects
-    const formatDateToString = (date) => {
-        if (date instanceof Date) {
-            return date.toISOString().split('T')[0];
-        }
-        if (typeof date === 'string') {
-            // If it's already a string, check if it's a valid format
-            if (date.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                return date;
-            }
-            // Try to parse and reformat
-            const parsedDate = new Date(date);
-            if (!isNaN(parsedDate.getTime())) {
-                return parsedDate.toISOString().split('T')[0];
-            }
-        }
-        return date; // Return as-is if it can't be processed
-    };
-    
-    const formattedStartDate = formatDateToString(startDate);
-    const formattedEndDate = formatDateToString(endDate);
-    
-    console.log('getCachedRCA called with:', { 
-        original: { startDate, endDate }, 
-        formatted: { startDate: formattedStartDate, endDate: formattedEndDate },
-        ministry, 
-        number_of_clusters 
-    }); // Debug log
+    console.log('getCachedRCA called with:', { startDate, endDate, ministry, number_of_clusters }); // Debug log
     
     // Try direct fetch to bypass any authentication issues for testing
-    const url = `https://cdis.iitk.ac.in/consumer_api/realtimerca/?startDate=${formattedStartDate}&endDate=${formattedEndDate}&ministry=${ministry}&number_of_clusters=${number_of_clusters}`;
+    const url = `https://cdis.iitk.ac.in/consumer_api/realtimerca/?startDate=${startDate}&endDate=${endDate}&ministry=${ministry}&number_of_clusters=${number_of_clusters}`;
     console.log('Direct API URL:', url);
     
     return fetch(url, {
@@ -200,11 +98,11 @@ export const getCachedRCA = ({
     })
     .catch(error => {
         console.error('Direct fetch error:', error);
-        // Fallback to original method with formatted dates
+        // Fallback to original method
         return httpService.auth.post('/realtimerca/', {}, {
             params: {
-                startDate: formattedStartDate,
-                endDate: formattedEndDate,
+                startDate,
+                endDate,
                 ministry,
                 number_of_clusters
             }

@@ -11,11 +11,11 @@ import { pageSize } from "@/helpers/env"
 import { json2csv } from "json-2-csv"
 import district_lat_long from "@/data/json/district_lat_long.json"
 import { downloadData } from "@/helpers/download"
-import { GlobeAltIcon, MapPinIcon, ChartBarIcon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/solid"
+import { GlobeAltIcon, MapPinIcon, ChartBarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/solid"
 import { formatDate } from "@/helpers/date"
-import { Card, CardBody, Typography, Button, Input, Select, Option, Checkbox, Slider } from "@material-tailwind/react"
+import { Card, CardBody, Typography, Button } from "@material-tailwind/react"
 import { useTheme } from "@/context"
-import { MinistryAutocomplete, DateRangePicker, StateDistrictAutocomplete } from "@/pages/dashboard/CategoricalTree"
+import { MinistryAutocomplete } from "@/pages/dashboard/CategoricalTree"
 
 export const SpatialSearch = () => {
     const { filters, searching, startSearch, stopSearch, setFilters, setPageno } = useFilter()
@@ -29,74 +29,50 @@ export const SpatialSearch = () => {
 
     return (
         <div className={`min-h-screen ${isDark ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'}`}>
-            {/* Search Filters Section */}
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-                <div className="w-full max-w-4xl">
-                    {/* Search Parameters Card */}
-                    <Card className="bg-white shadow-lg border border-gray-200 rounded-lg">
-                        <CardBody className="p-8">
-                            {/* Header */}
-                            <Typography variant="h4" color="gray" className="font-medium mb-8 text-gray-600">
-                                Search Parameters
+            {/* Header Section */}
+            <div className="relative overflow-hidden">
+                <div className={`absolute inset-0 ${isDark ? 'bg-gray-800' : 'bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700'} opacity-10`}></div>
+                <div className="relative px-4 py-8">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-8">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className={`p-3 rounded-full ${isDark ? 'bg-blue-600' : 'bg-white'} shadow-lg`}>
+                                    <GlobeAltIcon className={`h-8 w-8 ${isDark ? 'text-white' : 'text-blue-600'}`} />
+                                </div>
+                                <Typography variant="h2" color={isDark ? "white" : "blue-gray"} className="font-bold">
+                                    Spatial Analysis
+                                </Typography>
+                            </div>
+                            <Typography variant="lead" color="gray" className="max-w-2xl mx-auto">
+                                Analyze grievance patterns across geographical regions with advanced spatial intelligence
                             </Typography>
+                        </div>
 
-                            {/* Search Query Row */}
-                            <div className="flex gap-3 items-stretch mb-8">
-                                <div className="w-48">
-                                    <SpatialSearchTypeSelector />
-                                </div>
-                                <div className="flex-1">
-                                    <SpatialSearchInput />
-                                </div>
-                                <div>
-                                    <SpatialSearchButton />
-                                </div>
-                            </div>
-
-                            {/* Main Content Grid */}
-                            <div className="grid grid-cols-2 gap-8 mb-8">
-                                {/* Date Range - Left Column */}
-                                <div>
-                                    <Typography variant="h6" color="gray" className="font-medium mb-2 text-gray-600">
-                                        Date Range
-                                    </Typography>
-                                    <Typography variant="small" color="gray" className="text-xs text-gray-500 mb-3">
-                                        Note: CDIS data is available from 2016-2024. Selecting recent dates may show limited results.
-                                    </Typography>
-                                    <SpatialDateRangeInput />
-                                </div>
-
-                                {/* State/District & Ministry - Right Column */}
-                                <div className="space-y-6">
-                                    <div className="relative z-30">
-                                        <Typography variant="h6" color="gray" className="font-medium mb-4 text-gray-600">
-                                            State / District
-                                        </Typography>
-                                        <SpatialStateDistrictPicker />
-                                    </div>
-                                    <div className="relative z-20">
-                                        <Typography variant="h6" color="gray" className="font-medium mb-4 text-gray-600">
-                                            Ministry
-                                        </Typography>
-                                        <SpatialMinistryFilter />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Bottom Row - Relevance & Checkbox */}
-                            <div className="flex items-center justify-between">
-                                <div className="w-1/2 pr-8">
-                                    <SpatialThresholdSlider />
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <SpatialClosedCheckbox />
-                                    <Typography variant="small" color="gray" className="text-gray-600">
-                                        Include Closed Grievances
+                        {/* Search Filters Card */}
+                        <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white/80 backdrop-blur-sm'} shadow-lg border mb-4`}>
+                            <CardBody className="p-4">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <MagnifyingGlassIcon className="h-4 w-4 text-blue-500" />
+                                    <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="font-medium text-sm">
+                                        Search Parameters
                                     </Typography>
                                 </div>
-                            </div>
-                        </CardBody>
-                    </Card>
+                                <SearchFilters
+                                    startSearch={initiateSearch}
+                                    types={basicQueryTypes}
+                                    searchButtonColor="blue"
+                                    buttonIcon={<GlobeAltIcon height={'1.2rem'} className="mr-2" />}
+                                    disabled={!isValidBasicQueryType(filters.type)}
+                                    showMinistry={false}
+                                />
+                                
+                                {/* Custom Ministry Filter */}
+                                <div className="mt-4 pt-4 border-t border-gray-200">
+                                    <SpatialMinistryFilter />
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </div>
                 </div>
             </div>
 
@@ -378,6 +354,31 @@ export const SpatialDataDisplay = ({
             )}
 
             {/* No Data State */}
+            {stateWiseGrievances.length === 0 && !searching && (
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-xl border`}>
+                    <CardBody className="p-12 text-center">
+                        <div className={`p-4 rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-100'} inline-block mb-4`}>
+                            <GlobeAltIcon className={`h-12 w-12 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} />
+                        </div>
+                        <Typography variant="h4" color={isDark ? "white" : "blue-gray"} className="mb-2">
+                            No Spatial Data Available
+                        </Typography>
+                        <Typography variant="lead" color="gray" className="mb-6">
+                            Perform a search to view geographic distribution of grievances
+                        </Typography>
+                        <Button 
+                            variant="gradient" 
+                            color="blue" 
+                            className="flex items-center gap-2 mx-auto"
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        >
+                            <MagnifyingGlassIcon className="h-4 w-4" />
+                            Start Search Analysis
+                        </Button>
+                    </CardBody>
+                </Card>
+            )}
+
             {/* Loading State */}
             {searching && (
                 <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-xl border`}>
@@ -535,208 +536,17 @@ const SpatialMinistryFilter = () => {
     }, [filters.ministry])
 
     return (
-        <div className="relative z-20">
+        <div>
+            <div className="flex items-center gap-2 mb-2">
+                <Typography variant="small" color={isDark ? "white" : "blue-gray"} className="font-medium">
+                    Ministry Filter
+                </Typography>
+            </div>
             <MinistryAutocomplete
                 ministry={selectedMinistry}
                 setMinistry={updateSelectedMinistry}
-                className="!border-gray-300 !rounded-lg !bg-white !text-gray-700 z-20"
+                className="w-full"
             />
         </div>
-    )
-}
-
-// Search Type Selector Component
-const SpatialSearchTypeSelector = () => {
-    const { filters, setFilters } = useFilter()
-
-    return (
-        <div className="relative">
-            <Select
-                value={filters.type}
-                onChange={(value) => setFilters({ ...filters, type: value })}
-                className="!border-gray-300 !rounded-lg !bg-white !text-gray-700"
-                labelProps={{
-                    className: "before:content-none after:content-none"
-                }}
-            >
-                <Option value="1">Semantic</Option>
-                <Option value="2">Keyword</Option>
-            </Select>
-            <Typography variant="small" className="text-gray-500 mt-1 text-xs">
-                Search Type
-            </Typography>
-        </div>
-    )
-}
-
-// Search Input Component
-const SpatialSearchInput = () => {
-    const { filters, setFilters } = useFilter()
-    const { isDark } = useTheme()
-
-    return (
-        <div className="flex-1">
-            <Input
-                value={filters.query}
-                onChange={(e) => setFilters({ ...filters, query: e.target.value })}
-                type="text"
-                placeholder="Enter your query..."
-                className="!border-gray-300 focus:!border-blue-500 !rounded-lg !bg-gray-50 !text-gray-900 placeholder:!text-gray-500"
-                labelProps={{
-                    className: "before:content-none after:content-none"
-                }}
-                containerProps={{
-                    className: "min-w-0"
-                }}
-            />
-        </div>
-    )
-}
-
-// Search Button Component
-const SpatialSearchButton = () => {
-    const { filters, searching, startSearch, setPageno } = useFilter()
-    const { isDark } = useTheme()
-
-    const handleSearch = () => {
-        setPageno(1)
-        startSearch()
-    }
-
-    return (
-        <Button 
-            onClick={handleSearch}
-            disabled={searching || !filters.query}
-            className="!bg-gray-600 !text-white hover:!bg-gray-700 !rounded-lg flex items-center gap-2 px-6 py-3 !shadow-none uppercase !font-medium"
-            size="md"
-        >
-            <MagnifyingGlassIcon className="h-4 w-4" />
-            {searching ? 'Searching...' : 'Search'}
-        </Button>
-    )
-}
-
-// Simple Date Range Input Component
-const SpatialDateRangeInput = () => {
-    const { filters, setFilters } = useFilter()
-    const [dateRange, setDateRange] = useState({
-        startDate: null,
-        endDate: null
-    })
-
-    const updateDateRange = (range) => {
-        console.log('📅 Date range selected:', range)
-        setFilters({
-            ...filters,
-            startDate: range.startDate,
-            endDate: range.endDate
-        })
-        setDateRange(range)
-    }
-
-    return (
-        <div className="w-full">
-            <DateRangePicker
-                value={dateRange}
-                onChange={updateDateRange}
-                showShortcuts={true}
-                showFooter={true}
-                placeholder="Select Date Range"
-            />
-        </div>
-    )
-}
-
-// State District Picker Component
-const SpatialStateDistrictPicker = () => {
-    const { filters, setFilters } = useFilter()
-    const [stateDistrict, setStateDistrict] = useState({
-        text: filters.state === 'All' ? '' : filters.state,
-        values: {
-            state: filters.state,
-            district: filters.district
-        }
-    })
-
-    const updateStateDistrict = (newStateDistrict) => {
-        if (newStateDistrict && newStateDistrict.values) {
-            setFilters({
-                ...filters,
-                state: newStateDistrict.values.state,
-                district: newStateDistrict.values.district
-            })
-        } else {
-            setFilters({
-                ...filters,
-                state: 'All',
-                district: 'All'
-            })
-        }
-        setStateDistrict(newStateDistrict)
-    }
-
-    useEffect(() => {
-        setStateDistrict({
-            text: filters.state === 'All' ? '' : filters.state,
-            values: {
-                state: filters.state,
-                district: filters.district
-            }
-        })
-    }, [filters.state, filters.district])
-
-    return (
-        <div className="relative z-30">
-            <StateDistrictAutocomplete
-                stateDistrict={stateDistrict}
-                setStateDistrict={updateStateDistrict}
-                className="!border-gray-300 !rounded-lg !bg-white !text-gray-700 z-30"
-            />
-        </div>
-    )
-}
-
-// Threshold Slider Component
-const SpatialThresholdSlider = () => {
-    const { filters, setFilters } = useFilter()
-    const { isDark } = useTheme()
-
-    return (
-        <div>
-            <Typography variant="small" color="gray" className="font-medium mb-2">
-                Relevance Threshold
-            </Typography>
-            <div className="px-2">
-                <input
-                    type="range"
-                    min="1.2"
-                    max="2.0"
-                    step="0.1"
-                    value={filters.threshold || 1.2}
-                    onChange={(e) => setFilters({ ...filters, threshold: parseFloat(e.target.value) })}
-                    className="w-full cursor-pointer"
-                />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
-                    <span>Less Relevant</span>
-                    <span className="text-blue-600 font-medium">Current: {filters.threshold || 1.2}</span>
-                    <span>More Relevant</span>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-// Closed Checkbox Component
-const SpatialClosedCheckbox = () => {
-    const { filters, setFilters } = useFilter()
-
-    return (
-        <Checkbox
-            id="closed"
-            checked={filters.all_record === 1}
-            onChange={(e) => setFilters({ ...filters, all_record: e.target.checked ? 1 : 0 })}
-            color="blue"
-            className="!rounded !border-2 !border-gray-300"
-        />
     )
 }

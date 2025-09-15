@@ -54,8 +54,8 @@ export function Dashboard() {
         ref={mainContentRef}
         className={`transition-all duration-300 ${
           openSidenav 
-            ? "xl:ml-80 ml-0" // 320px = sidebar(288px) + gap(32px)
-            : "xl:ml-28 ml-0"  // 112px = collapsed sidebar(80px) + gap(32px)
+            ? "ml-80" // 320px = sidebar(288px) + gap(32px)
+            : "ml-0"  // No margin when sidebar is closed
         }`}
       >
         {/* Content Wrapper with Padding */}

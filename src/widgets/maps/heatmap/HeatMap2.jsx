@@ -75,16 +75,19 @@ export const HeatMap2 = ({
         return Math.round(max / 10 ** desiredZeros) * 10 ** desiredZeros
     }, [simplifiedGrievances])
 
-    let options = state_id => (
-        {
-            fillColor: getColor(simplifiedGrievances[state_id]),
-            weight: focusedState == state_id ? 2 : 1,
-            opacity: 1,
-            color: focusedState == state_id ? '#000' : '#36454F',
+    let options = state_id => {
+        const grievanceCount = simplifiedGrievances[state_id];
+        const hasData = grievanceCount && grievanceCount > 0;
+        
+        return {
+            fillColor: hasData ? getColor(grievanceCount) : '#ffffff',
+            weight: focusedState == state_id ? 2 : (hasData ? 1 : 0),
+            opacity: hasData ? 1 : 0,
+            color: hasData ? (focusedState == state_id ? '#000' : '#36454F') : 'transparent',
             dashArray: '3',
-            fillOpacity: 0.7,
+            fillOpacity: hasData ? 0.7 : 0,
         }
-    )
+    }
 
     const updateFoucsedDistrict = district => {
         if (focusDistrict(district))
@@ -120,13 +123,15 @@ export const HeatMap2 = ({
                             state={state}
                             options={options(state.properties.id)}
                             textBounds={state_text_bounds[state.properties.id]}
-                            text={simplifiedGrievances[state.properties.id]?.toLocaleString('en-US') + legendSuffix}
+                            text={simplifiedGrievances[state.properties.id] && simplifiedGrievances[state.properties.id] > 0 
+                                ? simplifiedGrievances[state.properties.id].toLocaleString('en-US') + legendSuffix 
+                                : ''}
                             count={simplifiedGrievances[state.properties.id] ?? 0}
                             key={state.properties.id}
                             textColor={textColor}
                             index={state.properties.id}
                             focusedState={focusedState}
-                            focus={() => !noFocus && setFocusedState(state.properties.id)}
+                            focus={() => !noFocus && simplifiedGrievances[state.properties.id] > 0 && setFocusedState(state.properties.id)}
                             districts={districtData}
                             loading={loading}
                             setDistrict={updateFoucsedDistrict}

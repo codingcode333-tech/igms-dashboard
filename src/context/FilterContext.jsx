@@ -8,11 +8,11 @@ import React, { createContext, useState, useContext } from 'react';
 // oneMonthAgo.setMonth(today.getMonth() - 1);
 
 export const defaultFilters = {
-  startDate: dateBefore(countDayDuration),
-  endDate: formatDate(),
+  startDate: null, // User will choose dates themselves
+  endDate: null,   // User will choose dates themselves  
   state: 'All',
   district: 'All',
-  ministry: getDefaultDepartment(),
+  ministry: 'All', // Don't preset DOCAF, let user choose from dropdown
   type: "1",
   query: '',
   threshold: 1.2,

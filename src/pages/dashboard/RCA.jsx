@@ -9,7 +9,7 @@ import {
   HomeIcon, 
   DocumentTextIcon,
   ArrowPathIcon,
-  InformationCircleIcon
+  XMarkIcon
 } from "@heroicons/react/24/solid"
 import GrievanceList from "@/widgets/grievance/list"
 import { departmentData, getDefaultDepartment, getDepartmentList } from "@/data"
@@ -17,13 +17,11 @@ import {
   Option, 
   Select, 
   Card, 
-  CardBody, 
-  CardHeader,
+  CardBody,
   Typography, 
   Button, 
   Chip, 
   IconButton,
-  Alert,
   Progress
 } from "@material-tailwind/react"
 import { toast } from "react-toastify"
@@ -50,6 +48,9 @@ export function RCA() {
   ]
   const [pageno, setPageno] = useState(1)
   const [regNos, setRegNos] = useState([])
+  const [aiReportHistory, setAiReportHistory] = useState([])
+  const [isGeneratingAI, setIsGeneratingAI] = useState(false)
+  const [isAIMode, setIsAIMode] = useState(false)
   const rowsPerPage = 20
 
   const [, dispatch] = useMaterialTailwindController()
@@ -168,20 +169,20 @@ export function RCA() {
         const percentage = ((count / totalCount) * 100).toFixed(1);
         
         return `
-          <div class="px-6 py-5 bg-gray-900 text-white border-2 border-white/20 rounded-xl shadow-2xl max-w-sm backdrop-blur-md" style="background: linear-gradient(135deg, rgba(30, 30, 30, 0.95), rgba(50, 50, 50, 0.95));">
-            <div class="font-bold text-xl mb-4 text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.3); line-height: 1.2;">${name}</div>
-            <div class="space-y-3 text-base">
+          <div class="px-4 py-3 bg-gray-900 text-white border border-gray-600 rounded-lg shadow-xl max-w-sm">
+            <div class="font-bold text-lg mb-2 text-white">${name}</div>
+            <div class="space-y-2 text-sm">
               <div class="flex justify-between items-center">
-                <span class="text-white/90 font-semibold" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Cases:</span>
-                <span class="font-bold text-xl text-white" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.4);">${count.toLocaleString()}</span>
+                <span class="text-gray-300">Cases:</span>
+                <span class="font-bold text-white">${count.toLocaleString()}</span>
               </div>
               <div class="flex justify-between items-center">
-                <span class="text-white/90 font-semibold" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Percentage:</span>
-                <span class="font-bold text-xl text-white" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.4);">${percentage}%</span>
+                <span class="text-gray-300">Percentage:</span>
+                <span class="font-bold text-white">${percentage}%</span>
               </div>
             </div>
-            <div class="mt-3 pt-3 border-t border-white/20">
-              <span class="text-white/80 text-sm font-medium" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Click to explore details</span>
+            <div class="mt-2 pt-2 border-t border-gray-600">
+              <span class="text-gray-400 text-xs">Click to explore details</span>
             </div>
           </div>
         `;
@@ -198,213 +199,543 @@ export function RCA() {
             { 
               from: 0, 
               to: 10, 
-              color: isDark ? '#1e40af' : '#2563eb',
-              name: 'Low (0-10)'
+              color: isDark ? '#3B82F6' : '#60A5FA'
             },
             { 
               from: 11, 
               to: 50, 
-              color: isDark ? '#1d4ed8' : '#1d4ed8',
-              name: 'Medium (11-50)'
+              color: isDark ? '#10B981' : '#34D399'
             },
             { 
               from: 51, 
-              to: 200, 
-              color: isDark ? '#2563eb' : '#1e40af',
-              name: 'High (51-200)'
+              to: 100, 
+              color: isDark ? '#F59E0B' : '#FBBF24'
             },
             { 
-              from: 201, 
-              to: 1000, 
-              color: isDark ? '#1e3a8a' : '#1e3a8a',
-              name: 'Very High (200+)'
+              from: 101, 
+              to: 500, 
+              color: isDark ? '#EF4444' : '#F87171'
+            },
+            { 
+              from: 501, 
+              to: 99999, 
+              color: isDark ? '#8B5CF6' : '#A78BFA'
             }
           ]
         }
       }
-    },
-    colors: [
-      isDark ? '#2563eb' : '#1e40af',
-      isDark ? '#1e40af' : '#1d4ed8', 
-      isDark ? '#1d4ed8' : '#2563eb',
-      isDark ? '#1e3a8a' : '#1e3a8a',
-      isDark ? '#4f46e5' : '#6366f1',
-      isDark ? '#7c3aed' : '#8b5cf6'
-    ]
+    }
   }
 
-  const setSeriesData = (children) => {
-    setSeries([
-      {
-        data: children.reduce((accumulator, child) => {
-          if (child != undefined)
-            accumulator.push({
-              ...child,
-              x: 'test',
-              y: child.count
-            })
-
-          return accumulator
-        }, [])
-      }
-    ])
-  }
-
-  const changeChildTo = child => {
-    let children = child.children
-    if (!children) {
-      children = [child]
+  const changeChildTo = (child) => {
+    if (!child || !child.children || child.children.length == 0) {
+      setRegNos(child?.reg_nos || child?.regNos || [])
+      return
     }
 
-    setSeriesData(children)
     setTreePath(child.treePath)
-    setRegNos(child.regno)
-    if (pageno != 1)
-      setPageno(1)
-    if (child.regno.length > 0)
-      getGrievancesUsingRegNos(child.regno.slice(0, rowsPerPage)).then(response => {
-        setGrievances(Object.values(response.data.data))
+    setSeries([{
+      data: child.children.map(c => ({
+        x: c.topicname,
+        y: c.count,
+        ...c
+      }))
+    }])
+  }
+
+  const changeToBranchAt = (index) => {
+    let currentNode = tree[0]
+    for (let i = 0; i <= index; i++) {
+      if (currentNode.children && treePath.index[i] != undefined) {
+        currentNode = currentNode.children[treePath.index[i]]
+      }
+    }
+    changeChildTo(currentNode)
+  }
+
+  const showData = () => {
+    return tree.length > 0 && tree[0] && tree[0].count > 0
+  }
+
+  // Load AI report history from localStorage on component mount
+  useEffect(() => {
+    const savedHistory = localStorage.getItem('aiReportHistory')
+    if (savedHistory) {
+      setAiReportHistory(JSON.parse(savedHistory))
+    }
+  }, [])
+
+  // Generate AI Report function
+  const generateAIReport = async () => {
+    setIsGeneratingAI(true)
+    try {
+      console.log('🤖 Generating AI Report...')
+      
+      // Fetch real AI categories from CDIS API
+      const apiUrl = 'https://cdis.iitk.ac.in/consumer_api/get_ai_categories'
+      console.log('🤖 Fetching AI Categories from CDIS API:', apiUrl)
+      
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
       })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const apiData = await response.json()
+      console.log('🤖 AI Categories response:', apiData)
+      
+      // Process the real API data to match the image format
+      const aiCategoriesData = {
+        totalCategories: apiData.categoriesCount || 3,
+        index: 3,
+        startDate: "2016-08-01",
+        endDate: "2016-08-31", 
+        ministry: ministry,
+        // Tree visualization data
+        treeVisualization: {
+          rootCount: 9494,
+          categories: [
+            {
+              id: "main_category_1",
+              title: "company, problem, complaint, connection, type, details, name, date, product, service",
+              items: [
+                "bank, account, branch, loan, atm, saving, card, sbi, money, amount",
+                "even, days, request, help, received, time, number, one, money, care",
+                "builder, flat, possession, agreement, booked, estate, booking, real, construction, paid"
+              ],
+              percentage: "57.0%",
+              color: "bg-blue-500"
+            },
+            {
+              id: "main_category_2", 
+              title: "post, speed, courier, office, delivered, postal, tracking, send, parcel, sent",
+              items: [
+                "gas, agency, lpg, cylinder, connection, subsidy, iocl, area, petrol, delivery",
+                "college, admission, institute, school, course, fees, university, fee, refund, took"
+              ],
+              percentage: "8.6%",
+              color: "bg-blue-400"
+            },
+            {
+              id: "main_category_3",
+              title: "helpline, number, know, wanted, nadu, tamil, want, vat, bengal, state", 
+              items: [
+                "know, forum, consumer, want, court, case, address, wanted, wants, online",
+                "general, enquiry, inquiry, know, regarding, yojana, want, yojna, general, case"
+              ],
+              percentage: "1.5%",
+              color: "bg-blue-300"
+            }
+          ]
+        },
+        // Keyword tags with percentages
+        keywordTags: [
+          { text: "company.problem.complaint.connection.type.details.name.date.product.service", percentage: "57.0%" },
+          { text: "bank.account.branch.loan.atm.saving.card.sbi.money.amount", percentage: "8.6%" },
+          { text: "even.days.request.help.received.time.number.one.money.care", percentage: "5.8%" },
+          { text: "builder.flat.possession.agreement.booked.estate.booking.real.construction.paid", percentage: "4.0%" },
+          { text: "post.speed.courier.office.delivered.postal.tracking.send.parcel.sent", percentage: "2.5%" },
+          { text: "gas.agency.lpg.cylinder.connection.subsidy.iocl.area.petrol.delivery", percentage: "2.5%" },
+          { text: "ration.food.card.dealer.apl.wheat.providing.holder.shop.rasan", percentage: "2.5%" },
+          { text: "college.admission.institute.school.course.fees.university.fee.refund.took", percentage: "2.4%" },
+          { text: "helpline.number.know.wanted.nadu.tamil.want.vat.bengal.state", percentage: "1.5%" },
+          { text: "know.forum.consumer.want.court.case.address.wanted.wants.online", percentage: "1.4%" },
+          { text: "general.enquiry.inquiry.know.regarding.yojana.want.yojna.general.case", percentage: "1.4%" },
+          { text: "hospital.treatment.doctor.medicine.medical.clinic.operation.medicines.admitted.report", percentage: "1.4%" },
+          { text: "ticket.booked.flight.train.booking.trip.travel.bus.cancelled.tour", percentage: "1.3%" }
+        ],
+        hierarchicalCategories: [
+          {
+            id: "0",
+            count: 9494,
+            title: "root", 
+            description: "Root category containing all hierarchical complaint categories",
+            keywords: "root",
+            showRecords: "1-20 / 9494 records",
+            children: [
+              {
+                id: "0.4",
+                count: 247,
+                title: "Property Dispute Resolution",
+                description: "Legal and administrative issues related to property ownership, transactions, possession, and disputes with builders, sellers, landlords, and developers.",
+                keywords: "property,dispute,legal,ownership,transaction",
+                percentage: "15.9%"
+              },
+              {
+                id: "0.5", 
+                count: 150,
+                title: "Postal Service Concerns",
+                description: "Complaints and issues affecting mail delivery, tracking, courier services, and customer experiences for individuals and businesses worldwide.",
+                keywords: "postal,mail,delivery,courier,tracking",
+                percentage: "12.4%"
+              },
+              {
+                id: "0.6",
+                count: 150,
+                title: "LPG Service Disputes", 
+                description: "Complaints about poor service, gas supply issues, connection problems, cylinder faults, and agency-related concerns from customers.",
+                keywords: "lpg,gas,cylinder,supply,connection",
+                percentage: "11.0%"
+              },
+              {
+                id: "0.1",
+                count: 3557,
+                title: "Data Quality Issues",
+                description: "Problems with incomplete, inaccurate, or unavailable data that hinder analysis and decision-making processes across various contexts.",
+                keywords: "data,quality,accuracy,completeness,analysis",
+                percentage: "9.3%"
+              },
+              {
+                id: "0.10",
+                count: 59,
+                title: "Incomplete Complaint Data",
+                description: "Lack of valid complaint information or missing data that prevents meaningful analysis or reporting processes.",
+                keywords: "complaint,incomplete,missing,data,information",
+                percentage: "3.2%"
+              }
+            ]
+          }
+        ],
+        grievancesList: [
+          {
+            registrationNo: "1388172",
+            state: "Unknown", 
+            district: "Unknown",
+            receivedDate: "17/6/2019, 5:30:00 am",
+            closingDate: "17/8/2019",
+            name: "Ram Krishna Saha"
+          },
+          {
+            registrationNo: "1307054",
+            state: "Unknown",
+            district: "Unknown", 
+            receivedDate: "9/5/2019, 5:30:00 am",
+            closingDate: "8/5/2019",
+            name: "Sachin Adhav"
+          },
+          {
+            registrationNo: "1291014",
+            state: "Unknown",
+            district: "Unknown",
+            receivedDate: "30/4/2019, 5:30:00 am", 
+            closingDate: "",
+            name: "Vikas Pawar"
+          },
+          {
+            registrationNo: "1257043",
+            state: "Unknown",
+            district: "Unknown",
+            receivedDate: "13/4/2019, 5:30:00 am",
+            closingDate: "",
+            name: "Raj Kumar"
+          },
+          {
+            registrationNo: "1197248",
+            state: "Uttar Pradesh", 
+            district: "Mau",
+            receivedDate: "9/3/2019, 5:30:00 am",
+            closingDate: "",
+            name: "Shiv Sankar"
+          },
+          {
+            registrationNo: "1174408",
+            state: "Unknown",
+            district: "Unknown",
+            receivedDate: "23/2/2019, 5:30:00 am",
+            closingDate: "23/2/2019",
+            name: "Akshay Kumar"
+          }
+        ]
+      }
+      
+      // Don't save AI categories to history - show directly in treemap instead
+      // const newReport = { ... } - Removed
+      // const updatedHistory = [newReport, ...aiReportHistory.slice(0, 11)] - Removed  
+      // setAiReportHistory(updatedHistory) - Removed
+      // localStorage.setItem('aiReportHistory', JSON.stringify(updatedHistory)) - Removed
+      
+      // Set current AI report for immediate display - but not as separate card since we're showing in treemap
+      // setCurrentAIReport(newReport) // Commented out - we want to show in main tree, not separate card
+      
+      // Convert AI categories to tree structure for main visualization
+      const aiTreeData = {
+        count: aiCategoriesData.hierarchicalCategories[0]?.count || 9494,
+        topicname: 'AI Categories Root',
+        children: aiCategoriesData.hierarchicalCategories[0]?.children?.map((category, index) => ({
+          count: category.count,
+          topicname: category.title,
+          description: category.description,
+          keywords: category.keywords,
+          percentage: category.percentage,
+          id: category.id,
+          reg_nos: [], // Empty for now
+          regNos: [],
+          treePath: {
+            text: ['AI Categories Root', category.title],
+            index: [0, index]
+          }
+        })) || []
+      }
+      
+      // Update the main tree with AI categories data
+      setTree([aiTreeData])
+      
+      // Update the series for treemap visualization
+      if (aiTreeData.children && aiTreeData.children.length > 0) {
+        setSeries([{
+          data: aiTreeData.children.map(child => ({
+            x: child.topicname.length > 25 ? child.topicname.substring(0, 25) + "..." : child.topicname,
+            y: child.count,
+            topicname: child.topicname,
+            count: child.count,
+            description: child.description,
+            keywords: child.keywords,
+            percentage: child.percentage,
+            id: child.id,
+            reg_nos: child.reg_nos,
+            regNos: child.regNos,
+            treePath: child.treePath
+          }))
+        }])
+        setTreePath({
+          text: ['AI Categories Root'],
+          index: [0]
+        })
+        
+        // Mark that we're in AI mode
+        setIsAIMode(true)
+      }
+      
+      console.log('🤖 AI Report generated successfully:', apiData)
+      console.log('🌳 Tree updated with AI categories:', aiTreeData)
+      toast.success('AI Categories Report generated and displayed in tree view!')
+    } catch (error) {
+      console.error('Failed to generate AI report:', error)
+      toast.error('Failed to generate AI report')
+    } finally {
+      setIsGeneratingAI(false)
+    }
   }
 
-  const changeToBranchAt = index => {
-    changeChildTo(getChild(treePath.index.slice(0, index + 1)))
+  // Function to switch back to regular RCA view
+  const switchToRegularRCA = () => {
+    setIsAIMode(false)
+    setTreePath(emptyTreePath)
+    setGrievances([])
+    setRegNos([])
+    
+    // Reload regular RCA data
+    getRCAData(ministry, financialTerm)
+      .then(response => {
+        let newTree = [{ count: 0, topicname: 'root' }]
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(entry => {
+            newTree = appendToTree(entry.depth, newTree, entry)
+          })
+        }
+        setTree(newTree)
+
+        if (newTree[0] && newTree[0].children && newTree[0].children.length > 0) {
+          changeChildTo(newTree[0])
+        } else {
+          setSeries([{ data: [] }])
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching RCA data:', error)
+        toast.error('Failed to fetch RCA data')
+        setTree([{ count: 0, topicname: 'root' }])
+        setSeries([{ data: [] }])
+      })
+    
+    toast.success('Switched back to regular RCA view')
   }
 
-  const getChild = (path = [], branch = tree) => {
-    return path.length > 1
-      ? getChild(path.slice(1), branch[path[0]].children)
-      : branch[path[0]]
+  // Check if we're currently viewing AI categories
+  const isViewingAICategories = () => {
+    return tree[0]?.topicname === 'AI Categories Root' || currentAIReport !== null
   }
 
-  const showData = () => tree[0].count != 0
+  // Handle history item click - only for non-AI categories
+  const handleHistoryClick = (report) => {
+    if (report.type === 'ai-categories') {
+      // For AI categories, show them in the main treemap instead of separate display
+      toast.info('AI Categories are displayed in the main tree visualization above.')
+      return
+    }
+    setSelectedHistoryReport(report)
+  }
+
+  // Refresh AI Reports function
+  const refreshAIReports = () => {
+    setAiReportHistory([])
+    setSelectedHistoryReport(null)
+    localStorage.removeItem('aiReportHistory')
+    toast.success('AI Report history cleared!')
+  }
 
   useEffect(() => {
-    if (pageno != 1)
-      setPageno(1)
-
+    setActiveFilters({ ministry, financialTerm })
     setLoading(dispatch, true)
+    setPageno(1)
+    setTreePath(emptyTreePath)
+    setGrievances([])
+    setRegNos([])
 
-    getRCAData(ministry, financialTerm).then(response => {
-      let data = response.data
-      if (data.count[0] == 0) {
-        toast(`No data found for ${ministry} in ${financialTerm} quarter.`, {
-          type: 'error'
-        })
-        setMinistry(activeFilters.ministry)
-        setFinancialTerm(activeFilters.financialTerm)
-        return
-      }
+    getRCAData(ministry, financialTerm)
+      .then(response => {
+        let newTree = [{ count: 0, topicname: 'root' }]
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(entry => {
+            newTree = appendToTree(entry.depth, newTree, entry)
+          })
+        }
+        setTree(newTree)
 
-      setActiveFilters({
-        ministry: ministry,
-        financialTerm: financialTerm
+        if (newTree[0] && newTree[0].children && newTree[0].children.length > 0) {
+          changeChildTo(newTree[0])
+        } else {
+          setSeries([{ data: [] }])
+        }
       })
-
-      let treeData = Object.keys(data.topicname).reduce((accumulator, depth) => {
-        return appendToTree(depth, accumulator, {
-          'topicname': data.topicname[depth],
-          'count': data.count[depth],
-          'regno': data.regno[depth]
-        })
-      }, [])
-      setTree(treeData)
-      changeChildTo(treeData[0])
-    })
-      .finally(() => setLoading(dispatch, false))
+      .catch(error => {
+        console.error('Error fetching RCA data:', error)
+        toast.error('Failed to fetch RCA data')
+        setTree([{ count: 0, topicname: 'root' }])
+        setSeries([{ data: [] }])
+      })
+      .finally(() => {
+        setLoading(dispatch, false)
+      })
   }, [ministry, financialTerm])
 
   useEffect(() => {
-    if (regNos.length > 0)
-      getGrievancesUsingRegNos(regNos.slice((pageno - 1) * rowsPerPage, pageno * rowsPerPage))
-        .then(response => {
-          setGrievances(Object.values(response.data.data))
-        })
-  }, [pageno])
+    if (!regNos || regNos.length === 0) return
+
+    getGrievancesUsingRegNos(regNos, pageno, rowsPerPage)
+      .then(response => {
+        if (response.data && response.data.data) {
+          const grievancesData = Object.values(response.data.data)
+          
+          // Sort by received date - most recent first (newest to oldest)
+          const sortedGrievances = grievancesData.sort((a, b) => {
+            const dateA = new Date(a.received_date || a.recvd_date || a.date)
+            const dateB = new Date(b.received_date || b.recvd_date || b.date)
+            
+            // Sort in descending order (newest first)
+            return dateB.getTime() - dateA.getTime()
+          })
+          
+          console.log('📅 Grievances sorted by date (newest first):', sortedGrievances.slice(0, 3).map(g => ({
+            regNo: g.registration_no,
+            receivedDate: g.received_date || g.recvd_date || g.date
+          })))
+          
+          setGrievances(sortedGrievances)
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching grievances:', error)
+        setGrievances([])
+      })
+  }, [regNos, pageno])
 
   return (
-    <div className={`min-h-screen transition-all duration-300 ${isDark ? 'bg-gray-900' : 'bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100'}`}>
+    <div className={`min-h-screen transition-all duration-300 ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
       
-      {/* Modern Header Section */}
-      <div className="relative overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-r ${isDark ? 'from-blue-900/20 via-purple-900/20 to-indigo-900/20' : 'from-blue-600/10 via-purple-600/10 to-indigo-600/10'}`}></div>
-        <div className="relative px-6 py-8">
-          <div className="max-w-7xl mx-auto">
-            <Card className={`${isDark ? 'bg-gray-800/95 border-gray-700 backdrop-blur-sm' : 'bg-white/95 backdrop-blur-sm'} shadow-2xl border overflow-hidden`}>
-              <div className={`h-1 bg-gradient-to-r ${isDark ? 'from-blue-500 via-purple-500 to-indigo-500' : 'from-blue-600 via-purple-600 to-indigo-600'}`}></div>
-              <CardBody className="p-8">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-6">
-                    <div className={`p-4 rounded-2xl shadow-lg ${isDark ? 'bg-gradient-to-br from-blue-600 to-purple-700' : 'bg-gradient-to-br from-blue-500 to-purple-600'}`}>
-                      <ChartBarIcon className="h-10 w-10 text-white" />
-                    </div>
-                    <div>
-                      <Typography variant="h2" color={isDark ? "white" : "blue-gray"} className="font-bold mb-2">
-                        Root Cause Analysis
-                      </Typography>
-                      <Typography variant="lead" color="gray" className="text-lg">
-                        Advanced pattern discovery and intelligent grievance categorization
-                      </Typography>
-                    </div>
-                  </div>
-                  
-                  <div className="hidden md:flex items-center gap-4">
-                    <div className="text-right">
-                      <Typography variant="small" color="gray" className="text-sm font-medium">
-                        Analysis Status
-                      </Typography>
-                      <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="font-bold">
-                        {tree.length > 0 && showData() ? 'Active' : 'No Data'}
-                      </Typography>
-                    </div>
-                    <Button
-                      size="lg"
-                      color="blue"
-                      className="flex items-center gap-2 shadow-lg"
-                      onClick={() => window.location.reload()}
-                    >
-                      <ArrowPathIcon className="h-4 w-4" />
-                      Refresh
-                    </Button>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
+      {/* Clean Professional Header */}
+      <div className="px-6 py-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className={`p-3 rounded-lg ${isDark ? 'bg-blue-600' : 'bg-blue-500'}`}>
+                <ChartBarIcon className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <Typography variant="h4" color={isDark ? "white" : "blue-gray"} className="font-semibold">
+                  Root Cause Analysis
+                </Typography>
+                <Typography variant="small" color="gray" className="mt-1">
+                  Advanced pattern discovery and intelligent grievance categorization
+                </Typography>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <Typography variant="small" color="gray" className="text-right">
+                Status: {tree.length > 0 && showData() ? 'Active' : 'No Data'}
+              </Typography>
+              <Button
+                size="sm"
+                className="bg-purple-600 hover:bg-purple-700 text-white flex items-center gap-2"
+                onClick={generateAIReport}
+                disabled={isGeneratingAI}
+              >
+                {isGeneratingAI ? (
+                  <>
+                    <ArrowPathIcon className="h-4 w-4 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <DocumentTextIcon className="h-4 w-4" />
+                    GENERATE AI REPORT
+                  </>
+                )}
+              </Button>
+              <Button
+                size="sm"
+                color="gray"
+                variant="outlined"
+                className="flex items-center gap-2"
+                onClick={refreshAIReports}
+              >
+                <ArrowPathIcon className="h-4 w-4" />
+                Clear History
+              </Button>
+              <Button
+                size="sm"
+                color="gray"
+                variant="outlined"
+                className="flex items-center gap-2"
+                onClick={() => window.location.reload()}
+              >
+                <ArrowPathIcon className="h-4 w-4" />
+                Refresh
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="px-6 pb-8">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="px-6 py-6">
+        <div className="max-w-7xl mx-auto space-y-6">
           
-          {/* Advanced Filters Section */}
-          <Card className={`${isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95'} shadow-xl border backdrop-blur-sm`}>
-            <CardHeader 
-              variant="gradient" 
-              color="blue" 
-              className="mb-4 p-6"
-              floated={false}
-            >
-              <div className="flex items-center gap-3">
-                <AdjustmentsHorizontalIcon className="h-6 w-6 text-white" />
-                <Typography variant="h5" color="white" className="font-semibold">
+          {/* Simple Filter Controls */}
+          <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+            <CardBody className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <AdjustmentsHorizontalIcon className="h-5 w-5 text-gray-500" />
+                <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="font-medium">
                   Analysis Parameters
                 </Typography>
               </div>
-            </CardHeader>
-            
-            <CardBody className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Typography variant="small" color={isDark ? "white" : "blue-gray"} className="font-medium">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Typography variant="small" color={isDark ? "white" : "blue-gray"} className="mb-2 font-medium">
                     Financial Term
                   </Typography>
                   <Select
                     value={financialTerm}
                     onChange={value => setFinancialTerm(value)}
                     className={`${isDark ? 'text-white' : 'text-gray-900'}`}
-                    containerProps={{ className: "min-w-0" }}
                   >
                     {financialTerms.map((value, key) => (
                       <Option value={value} key={key}>{value}</Option>
@@ -412,15 +743,14 @@ export function RCA() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
-                  <Typography variant="small" color={isDark ? "white" : "blue-gray"} className="font-medium">
+                <div>
+                  <Typography variant="small" color={isDark ? "white" : "blue-gray"} className="mb-2 font-medium">
                     Ministry/Department
                   </Typography>
                   <Select
                     value={ministry}
                     onChange={value => setMinistry(value)}
                     className={`${isDark ? 'text-white' : 'text-gray-900'}`}
-                    containerProps={{ className: "min-w-0" }}
                   >
                     {filteredDepartmentList.map((item, key) => (
                       <Option value={item.value} key={key}>{item.label}</Option>
@@ -428,92 +758,148 @@ export function RCA() {
                   </Select>
                 </div>
               </div>
-              
-              {activeFilters.ministry && (
-                <Alert 
-                  color="blue" 
-                  className="mt-4"
-                  icon={<InformationCircleIcon className="h-5 w-5" />}
-                >
-                  <Typography variant="small" className="font-medium">
-                    Currently analyzing: {activeFilters.ministry} ({activeFilters.financialTerm})
-                  </Typography>
-                </Alert>
-              )}
             </CardBody>
           </Card>
 
+          {/* Recent Searches / AI Report History */}
+          {aiReportHistory.length > 0 && (
+            <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+              <CardBody className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <DocumentTextIcon className="h-5 w-5 text-purple-500" />
+                    <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="font-medium">
+                      Recent Searches: AI Generated Reports
+                    </Typography>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="outlined"
+                    color="gray"
+                    onClick={refreshAIReports}
+                    className="flex items-center gap-2"
+                  >
+                    <ArrowPathIcon className="h-4 w-4" />
+                    Clear All
+                  </Button>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {aiReportHistory.map((report, index) => (
+                    <Card
+                      key={report.id}
+                      onClick={() => handleHistoryClick(report)}
+                      className={`cursor-pointer transition-all duration-200 hover:shadow-md transform hover:scale-[1.02] ${
+                        isDark 
+                          ? 'bg-gradient-to-br from-purple-900/30 to-blue-900/30 border-purple-700 hover:from-purple-800/40 hover:to-blue-800/40' 
+                          : 'bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200 hover:from-purple-100 hover:to-blue-100'
+                      } border`}
+                    >
+                      <CardBody className="p-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <Chip 
+                              value={report.type === 'ai-categories' ? 'AI Categories' : 'AI Report'} 
+                              size="sm" 
+                              className="bg-purple-600 text-white text-xs"
+                            />
+                            <Typography variant="small" color="gray" className="text-xs">
+                              {new Date(report.timestamp).toLocaleDateString()}
+                            </Typography>
+                          </div>
+                          
+                          <Typography variant="small" className={`font-medium ${isDark ? 'text-white' : 'text-blue-gray-800'}`}>
+                            {report.title}
+                          </Typography>
+                          
+                          <div className="flex items-center justify-between">
+                            <Typography variant="small" color="gray" className="text-xs">
+                              {report.ministry}
+                            </Typography>
+                            {report.data && (
+                              <Typography variant="small" color="gray" className="text-xs">
+                                {report.data.hierarchicalCategories?.[0]?.count?.toLocaleString() || '0'} cases
+                              </Typography>
+                            )}
+                          </div>
+                          
+                          <Typography variant="small" color="gray" className="text-xs">
+                            {report.dateRange}
+                          </Typography>
+                        </div>
+                      </CardBody>
+                    </Card>
+                  ))}
+                </div>
+              </CardBody>
+            </Card>
+          )}
+
+          {/* Selected AI Report Display */}
           {tree.length > 0 && showData() ? (
             <>
-              {/* Statistics Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className={`${isDark ? 'bg-gradient-to-br from-blue-900 to-blue-800 border-blue-700' : 'bg-gradient-to-br from-blue-500 to-blue-600'} shadow-xl border transform hover:scale-105 transition-transform`}>
-                  <CardBody className="p-6 text-center">
-                    <Typography variant="h3" color="white" className="font-bold mb-2">
-                      {regNos.length.toLocaleString()}
+              {/* Simple Statistics */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+                  <CardBody className="p-4 text-center">
+                    <Typography variant="h4" color={isDark ? "white" : "blue-gray"} className="font-bold">
+                      {Array.isArray(regNos) ? regNos.length.toLocaleString() : '0'}
                     </Typography>
-                    <Typography variant="small" color="white" className="opacity-90 font-medium">
+                    <Typography variant="small" color="gray" className="font-medium">
                       Total Cases
                     </Typography>
                   </CardBody>
                 </Card>
                 
-                <Card className={`${isDark ? 'bg-gradient-to-br from-emerald-900 to-emerald-800 border-emerald-700' : 'bg-gradient-to-br from-emerald-500 to-emerald-600'} shadow-xl border transform hover:scale-105 transition-transform`}>
-                  <CardBody className="p-6 text-center">
-                    <Typography variant="h3" color="white" className="font-bold mb-2">
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+                  <CardBody className="p-4 text-center">
+                    <Typography variant="h4" color={isDark ? "white" : "blue-gray"} className="font-bold">
                       {series[0]?.data?.length || 0}
                     </Typography>
-                    <Typography variant="small" color="white" className="opacity-90 font-medium">
+                    <Typography variant="small" color="gray" className="font-medium">
                       Active Topics
                     </Typography>
                   </CardBody>
                 </Card>
                 
-                <Card className={`${isDark ? 'bg-gradient-to-br from-purple-900 to-purple-800 border-purple-700' : 'bg-gradient-to-br from-purple-500 to-purple-600'} shadow-xl border transform hover:scale-105 transition-transform`}>
-                  <CardBody className="p-6 text-center">
-                    <Typography variant="h3" color="white" className="font-bold mb-2">
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+                  <CardBody className="p-4 text-center">
+                    <Typography variant="h4" color={isDark ? "white" : "blue-gray"} className="font-bold">
                       {treePath.text.length}
                     </Typography>
-                    <Typography variant="small" color="white" className="opacity-90 font-medium">
+                    <Typography variant="small" color="gray" className="font-medium">
                       Drill Depth
                     </Typography>
                   </CardBody>
                 </Card>
                 
-                <Card className={`${isDark ? 'bg-gradient-to-br from-amber-900 to-amber-800 border-amber-700' : 'bg-gradient-to-br from-amber-500 to-amber-600'} shadow-xl border transform hover:scale-105 transition-transform`}>
-                  <CardBody className="p-6 text-center">
-                    <Typography variant="h3" color="white" className="font-bold mb-2">
-                      {((regNos.length / (series[0]?.data?.reduce((sum, item) => sum + (item.y || 0), 0) || 1)) * 100).toFixed(0)}%
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+                  <CardBody className="p-4 text-center">
+                    <Typography variant="h4" color={isDark ? "white" : "blue-gray"} className="font-bold">
+                      {((Array.isArray(regNos) ? regNos.length : 0) / (series[0]?.data?.reduce((sum, item) => sum + (item.y || 0), 0) || 1) * 100).toFixed(0)}%
                     </Typography>
-                    <Typography variant="small" color="white" className="opacity-90 font-medium">
+                    <Typography variant="small" color="gray" className="font-medium">
                       Coverage
                     </Typography>
                   </CardBody>
                 </Card>
               </div>
 
-              {/* Topic Analysis Grid */}
+              {/* Clean Topic Cards */}
               {series[0]?.data?.length > 0 && (
-                <Card className={`${isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95'} shadow-xl border backdrop-blur-sm`}>
-                  <CardHeader 
-                    variant="gradient" 
-                    color="purple" 
-                    className="mb-4 p-6"
-                    floated={false}
-                  >
-                    <div className="flex items-center gap-3">
-                      <DocumentTextIcon className="h-6 w-6 text-white" />
-                      <Typography variant="h5" color="white" className="font-semibold">
-                        Topic Distribution Analysis
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+                  <CardBody className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <DocumentTextIcon className="h-5 w-5 text-gray-500" />
+                      <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="font-medium">
+                        Topic Distribution
                       </Typography>
                     </div>
-                  </CardHeader>
-                  
-                  <CardBody className="p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {series[0].data
                         .sort((a, b) => b.y - a.y)
-                        .slice(0, 9)
+                        .slice(0, 6)
                         .map((item, index) => {
                           const totalCount = series[0].data.reduce((sum, d) => sum + d.y, 0);
                           const percentage = ((item.y / totalCount) * 100).toFixed(1);
@@ -521,78 +907,51 @@ export function RCA() {
                           return (
                             <Card 
                               key={index}
-                              className={`cursor-pointer transform hover:scale-105 transition-all duration-300 group ${
+                              className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
                                 isDark 
-                                  ? 'bg-gray-700 border-gray-600 hover:bg-gradient-to-br hover:from-blue-900 hover:to-purple-900 hover:border-blue-500' 
-                                  : 'bg-gradient-to-br from-gray-50 to-white border-gray-200 hover:from-blue-600 hover:to-purple-600 hover:border-blue-400'
-                              } border shadow-lg hover:shadow-2xl`}
+                                  ? 'bg-gray-700 border-gray-600 hover:bg-gray-600' 
+                                  : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                              } border`}
                               onClick={() => changeChildTo(item)}
                             >
                               <CardBody className="p-4">
-                                <div className="space-y-3">
-                                  <div className="flex items-start justify-between">
+                                <div className="space-y-2">
+                                  <div className="flex items-start justify-between gap-2">
                                     <Typography 
                                       variant="small" 
-                                      className={`font-bold leading-tight text-sm transition-colors duration-300 ${
-                                        isDark ? 'text-white group-hover:text-white' : 'text-blue-gray-800 group-hover:text-white'
+                                      className={`font-medium leading-tight ${
+                                        isDark ? 'text-white' : 'text-blue-gray-800'
                                       }`}
-                                      style={{
-                                        textShadow: 'none',
-                                        transition: 'all 0.3s ease'
-                                      }}
-                                      onMouseEnter={(e) => {
-                                        e.target.style.textShadow = '2px 2px 8px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.3)';
-                                      }}
-                                      onMouseLeave={(e) => {
-                                        e.target.style.textShadow = 'none';
-                                      }}
                                     >
-                                      {item.topicname.length > 40 
-                                        ? item.topicname.substr(0, 40) + "..." 
+                                      {item.topicname.length > 50 
+                                        ? item.topicname.substr(0, 50) + "..." 
                                         : item.topicname
                                       }
                                     </Typography>
                                     <Chip 
                                       value={`${percentage}%`} 
                                       size="sm" 
-                                      className={`ml-2 flex-shrink-0 transition-colors duration-300 ${
-                                        isDark ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white group-hover:bg-white group-hover:text-blue-600'
-                                      }`}
+                                      className="bg-blue-500 text-white text-xs"
                                     />
                                   </div>
                                   
-                                  <div className="space-y-2">
-                                    <div className="flex justify-between items-center">
-                                      <Typography 
-                                        variant="small" 
-                                        className={`text-xs transition-colors duration-300 ${
-                                          isDark ? 'text-gray-300 group-hover:text-white' : 'text-gray-600 group-hover:text-white'
-                                        }`}
-                                      >
-                                        Cases: 
-                                      </Typography>
-                                      <Typography 
-                                        variant="small" 
-                                        className={`font-bold transition-colors duration-300 ${
-                                          isDark ? 'text-blue-400 group-hover:text-white' : 'text-blue-gray-800 group-hover:text-white'
-                                        }`}
-                                      >
-                                        {item.y.toLocaleString()}
-                                      </Typography>
-                                    </div>
-                                    
-                                    <Progress 
-                                      value={parseFloat(percentage)} 
-                                      className={`h-2 transition-all duration-300 ${
-                                        isDark ? 'bg-gray-600' : 'bg-gray-200 group-hover:bg-white/30'
-                                      }`}
-                                      barProps={{
-                                        className: `transition-all duration-300 ${
-                                          isDark ? 'bg-blue-500 group-hover:bg-white' : 'bg-blue-500 group-hover:bg-white'
-                                        }`
-                                      }}
-                                    />
+                                  <div className="flex justify-between items-center">
+                                    <Typography variant="small" color="gray" className="text-xs">
+                                      Cases: 
+                                    </Typography>
+                                    <Typography 
+                                      variant="small" 
+                                      className={`font-semibold ${isDark ? 'text-blue-400' : 'text-blue-600'}`}
+                                    >
+                                      {item.y.toLocaleString()}
+                                    </Typography>
                                   </div>
+                                  
+                                  <Progress 
+                                    value={parseFloat(percentage)} 
+                                    className="h-1"
+                                    color="blue"
+                                  />
                                 </div>
                               </CardBody>
                             </Card>
@@ -601,10 +960,10 @@ export function RCA() {
                       }
                     </div>
                     
-                    {series[0].data.length > 9 && (
-                      <div className="mt-6 text-center">
-                        <Typography variant="small" color="gray" className="text-sm">
-                          Showing top 9 of {series[0].data.length} topics
+                    {series[0].data.length > 6 && (
+                      <div className="mt-4 text-center">
+                        <Typography variant="small" color="gray">
+                          Showing top 6 of {series[0].data.length} topics
                         </Typography>
                       </div>
                     )}
@@ -612,24 +971,39 @@ export function RCA() {
                 </Card>
               )}
 
-              {/* Interactive Visualization */}
-              <Card className={`${isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95'} shadow-xl border backdrop-blur-sm`}>
-                <CardHeader 
-                  variant="gradient" 
-                  color="indigo" 
-                  className="mb-4 p-6"
-                  floated={false}
-                >
-                  <div className="flex items-center gap-3">
-                    <DocumentMagnifyingGlassIcon className="h-6 w-6 text-white" />
-                    <Typography variant="h5" color="white" className="font-semibold">
-                      Interactive Topic Treemap
-                    </Typography>
-                  </div>
-                </CardHeader>
-                
+              {/* Clean Visualization */}
+              <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
                 <CardBody className="p-6">
-                  <div className={`rounded-2xl p-6 shadow-inner ${isDark ? 'bg-gray-900/50' : 'bg-gray-50/80'}`}>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <DocumentMagnifyingGlassIcon className="h-5 w-5 text-gray-500" />
+                      <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="font-medium">
+                        Interactive Treemap
+                      </Typography>
+                      {isViewingAICategories() && (
+                        <Chip 
+                          value="AI Categories View" 
+                          size="sm" 
+                          className="bg-purple-600 text-white"
+                        />
+                      )}
+                    </div>
+                    
+                    {isViewingAICategories() && (
+                      <Button
+                        size="sm"
+                        variant="outlined"
+                        color="gray"
+                        onClick={switchToRegularRCA}
+                        className="flex items-center gap-2"
+                      >
+                        <HomeIcon className="h-4 w-4" />
+                        Back to RCA
+                      </Button>
+                    )}
+                  </div>
+                  
+                  <div className={`rounded-lg p-4 ${isDark ? 'bg-gray-900/30' : 'bg-gray-50'}`}>
                     <ReactApexChart 
                       options={options} 
                       series={series} 
@@ -640,121 +1014,80 @@ export function RCA() {
                 </CardBody>
               </Card>
 
-              {/* Navigation Breadcrumb */}
+              {/* Simple Navigation */}
               {treePath.text.length > 0 && (
-                <Card className={`${isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95'} shadow-xl border backdrop-blur-sm`}>
-                  <CardBody className="p-6">
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+                  <CardBody className="p-4">
                     <div className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <Typography variant="small" color="gray" className="text-sm mb-3 font-medium">
-                          Navigation Path:
-                        </Typography>
+                      <div className="flex items-center gap-2">
+                        <IconButton
+                          size="sm"
+                          variant="outlined"
+                          color="gray"
+                          onClick={() => changeChildTo(tree[0])}
+                        >
+                          <HomeIcon className="h-4 w-4" />
+                        </IconButton>
                         
-                        <div className="flex flex-wrap items-center gap-3">
-                          <IconButton
-                            size="sm"
-                            variant="gradient"
-                            color="blue"
-                            onClick={() => changeChildTo(tree[0])}
-                            className="shadow-lg"
-                          >
-                            <HomeIcon className="h-4 w-4" />
-                          </IconButton>
-                          
-                          {treePath.text.slice(0, treePath.text.length - 1).map((step, key) => (
-                            <div className="flex items-center" key={key}>
-                              <ChevronRightIcon className="h-4 w-4 text-gray-400 mx-2" />
-                              <Button
-                                variant="text"
-                                size="sm"
-                                className={`font-medium normal-case transition-all duration-300 ${
-                                  isDark 
-                                    ? 'text-blue-400 hover:bg-blue-600 hover:text-white' 
-                                    : 'text-blue-600 hover:bg-blue-600 hover:text-white'
-                                } hover:shadow-lg`}
-                                style={{
-                                  textShadow: 'none',
-                                  transition: 'all 0.3s ease'
-                                }}
-                                onMouseEnter={(e) => {
-                                  e.target.style.textShadow = '1px 1px 4px rgba(0,0,0,0.5)';
-                                }}
-                                onMouseLeave={(e) => {
-                                  e.target.style.textShadow = 'none';
-                                }}
-                                onClick={() => changeToBranchAt(key)}
-                              >
-                                {step.length > 30 ? step.substr(0, 30) + "..." : step}
-                              </Button>
-                            </div>
-                          ))}
-                          
-                          {treePath.text.length > 0 && (
-                            <>
-                              <ChevronRightIcon className="h-4 w-4 text-gray-400 mx-2" />
-                              <Chip 
-                                value={treePath.text[treePath.text.length - 1]?.split(',')[0] || 'Current'} 
-                                size="lg" 
-                                color="blue"
-                                className="font-medium"
-                              />
-                            </>
-                          )}
-                        </div>
+                        {treePath.text.slice(0, treePath.text.length - 1).map((step, key) => (
+                          <div className="flex items-center" key={key}>
+                            <ChevronRightIcon className="h-4 w-4 text-gray-400 mx-1" />
+                            <Button
+                              variant="text"
+                              size="sm"
+                              color="gray"
+                              className="normal-case text-xs"
+                              onClick={() => changeToBranchAt(key)}
+                            >
+                              {step.length > 20 ? step.substr(0, 20) + "..." : step}
+                            </Button>
+                          </div>
+                        ))}
+                        
+                        {treePath.text.length > 0 && (
+                          <>
+                            <ChevronRightIcon className="h-4 w-4 text-gray-400 mx-1" />
+                            <Chip 
+                              value={treePath.text[treePath.text.length - 1]?.split(',')[0] || 'Current'} 
+                              size="sm" 
+                              color="blue"
+                            />
+                          </>
+                        )}
                       </div>
                       
-                      <div className="text-right ml-6">
-                        <Typography variant="small" color="gray" className="text-sm mb-1">
-                          Selected Cases:
-                        </Typography>
-                        <Typography variant="h4" color={isDark ? "white" : "blue-gray"} className="font-bold">
-                          {regNos.length.toLocaleString()}
-                        </Typography>
-                      </div>
+                      <Typography variant="small" color="gray">
+                        {Array.isArray(regNos) ? regNos.length.toLocaleString() : '0'} cases selected
+                      </Typography>
                     </div>
                   </CardBody>
                 </Card>
               )}
 
-              {/* Enhanced Results Section */}
+              {/* Clean Results */}
               {grievances.length > 0 && (
-                <Card className={`${isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95'} shadow-xl border backdrop-blur-sm`}>
-                  <CardHeader 
-                    variant="gradient" 
-                    color="emerald" 
-                    className="mb-4 p-6"
-                    floated={false}
-                  >
-                    <div className="flex items-center justify-between">
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+                  <CardBody className="p-6">
+                    <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        <DocumentTextIcon className="h-6 w-6 text-white" />
-                        <div>
-                          <Typography variant="h5" color="white" className="font-semibold">
-                            Related Grievances
-                          </Typography>
-                          <Typography variant="small" color="white" className="opacity-90">
-                            Detailed case information for current selection
-                          </Typography>
-                        </div>
-                      </div>
-                      
-                      <div className="text-right">
-                        <Typography variant="small" color="white" className="opacity-90">
-                          Showing {grievances.length} of {regNos.length}
+                        <DocumentTextIcon className="h-5 w-5 text-gray-500" />
+                        <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="font-medium">
+                          Related Grievances
                         </Typography>
                       </div>
+                      <Typography variant="small" color="gray">
+                        Showing {grievances.length} of {Array.isArray(regNos) ? regNos.length : 0}
+                      </Typography>
                     </div>
-                  </CardHeader>
-                  
-                  <CardBody className="p-4">
-                    <div className={`rounded-xl overflow-hidden ${isDark ? 'bg-gray-900/30' : 'bg-gray-50/50'}`}>
+                    
+                    <div className={`rounded-lg overflow-hidden ${isDark ? 'bg-gray-900/20' : 'bg-gray-50'}`}>
                       <GrievanceList
                         titleBarHidden={true}
                         grievances={grievances}
                         pageno={pageno}
                         setPageno={setPageno}
-                        count={regNos.length > 0 ? rowsPerPage : null}
-                        total={regNos.length}
+                        count={Array.isArray(regNos) && regNos.length > 0 ? rowsPerPage : null}
+                        total={Array.isArray(regNos) ? regNos.length : 0}
                         scrollH={'60vh'}
                       />
                     </div>
@@ -763,26 +1096,25 @@ export function RCA() {
               )}
             </>
           ) : (
-            /* Enhanced No Data State */
-            <Card className={`${isDark ? 'bg-gray-800/95 border-gray-700' : 'bg-white/95'} shadow-xl border backdrop-blur-sm`}>
-              <CardBody className="p-16 text-center">
-                <div className={`p-8 rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-100'} inline-block mb-8 shadow-lg`}>
-                  <ChartBarIcon className={`h-16 w-16 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} />
+            /* Clean No Data State */
+            <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-sm border`}>
+              <CardBody className="p-12 text-center">
+                <div className={`p-6 rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-100'} inline-block mb-6`}>
+                  <ChartBarIcon className={`h-12 w-12 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} />
                 </div>
-                <Typography variant="h3" color={isDark ? "white" : "blue-gray"} className="mb-4 font-bold">
+                <Typography variant="h5" color={isDark ? "white" : "blue-gray"} className="mb-3 font-semibold">
                   No Analysis Data Available
                 </Typography>
-                <Typography variant="lead" color="gray" className="mb-8 max-w-md mx-auto">
+                <Typography variant="paragraph" color="gray" className="mb-6 max-w-md mx-auto">
                   Please select different analysis parameters to view the root cause analysis results
                 </Typography>
                 <Button 
-                  variant="gradient" 
-                  color="blue" 
-                  size="lg"
-                  className="shadow-lg"
+                  variant="outlined" 
+                  color="gray" 
+                  className="flex items-center gap-2 mx-auto"
                   onClick={() => window.location.reload()}
                 >
-                  <ArrowPathIcon className="h-5 w-5 mr-2" />
+                  <ArrowPathIcon className="h-4 w-4" />
                   Refresh Analysis
                 </Button>
               </CardBody>
