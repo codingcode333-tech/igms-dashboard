@@ -451,11 +451,13 @@ export function Home() {
 
       // Load Bar Chart Data
       try {
+        console.log('🔍 Loading Bar Chart Data for:', headerAttributes.ministry, headerAttributes.from, headerAttributes.to);
         let jsonData = await cacheable(
           async () => await dashboardService.getBarGraphData(headerAttributes.ministry, headerAttributes.from, headerAttributes.to), 
           `bar-chart-${headerAttributes.ministry}-${headerAttributes.from}-${headerAttributes.to}-data`, 
           () => setLoading(dispatch, false)
         );
+        console.log('📊 Bar Chart raw data received:', jsonData);
 
         if (user.username === 'dpg') {
           // For DPG user, wait for additional data before saving
@@ -466,10 +468,12 @@ export function Home() {
               () => setLoading(dispatch, false)
             );
             jsonData = appendStateData(jsonData, additional_jsonData, 'key');
+            console.log('📊 DPG Bar Chart combined data:', jsonData);
             saveBarChartData(jsonData);
           }, 2000);
         } else {
           // For non-DPG users, save data immediately
+          console.log('📊 Non-DPG Bar Chart data:', jsonData);
           saveBarChartData(jsonData);
         }
       } catch (error) {
@@ -479,13 +483,16 @@ export function Home() {
 
       // Load Line Chart Data  
       try {
+        console.log('📈 Loading Line Chart Data for:', headerAttributes.ministry, headerAttributes.from, headerAttributes.to);
         let lineJsonData = await cacheable(
           async () => await dashboardService.getLineGraphData(headerAttributes.ministry, headerAttributes.from, headerAttributes.to), 
           `line-chart-${headerAttributes.ministry}-${headerAttributes.from}-${headerAttributes.to}-data`, 
           () => setLoading(dispatch, false)
         );
+        console.log('📈 Line Chart raw data received:', lineJsonData);
 
         if (user.username === 'dpg') {
+          // For DPG user, wait for additional data before setting
           setTimeout(async () => {
             let additional_lineJsonData = await cacheable(
               async () => await dashboardService.getLineGraphData("DARPG/D", headerAttributes.from, headerAttributes.to), 
@@ -493,11 +500,14 @@ export function Home() {
               () => setLoading(dispatch, false)
             );
             lineJsonData = appendStateData(lineJsonData, additional_lineJsonData, 'recvd_date');
+            console.log('📈 DPG Line Chart combined data:', lineJsonData);
             setLineChartData(lineJsonData);
           }, 2500);
+        } else {
+          // For non-DPG users, set data immediately  
+          console.log('📈 Non-DPG Line Chart data:', lineJsonData);
+          setLineChartData(lineJsonData);
         }
-
-        setLineChartData(lineJsonData);
       } catch (error) {
         console.error('Error loading line chart data:', error);
       }
