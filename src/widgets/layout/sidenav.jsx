@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
-import { XMarkIcon, ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import {
   Avatar,
@@ -19,17 +18,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const { setToDefault } = useFilter();
   
-  // Local state for sidebar's own expand/collapse (independent of main layout)
-  const [sidebarExpanded, setSidebarExpanded] = useState(true);
-  
-  // Debug function to check state changes
-  const handleToggle = () => {
-    console.log('Current sidebarExpanded:', sidebarExpanded);
-    setSidebarExpanded(prev => {
-      console.log('Setting sidebarExpanded to:', !prev);
-      return !prev;
-    });
-  };
+  // Fixed sidebar - always expanded, no toggle functionality
   
   const sidenavTypes = {
     dark: "bg-gradient-to-br from-blue-gray-800 to-blue-gray-900",
@@ -42,11 +31,11 @@ export function Sidenav({ brandImg, brandName, routes }) {
       <aside
         className={`
           ${sidenavTypes[sidenavType]}
-          ${sidebarExpanded ? "w-72" : "w-20"}
+          w-72
           fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] rounded-xl 
           transition-all duration-300 ease-in-out z-[1100]
-          overflow-hidden group
-          ${!sidebarExpanded ? 'hover:w-72 hover:shadow-2xl' : 'shadow-xl'}
+          overflow-hidden
+          shadow-xl
           xl:translate-x-0
           ${openSidenav ? 'translate-x-0' : '-translate-x-full xl:translate-x-0'}
         `}
@@ -63,11 +52,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
         } transition-colors duration-300`}>
           
           {/* Official Emblem of India - Always visible */}
-          <div className={`
-            flex-shrink-0 relative
-            ${!sidebarExpanded ? 'w-10 h-10' : 'w-14 h-14'} 
-            transition-all duration-300 ${!sidebarExpanded ? 'group-hover:w-14 group-hover:h-14' : ''}
-          `}>
+          <div className="flex-shrink-0 relative w-14 h-14 transition-all duration-300">
             <div className={`
               w-full h-full rounded-full flex items-center justify-center
               ${isDark ? 'bg-white' : 'bg-white'}
@@ -94,14 +79,8 @@ export function Sidenav({ brandImg, brandName, routes }) {
             </div>
           </div>
           
-          {/* Title Section - Show when expanded or on hover */}
-          <div className={`
-            flex-1 min-w-0 transition-all duration-300 overflow-hidden
-            ${!sidebarExpanded 
-              ? 'opacity-0 w-0 group-hover:opacity-100 group-hover:w-auto group-hover:ml-3' 
-              : 'opacity-100 w-auto ml-3'
-            }
-          `}>
+          {/* Title Section - Always visible */}
+          <div className="flex-1 min-w-0 transition-all duration-300 overflow-hidden opacity-100 w-auto ml-3">
             <div className="space-y-0">
               <div 
                 className={`font-bold text-sm leading-tight transition-colors duration-300 ${
@@ -145,9 +124,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
       <div className="m-4 overflow-hidden">
         <ul className="mb-4 flex flex-col gap-1">
           {routes[0].title && (
-            <li className={`mx-3.5 mt-4 mb-2 transition-all duration-300 ${
-              !sidebarExpanded ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
-            }`}>
+            <li className="mx-3.5 mt-4 mb-2 transition-all duration-300 opacity-100">
               <Typography
                 variant="small"
                 color={sidenavType === "dark" ? "white" : "blue-gray"}
@@ -174,21 +151,11 @@ export function Sidenav({ brandImg, brandName, routes }) {
                       className="px-3 capitalize justify-start"
                       fullWidth
                     >
-                      <div className={`flex items-center transition-all duration-300 ${
-                        sidebarExpanded 
-                          ? "gap-4" 
-                          : "justify-center group-hover:gap-4 group-hover:justify-start"
-                      }`} title={name}>
+                      <div className="flex items-center transition-all duration-300 gap-4" title={name}>
                         <div className="flex-shrink-0">
                           {icon}
                         </div>
-                        <div
-                          className={`font-medium capitalize transition-all duration-300 whitespace-nowrap ${
-                            !sidebarExpanded 
-                              ? 'opacity-0 w-0 overflow-hidden group-hover:opacity-100 group-hover:w-auto' 
-                              : 'opacity-100 w-auto'
-                          }`}
-                        >
+                        <div className="font-medium capitalize transition-all duration-300 whitespace-nowrap opacity-100 w-auto">
                           {name}
                         </div>
                       </div>
@@ -198,40 +165,6 @@ export function Sidenav({ brandImg, brandName, routes }) {
               </li>
             ))}
         </ul>
-      </div>
-      
-      {/* Enhanced Toggle Button - Fixed for reliable clicking */}
-      <div 
-        className={`
-          absolute top-1/2 transform -translate-y-1/2 z-[1300] transition-all duration-300
-          ${sidebarExpanded ? '-right-4' : '-right-4'}
-          ${sidebarExpanded ? 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800' : 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800'}
-          shadow-xl rounded-full cursor-pointer select-none
-          flex items-center justify-center w-10 h-16
-          hover:shadow-2xl hover:scale-110 active:scale-95
-          border-3 border-white/30 hover:border-white/50
-          backdrop-blur-sm
-        `}
-        onClick={(e) => {
-          console.log('🟢 CLICK EVENT FIRED!', { sidebarExpanded, timestamp: new Date().toISOString() }); // Debug log
-          e.preventDefault();
-          e.stopPropagation();
-          handleToggle();
-        }}
-        onMouseDown={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-        title={sidebarExpanded ? "Collapse Navigation Panel" : "Expand Navigation Panel"}
-        style={{ pointerEvents: 'all' }}
-      >
-        <div className="flex items-center justify-center h-full transition-all duration-300 pointer-events-none">
-          {sidebarExpanded ? (
-            <ChevronLeftIcon className="h-6 w-6 text-white drop-shadow-lg" />
-          ) : (
-            <ChevronRightIcon className="h-6 w-6 text-white drop-shadow-lg" />
-          )}
-        </div>
       </div>
     </aside>
     </>
