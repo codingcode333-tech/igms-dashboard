@@ -529,6 +529,7 @@ export function Home() {
       }
 
       setLoading(dispatch, false);
+      setSearching(false);
     };
 
     // Only load if headerAttributes are properly set
@@ -536,66 +537,6 @@ export function Home() {
       loadChartsData();
     }
   }, [headerAttributes.ministry, headerAttributes.from, headerAttributes.to]);
-
-  useEffect(() => {
-    const BarChart = async () => {
-      setLoading(dispatch, true)
-      let jsonData = await cacheable(async () => await dashboardService.getBarGraphData(ministry, from, to), `bar-chart-${ministry}-${from}-${to}-data`, () => setLoading(dispatch, false))
-      // let jsonData = Object.values(data)
-
-      if (user.username == 'dpg') {
-        setTimeout(async () => {
-          let additional_jsonData = await cacheable(async () => await dashboardService.getBarGraphData("DARPG/D", from, to), `bar-chart-${ministry}-${from}-${to}-additional-data`, () => setLoading(dispatch, false))
-          // let additional_jsonData = Object.values(additional_data)
-
-          jsonData = appendStateData(jsonData, additional_jsonData, 'key')
-          saveBarChartData(jsonData)
-        }, 2000)
-      }
-
-      saveBarChartData(jsonData)
-      setSearching(false)
-    }
-
-    const LineChart = async () => {
-      setLoading(dispatch, true)
-      let jsonData = await cacheable(async () => await dashboardService.getLineGraphData(ministry, from, to), `line-chart-${ministry}-${from}-${to}-data`, () => setLoading(dispatch, false))
-      // let jsonData = Object.values(data)
-
-      if (user.username == 'dpg') {
-        setTimeout(async () => {
-          let additional_jsonData = await cacheable(async () => await dashboardService.getLineGraphData("DARPG/D", from, to), `line-chart-${ministry}-${from}-${to}-additional-data`, () => setLoading(dispatch, false))
-          // let additional_jsonData = Object.values(additional_data)
-
-          jsonData = appendStateData(jsonData, additional_jsonData, 'recvd_date')
-
-          setLineChartData(jsonData)
-        }, 2500)
-      }
-
-      setLineChartData(jsonData)
-      setSearching(false)
-    }
-
-    const loadTopCategories = async () => {
-      setTopCategories(
-        await cacheable(async () => await getTopCategories({ ministry, startDate: from, endDate: to }), `categories-${ministry}-${from}-${to}-data`)
-      )
-    }
-
-    if (searching) {
-      BarChart();
-      LineChart();
-
-      // loadTopCategories()
-
-      setHeaderAttributes({
-        ministry,
-        from,
-        to
-      })
-    }
-  }, [searching])
 
   useEffect(() => {
     if (BarChartSeries) {
