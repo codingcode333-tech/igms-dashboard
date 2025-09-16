@@ -631,7 +631,7 @@ export function RCA() {
             return dateB.getTime() - dateA.getTime()
           })
           
-          console.log('📅 Grievances sorted by date (newest first):', sortedGrievances.slice(0, 3).map(g => ({
+          console.log('📅 Grievance list sorted by date (newest first):', sortedGrievances.slice(0, 3).map(g => ({
             regNo: g.registration_no,
             receivedDate: g.received_date || g.recvd_date || g.date
           })))

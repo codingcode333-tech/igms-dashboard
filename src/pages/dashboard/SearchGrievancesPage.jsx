@@ -89,13 +89,13 @@ export function SearchGrievancesPage() {
   };
 
   return (
-    <div className="mt-6 mb-8 flex flex-col gap-6">
+    <div className="container mx-auto px-4 mt-6 mb-8 flex flex-col gap-6">
       {/* Page Header */}
-      <Card className={isDark ? 'bg-gray-800' : 'bg-white'}>
+      <Card className={`${isDark ? 'bg-gray-800' : 'bg-white'} max-w-7xl mx-auto`}>
         <CardHeader
           variant="gradient"
           color="blue"
-          className="mb-6 p-6"
+          className="mb-6 p-4 sm:p-6"
         >
           <Typography variant="h4" color="white" className="font-bold">
             Search Grievances
@@ -105,12 +105,12 @@ export function SearchGrievancesPage() {
           </Typography>
         </CardHeader>
 
-        <CardBody className="px-6 pb-6">
+        <CardBody className="p-4 sm:p-6 pb-6">
           {/* Search Filters */}
           <div className="space-y-4">
             {/* Primary Search Input */}
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-              <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="sm:col-span-2 lg:col-span-3">
                 <Input
                   type="text"
                   label="Search Grievances"
@@ -148,21 +148,25 @@ export function SearchGrievancesPage() {
             </div>
 
             {/* Advanced Filters */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <MinistryAutocomplete
-                ministry={filters.ministry}
-                setMinistry={(val) => setFilters({...filters, ministry: val})}
-              />
-              
-              <StateDistrictAutocomplete
-                stateDistrict={`${filters.state} > ${filters.district}`}
-                setStateDistrict={(val) => {
-                  const [state, district] = val.split(' > ');
-                  setFilters({...filters, state: state || 'All', district: district || 'All'});
-                }}
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="sm:col-span-2 lg:col-span-1">
+                <MinistryAutocomplete
+                  ministry={filters.ministry}
+                  setMinistry={(val) => setFilters({...filters, ministry: val})}
+                />
+              </div>
+             
+              <div className="sm:col-span-2 lg:col-span-1">
+                <StateDistrictAutocomplete
+                  stateDistrict={`${filters.state} > ${filters.district}`}
+                  setStateDistrict={(val) => {
+                    const [state, district] = val.split(' > ');
+                    setFilters({...filters, state: state || 'All', district: district || 'All'});
+                  }}
+                />
+              </div>
 
-              <div>
+              <div className="sm:col-span-2 lg:col-span-1">
                 <DateRangePicker
                   startDate={filters.startDate}
                   endDate={filters.endDate}
@@ -171,7 +175,7 @@ export function SearchGrievancesPage() {
                 />
               </div>
 
-              <div>
+              <div className="sm:col-span-2 lg:col-span-1">
                 <Select
                   label="Priority"
                   value={filters.priority}

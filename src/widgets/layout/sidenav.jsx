@@ -125,35 +125,37 @@ export function Sidenav({ brandImg, brandName, routes }) {
             </li>
           )}
           {
-            routes[0].pages.map(({ icon, name, path }, key) => (
-              <li key={key}>
-                <NavLink to={`/${routes[0].layout}${path}`} onClick={setToDefault}>
-                  {({ isActive }) => (
-                    <Button
-                      variant={isActive ? "gradient" : "text"}
-                      color={
-                        isActive
-                          ? sidenavColor
-                          : sidenavType === "dark"
-                            ? "white"
-                            : "blue-gray"
-                      }
-                      className="px-3 capitalize justify-start"
-                      fullWidth
-                    >
-                      <div className="flex items-center transition-all duration-300 gap-4" title={name}>
-                        <div className="flex-shrink-0">
-                          {icon}
+            routes[0].pages
+              .filter(({ hidden }) => !hidden)
+              .map(({ icon, name, path }, key) => (
+                <li key={key}>
+                  <NavLink to={`/${routes[0].layout}${path}`} onClick={setToDefault}>
+                    {({ isActive }) => (
+                      <Button
+                        variant={isActive ? "gradient" : "text"}
+                        color={
+                          isActive
+                            ? sidenavColor
+                            : sidenavType === "dark"
+                              ? "white"
+                              : "blue-gray"
+                        }
+                        className="px-3 capitalize justify-start"
+                        fullWidth
+                      >
+                        <div className="flex items-center transition-all duration-300 gap-4" title={name}>
+                          <div className="flex-shrink-0">
+                            {icon}
+                          </div>
+                          <div className="font-medium capitalize transition-all duration-300 whitespace-nowrap opacity-100 w-auto">
+                            {name}
+                          </div>
                         </div>
-                        <div className="font-medium capitalize transition-all duration-300 whitespace-nowrap opacity-100 w-auto">
-                          {name}
-                        </div>
-                      </div>
-                    </Button>
-                  )}
-                </NavLink>
-              </li>
-            ))}
+                      </Button>
+                    )}
+                  </NavLink>
+                </li>
+              ))}
         </ul>
       </div>
     </aside>

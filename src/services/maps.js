@@ -7,13 +7,69 @@ const handleCatch = (error, reject) => {
     reject(error)
 }
 
-const getHeatmapGrievances = (ministry, from, to) => {
-    return httpService.auth.get('/graph_statistics3', {
-        params: {
-            'startDate': from,
-            'endDate': to,
-            'ministry': ministry
+const getHeatmapGrievances = (ministry, from, to, state = 'All', district = 'All') => {
+    // For the heatmap, we want to get data for all states initially
+    // But if a specific state is selected, we should filter by that state
+    // The stateWiseCounts function already handles this properly
+    
+    // Create filters object that stateWiseCounts expects
+    const filters = {
+        ministry,
+        startDate: from,
+        endDate: to,
+        state: state, // Pass the state filter
+        district: district, // Pass the district filter
+        query: '', // Empty query for general heatmap
+        type: 1, // Semantic search type
+        threshold: defaultThreshold
+    };
+    
+    // Use the stateWiseCounts function which properly handles all filters
+    return stateWiseCounts(filters, 1).then(result => {
+        // Transform the result to match the expected format of the original function
+        const stateDistribution = result.data.state_wise_distribution || {};
+        
+        // Convert to the format expected by the HeatMap2 component
+        // The HeatMap2 component expects an array of objects with state and count properties
+        let formattedData = [];
+        
+        // If a specific state is selected, only include that state in the results
+        if (state !== 'All') {
+            const stateName = state.toLowerCase();
+            if (stateDistribution[stateName]) {
+                formattedData = [{
+                    state: stateName,
+                    count: stateDistribution[stateName]
+                }];
+            } else {
+                // If no data for the selected state, include it with count 0
+                formattedData = [{
+                    state: stateName,
+                    count: 0
+                }];
+            }
+        } else {
+            // If no specific state is selected, include all states
+            formattedData = Object.keys(stateDistribution).map(stateName => ({
+                state: stateName,
+                count: stateDistribution[stateName]
+            }));
         }
+        
+        return {
+            data: formattedData,
+            status: 200
+        };
+    }).catch(error => {
+        console.error('Error in getHeatmapGrievances:', error);
+        // Fallback to original implementation
+        return httpService.auth.get('/graph_statistics3', {
+            params: {
+                'startDate': from,
+                'endDate': to,
+                'ministry': ministry
+            }
+        });
     })
 }
 

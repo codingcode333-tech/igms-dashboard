@@ -28,35 +28,46 @@ export const SpatialSearch = () => {
     }
 
     return (
-        <div className={`min-h-screen ${isDark ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'}`}>
+        <div 
+            className={`min-h-screen ${isDark ? 'bg-gray-900' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50'}`}
+            style={{
+                backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Blank_Map_of_India.svg/800px-Blank_Map_of_India.svg.png')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundAttachment: 'fixed',
+                backgroundBlendMode: 'soft-light',
+                opacity: isDark ? 0.8 : 0.9
+            }}
+        >
             {/* Search Filters Section */}
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
-                <div className="w-full max-w-4xl">
+            <div className="container mx-auto px-4 py-6 bg-gray-50 flex flex-col items-center justify-center min-h-[70vh]">
+                <div className="w-full max-w-6xl">
                     {/* Search Parameters Card */}
-                    <Card className="bg-white shadow-lg border border-gray-200 rounded-lg">
-                        <CardBody className="p-8">
+                    <Card className="bg-white shadow-lg border border-gray-200 rounded-lg overflow-hidden h-full" style={{ backdropFilter: 'blur(15px)', backgroundColor: 'rgba(255, 255, 255, 0.5)', boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(255, 255, 255, 0.3)' }}>
+                        <CardBody className="p-4 sm:p-8">
                             {/* Header */}
-                            <Typography variant="h4" color="gray" className="font-medium mb-8 text-gray-600">
+                            <Typography variant="h4" color="gray" className="font-medium mb-6 sm:mb-8 text-gray-600">
                                 Search Parameters
                             </Typography>
 
                             {/* Search Query Row */}
-                            <div className="flex gap-3 items-stretch mb-8">
-                                <div className="w-48">
+                            <div className="flex flex-col sm:flex-row gap-3 items-stretch mb-8">
+                                <div className="w-full sm:w-48">
                                     <SpatialSearchTypeSelector />
                                 </div>
                                 <div className="flex-1">
                                     <SpatialSearchInput />
                                 </div>
-                                <div>
+                                <div className="w-full sm:w-auto">
                                     <SpatialSearchButton />
                                 </div>
                             </div>
 
                             {/* Main Content Grid */}
-                            <div className="grid grid-cols-2 gap-8 mb-8">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 mb-8">
                                 {/* Date Range - Left Column */}
-                                <div>
+                                <div className="lg:col-span-1">
                                     <Typography variant="h6" color="gray" className="font-medium mb-2 text-gray-600">
                                         Date Range
                                     </Typography>
@@ -67,7 +78,7 @@ export const SpatialSearch = () => {
                                 </div>
 
                                 {/* State/District & Ministry - Right Column */}
-                                <div className="space-y-6">
+                                <div className="space-y-6 lg:col-span-1">
                                     <div className="relative z-30">
                                         <Typography variant="h6" color="gray" className="font-medium mb-4 text-gray-600">
                                             State / District
@@ -101,7 +112,7 @@ export const SpatialSearch = () => {
             </div>
 
             {/* Data Display Section */}
-            <div className="px-4 pb-8">
+            <div className="container mx-auto px-4 pb-8">
                 <SpatialDataDisplay updateGrievanceLength={setGrievanceLength} />
             </div>
         </div>
@@ -204,6 +215,20 @@ export const SpatialDataDisplay = ({
             const data = (await grievanceService.queryGrievances(temp ?? tempFilters ?? filters, pageno)).data
             let list = data.data[0] == '{}' ? [] : data.data
 
+            // Sort grievances by received date (newest first)
+            if (list && Array.isArray(list) && list.length > 0) {
+                list = list.sort((a, b) => {
+                    // Try different date fields
+                    const dateA = new Date(a.recvd_date || a.received_date || a.date || '1970-01-01');
+                    const dateB = new Date(b.recvd_date || b.received_date || b.date || '1970-01-01');
+                    
+                    // Sort in descending order (newest first)
+                    return dateB.getTime() - dateA.getTime();
+                });
+                
+                console.log('📅 Grievance list sorted by date (newest first)');
+            }
+
             if (!preventHeatmapUpdate) {
                 const stateDistribution = data.count > 0 
                     ? (await mapService.stateWiseCounts(filters, pageno)).data?.state_wise_distribution
@@ -288,11 +313,11 @@ export const SpatialDataDisplay = ({
     return (
         <div className="max-w-7xl mx-auto" ref={listingRef}>
             {stateWiseGrievances.length > 0 && (
-                <div className={`grid ${grievances.length > 0 ? 'lg:grid-cols-5' : 'lg:grid-cols-1'} gap-6`}>
+                <div className={`grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6`}>
                     {/* Map Visualization Section */}
-                    <div className={`${grievances.length > 0 ? 'lg:col-span-2' : 'lg:col-span-1'}`}>
-                        <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-lg border h-full`}>
-                            <CardBody className="p-3">
+                    <div className="lg:col-span-2 xl:col-span-3 order-2 lg:order-1">
+                        <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-lg border flex-1 min-h-[60vh]`} style={{ backdropFilter: 'blur(15px)', backgroundColor: isDark ? 'rgba(31, 41, 55, 0.5)' : 'rgba(255, 255, 255, 0.5)' }}>
+                            <CardBody className="p-3 flex flex-col h-full">
                                 <div className="flex items-center gap-2 mb-3">
                                     <div className={`p-1.5 rounded-lg ${isDark ? 'bg-purple-600' : 'bg-purple-100'}`}>
                                         <MapPinIcon className={`h-4 w-4 ${isDark ? 'text-white' : 'text-purple-600'}`} />
@@ -307,7 +332,7 @@ export const SpatialDataDisplay = ({
                                     </div>
                                 </div>
                                 
-                                <div className="h-[70vh] rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600">
+                                <div className="flex-1 min-h-[50vh] rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 relative" style={{ boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '0.5rem' }}>
                                     <HeatMap2
                                         grievances={stateWiseGrievances}
                                         className="w-full h-full"
@@ -337,9 +362,9 @@ export const SpatialDataDisplay = ({
 
                     {/* Grievance List Section */}
                     {grievances.length > 0 && (
-                        <div className="lg:col-span-3">
-                            <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-lg border h-full`}>
-                                <CardBody className="p-3">
+                        <div className="lg:col-span-1 xl:col-span-2 order-1 lg:order-2">
+                            <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-lg border flex-1 min-h-[60vh]`} style={{ backdropFilter: 'blur(15px)', backgroundColor: isDark ? 'rgba(31, 41, 55, 0.5)' : 'rgba(255, 255, 255, 0.5)' }}>
+                                <CardBody className="p-3 flex flex-col h-full">
                                     <div className="flex items-center gap-2 mb-3">
                                         <div className={`p-1.5 rounded-lg ${isDark ? 'bg-blue-600' : 'bg-blue-100'}`}>
                                             <ChartBarIcon className={`h-4 w-4 ${isDark ? 'text-white' : 'text-blue-600'}`} />
@@ -354,7 +379,7 @@ export const SpatialDataDisplay = ({
                                         </div>
                                     </div>
                                     
-                                    <div className="h-[70vh] overflow-hidden">
+                                    <div className="flex-1 min-h-[50vh] overflow-hidden">
                                         <GrievanceList
                                             compactTitle={false}
                                             title=""
@@ -380,13 +405,13 @@ export const SpatialDataDisplay = ({
             {/* No Data State */}
             {/* Loading State */}
             {searching && (
-                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-xl border`}>
-                    <CardBody className="p-12 text-center">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                        <Typography variant="h5" color={isDark ? "white" : "blue-gray"} className="mb-2">
+                <Card className={`${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white'} shadow-xl border max-w-4xl mx-auto`} style={{ backdropFilter: 'blur(15px)', backgroundColor: isDark ? 'rgba(31, 41, 55, 0.4)' : 'rgba(255, 255, 255, 0.5)', boxShadow: '0 15px 35px rgba(0, 0, 0, 0.15)', border: '1px solid rgba(255, 255, 255, 0.2)' }}>
+                    <CardBody className="p-8 sm:p-12 text-center">
+                        <div className="animate-spin rounded-full h-14 w-14 border-b-2 border-blue-500 mx-auto mb-6"></div>
+                        <Typography variant="h5" color={isDark ? "white" : "blue-gray"} className="mb-3 font-semibold">
                             Analyzing Spatial Data...
                         </Typography>
-                        <Typography variant="small" color="gray">
+                        <Typography variant="small" color="gray" className="text-md">
                             Processing geographic distribution patterns
                         </Typography>
                     </CardBody>

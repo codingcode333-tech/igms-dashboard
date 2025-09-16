@@ -50,16 +50,16 @@ export function Dashboard() {
       />
       
       {/* Main Content Area with Enhanced Spacing */}
-      <div 
+      <div
         ref={mainContentRef}
-        className={`transition-all duration-300 ${
-          openSidenav 
-            ? "ml-80" // 320px = sidebar(288px) + gap(32px)
+        className={`transition-all duration-300 ml-0 lg:ml-80 ${
+          openSidenav
+            ? "lg:ml-80" // 320px = sidebar(288px) + gap(32px)
             : "ml-0"  // No margin when sidebar is closed
         }`}
       >
         {/* Content Wrapper with Padding */}
-        <div className="p-4">
+        <div className="container mx-auto p-4 sm:p-6">
           <DashboardNavbar />
 
         <Configurator />

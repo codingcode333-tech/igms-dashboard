@@ -31,6 +31,79 @@ import { ArrowTopRightOnSquareIcon, CheckBadgeIcon, CheckIcon, ChevronDoubleLeft
 import { Loader } from "@/pages/dashboard/CategoricalTree";
 import { toast } from "react-toastify";
 
+// Define category specific keywords
+const CATEGORY_KEYWORDS = {
+  ration: [
+    'ration', 'food', 'card', 'dealer', 'apl', 'bpl', 'wheat', 'shop', 'pds', 
+    'supply', 'holder', 'depot', 'rasan', 'providing', 'distribution'
+  ]
+};
+
+// Helper to check if content matches ration category
+const matchesRationCategory = (content) => {
+  if (!content) return false;
+  content = content.toLowerCase();
+
+  // Check for key ration-related word combinations
+  const keyPhrases = [
+    ['ration', 'card'],
+    ['food', 'supply'],
+    ['apl', 'card'],
+    ['bpl', 'card'],
+    ['ration', 'shop'],
+    ['pds', 'shop'],
+    ['food', 'distribution']
+  ];
+
+  // Return true if any key phrase is found
+  return keyPhrases.some(([word1, word2]) => 
+    content.includes(word1) && content.includes(word2)
+  );
+};
+
+const matchesCategory = (grievance, rootCategory, subCategories = []) => {
+  if (!grievance?.complaintDetails) return false;
+
+  // For root category, show all grievances
+  if (!rootCategory || rootCategory === 'root') return true;
+
+  const content = grievance.complaintDetails.toLowerCase();
+
+  // If a subcategory is selected, use its keywords for filtering
+  let keywords = [];
+  if (subCategories && subCategories.length > 0 && typeof subCategories[0] === 'string') {
+    // Use the first subcategory string (from RCA tree) as comma-separated keywords
+    keywords = subCategories[0].split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
+  } else {
+    // Otherwise, use rootCategory as comma-separated keywords
+    keywords = rootCategory.split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
+  }
+
+  // Count how many keywords are present in the content
+  let matchCount = 0;
+  keywords.forEach(keyword => {
+    if (keyword.length > 2 && content.includes(keyword)) matchCount++;
+  });
+
+  // Require at least 2 keyword matches for relevance
+  return matchCount >= 2;
+};
+
+const extractComplaintDetails = (grievance) => {
+  if (!grievance) return null;
+  
+  // Try different fields in priority order
+  const details = [
+    grievance.complaintDetails,
+    grievance.subject_content, 
+    grievance.originalData?.complaintDetails,
+    grievance.originalData?.subject,
+    grievance.originalData?.description
+  ].find(text => text && text.trim());
+
+  return details || null;
+};
+
 export function GrievanceList({
   title = '',
   titleBarHidden = false,
@@ -121,37 +194,36 @@ export function GrievanceList({
   const handleOpenModal = async (G_id) => {
     console.log('🔍 Opening modal for grievance ID:', G_id);
     
-    // Find the grievance data from our current list
-    const selectedGrievance = grievances.find(item => item.registration_no === G_id);
+    // Find the grievance data from filtered list
+    const selectedGrievance = filteredGrievances.find(
+      item => item.registration_no === G_id
+    );
     
     if (selectedGrievance) {
-      console.log('✅ Found grievance data in current list:', selectedGrievance);
+      console.log('✅ Found grievance data:', selectedGrievance);
       
-      // Prepare data for our new CDIS modal
+      const details = extractComplaintDetails(selectedGrievance);
+      
+      // Only include relevant data based on category
       const grievanceData = {
         registration_no: selectedGrievance.registration_no,
-        state: selectedGrievance.state,
-        district: selectedGrievance.district,
+        state: selectedGrievance.state || 'Not Available',
+        district: selectedGrievance.district || 'Not Available', 
         name: selectedGrievance.name,
         ministry: selectedGrievance.ministry,
-        recvd_date: selectedGrievance.recvd_date,
-        closing_date: selectedGrievance.closing_date,
+        recvd_date: formatDate(selectedGrievance.recvd_date, true),
+        closing_date: formatDate(selectedGrievance.closing_date),
         status: selectedGrievance.status || 'Active',
-        
-        // Map CDIS fields for detailed information
-        address: selectedGrievance.originalData?.address || selectedGrievance.originalData?.location || 'Address not available',
-        emailaddr: selectedGrievance.originalData?.email || selectedGrievance.originalData?.emailId || 'Email not available',
-        mobile_no: selectedGrievance.originalData?.mobile || selectedGrievance.originalData?.phoneNumber || selectedGrievance.originalData?.contactNumber || 'Phone not available',
-        subject_content: selectedGrievance.originalData?.complaintDetails || selectedGrievance.originalData?.subject || selectedGrievance.originalData?.description || selectedGrievance.complaintDetails || 'Details not available',
-        
-        // Keep original data for additional info
-        originalData: selectedGrievance.originalData
+        subject_content: details
       };
-      
+
       setSelectedGrievance(grievanceData);
       setModalIsOpen(true);
+      
+      // Load full details
+      await loadModalData(G_id);
     } else {
-      console.error('❌ Grievance not found in current list:', G_id);
+      toast.error('Grievance details not found');
     }
   };
 
@@ -275,19 +347,73 @@ export function GrievanceList({
     return rno;
   }
 
-  useEffect(() => {
-    // Sort grievances by date (newest first) before setting them
-    const sortedGrievances = [...grievances].sort((a, b) => {
-      const dateA = new Date(a.recvd_date || a.received_date || a.date)
-      const dateB = new Date(b.recvd_date || b.received_date || b.date)
-      
-      // Sort in descending order (newest first)
-      return dateB.getTime() - dateA.getTime()
-    })
+  const cleanupData = (item) => {
+    return {
+      ...item,
+      state: item.state === 'Unknown' ? 'Not Available' : item.state,
+      district: item.district === 'Unknown' ? 'Not Available' : item.district,
+      name: item.name?.trim() || 'Not Available',
+      recvd_date: item.recvd_date || item.received_date || item.date,
+      closing_date: item.closing_date || '',
+    };
+  };
+
+  // Add new helper functions for better category matching
+  const calculateRelevanceScore = (content, categories) => {
+    if (!content) return 0;
+    content = content.toLowerCase();
+    let score = 0;
+    let matches = 0;
     
-    console.log('📅 Grievance list sorted by date (newest first)')
-    setFilteredGrievances(sortedGrievances)
-  }, [grievances])
+    // Give more weight to exact phrase matches
+    categories.forEach(category => {
+      const cat = category.toLowerCase();
+      if (content.includes(cat)) {
+        matches++;
+        // Give extra weight for phrases that appear multiple times
+        score += (content.split(cat).length - 1) * 1.5;
+      }
+    });
+    
+    // Calculate final score based on matches and content length
+    return (score + matches) / (categories.length * 2);
+  };
+
+  // Update useEffect for better filtering
+  useEffect(() => {
+    if (grievances && Array.isArray(grievances)) {
+      console.log('Filtering grievances for categories:', {
+        root: filters?.rootCategory,
+        sub: filters?.subCategories
+      });
+
+      const validGrievances = grievances
+        .filter(item => {
+          const isValid = item && item.registration_no;
+          const categoryMatch = matchesCategory(item, filters?.rootCategory, filters?.subCategories);
+          
+          if (categoryMatch) {
+            console.log('Matched grievance:', {
+              id: item.registration_no,
+              content: item.complaintDetails?.slice(0, 100)
+            });
+          }
+
+          return isValid && categoryMatch;
+        })
+        .map(cleanupData)
+        .sort((a, b) => {
+          const dateA = new Date(a.recvd_date || '1970-01-01');
+          const dateB = new Date(b.recvd_date || '1970-01-01');
+          return dateB.getTime() - dateA.getTime();
+        });
+
+      console.log(`📋 Filtered ${validGrievances.length} grievances matching categories`);
+      setFilteredGrievances(validGrievances);
+    } else {
+      setFilteredGrievances([]);
+    }
+  }, [grievances, filters?.rootCategory, filters?.subCategories])
 
   return (
     <div className={`mb-0 flex flex-col gap-12 ${((titleBarHidden || compactTitle) ? "mt-10" : "mt-12")} ${compactTitle && "mt-3"} ${(scroll ? " h-[100%]" : "")}`}>

@@ -329,7 +329,7 @@ const SemanticRCA = () => {
     }
 
     return (
-        <div className="p-4">
+        <div className="container mx-auto px-4 py-6 max-w-7xl">
             {/* <ParameterForm onSubmit={handleFormSubmit} /> */}
             <Filters filters={parameters} setFilters={handleFormSubmit} />
 
@@ -337,23 +337,25 @@ const SemanticRCA = () => {
 
             {/* {loading && <AILoader />} */}
 
-            {emptyResult && !loading && <p className="text-red-900">No data found.</p>}
+            {emptyResult && !loading && <p className="text-red-900 text-center py-8">No data found.</p>}
 
             {
                 !loading && !emptyResult &&
                 <>
                     {/* Show search info if semantic search was used */}
                     {parameters.searchQuery && (
-                        <div className="semantic-search-info">
+                        <div className="semantic-search-info bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-4 text-center">
                             🧠 Semantic Search Results for: "<strong>{parameters.searchQuery}</strong>"
                         </div>
                     )}
 
-                    <div className="semantic-chart-container semantic-treemap">
-                        <Chart
-                            series={data}
-                            pushPath={handleTileClick}
-                        />
+                    <div className="semantic-chart-container semantic-treemap w-full mb-6">
+                        <div className="w-full h-[400px] sm:h-[500px] rounded-lg overflow-hidden shadow-lg">
+                            <Chart
+                                series={data}
+                                pushPath={handleTileClick}
+                            />
+                        </div>
                     </div>
 
                     {/* Only show breadcrumbs if we have meaningful navigation path, not just ministry */}
@@ -366,13 +368,15 @@ const SemanticRCA = () => {
 
                     {
                         !loading && !emptyResult && paginatedData.length > 0 &&
-                        <GrievanceListBox
-                            list={paginatedData}
-                            total={transactionIds.length}
-                            pageno={currentBatchIndex + 1}
-                            goTo={goTo}
-                            searching={isTableLoading}
-                        />
+                        <div className="min-h-[60vh]">
+                            <GrievanceListBox
+                                list={paginatedData}
+                                total={transactionIds.length}
+                                pageno={currentBatchIndex + 1}
+                                goTo={goTo}
+                                searching={isTableLoading}
+                            />
+                        </div>
                     }
                 </>
             }

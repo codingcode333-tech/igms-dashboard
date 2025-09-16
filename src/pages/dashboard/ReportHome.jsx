@@ -244,132 +244,107 @@ const ReportHome = () => {
     }
 
     return (
-        <Box marginTop="40px">
-            <Paper elevation={3} sx={{ padding: 4, maxWidth: 720, margin: '0 auto' }}>
-                {/* <Typography variant="h4" gutterBottom>
-                    Generate AI Categories
-                </Typography> */}
-                <form onSubmit={handleSubmit}>
-                    <Stack container spacing={2}>
-                        <Stack item xs={12}>
-                            {/* <TextField
-                                label="Ministry"
-                                value={ministry}
-                                onChange={(e) => setMinistry(e.target.value)}
-                                required
-                                fullWidth
-                            /> */}
-                            <MinistryAutocomplete
-                                ministry={selectedMinistry}
-                                setMinistry={setSelectedMinistry}
-                            />
-                        </Stack>
-                        {/* <Stack item xs={6}>
-                            <TextField
-                                label="Start Date"
-                                type="date"
-                                InputLabelProps={{ shrink: true }}
-                                value={startDate}
-                                onChange={(e) => setStartDate(e.target.value)}
-                                required
-                                fullWidth
-                            />
-                        </Stack> */}
-                        <Stack item xs={6}>
-                            <DateRangePicker
-                                value={dateRange}
-                                onChange={updateDateRange}
-                            />
+        <div className="mt-10 container mx-auto px-4">
+            <div className="bg-white shadow-lg rounded-lg p-4 sm:p-6 max-w-4xl mx-auto">
+            {/* <Typography variant="h4" gutterBottom>
+                Generate AI Categories
+            </Typography> */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="w-full">
+                        {/* <TextField
+                            label="Ministry"
+                            value={ministry}
+                            onChange={(e) => setMinistry(e.target.value)}
+                            required
+                            fullWidth
+                        /> */}
+                        <MinistryAutocomplete
+                            ministry={selectedMinistry}
+                            setMinistry={setSelectedMinistry}
+                        />
+                    </div>
+                    {/* <Stack item xs={12}>
+                        <TextField
+                            label="Number of Clusters"
+                            type="number"
+                            InputLabelProps={{ shrink: true }}
+                            value={number_of_clusters}
+                            onChange={(e) => setNumberofClusters(e.target.value)}
+                            required
+                            fullWidth
+                        />
+                        
+                        <Input
+                            type="number"
+                            label="Number of Clusters"
+                            value={number_of_clusters}
+                            className="bg-white-input basic-input font-bold"
+                            onChange={(e) => setNumberofClusters(e.target.value)}
+                            autoFocus
+                        />
+                    </Stack> */}
+                    <div className="w-full">
+                        {/* <LoadingButton
+                            type="submit"
+                            variant="contained"
+                            loading={loading}
+                            fullWidth
+                        >
+                            Submit
+                        </LoadingButton> */}
 
-                            {/* <TextField
-                                label="End Date"
-                                type="date"
-                                InputLabelProps={{ shrink: true }}
-                                value={endDate}
-                                onChange={(e) => setEndDate(e.target.value)}
-                                required
-                                fullWidth
-                            /> */}
-                        </Stack>
-                        {/* <Stack item xs={12}>
-                            <TextField
-                                label="Number of Clusters"
-                                type="number"
-                                InputLabelProps={{ shrink: true }}
-                                value={number_of_clusters}
-                                onChange={(e) => setNumberofClusters(e.target.value)}
-                                required
-                                fullWidth
-                            />
-                            
-                            <Input
-                                type="number"
-                                label="Number of Clusters"
-                                value={number_of_clusters}
-                                className="bg-white-input basic-input font-bold"
-                                onChange={(e) => setNumberofClusters(e.target.value)}
-                                autoFocus
-                            />
-                        </Stack> */}
-                        <Stack item xs={12}>
-                            {/* <LoadingButton
-                                type="submit"
-                                variant="contained"
-                                loading={loading}
-                                fullWidth
-                            >
-                                Submit
-                            </LoadingButton> */}
+                        <SearchButton searching={loading} startSearch={handleSubmit} />
+                    </div>
 
-                            <SearchButton searching={loading} startSearch={handleSubmit} />
-                        </Stack>
-
-                        <div className='text-sm text-blue-gray-300'>
-                            ! Due to hardware constraints, please limit the search for a range of 2 months only.
-                        </div>
-                    </Stack>
+                    <div className='text-sm text-blue-gray-300'>
+                        ! Due to hardware constraints, please limit the search for a range of 2 months only.
+                    </div>
                 </form>
-            </Paper>
+            </div>
 
             {apiData && (
-                <Box mt={4}>
-                    <Paper elevation={3} sx={{ padding: 4, maxWidth: 1080, margin: '40px auto' }}>
-                        <Typography variant="h5" gutterBottom>
-                            AI Categories
-                        </Typography>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Words</TableCell>
-                                    <TableCell>Count</TableCell>
-                                    <TableCell>Category</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {Object.keys(apiData).map((key) => (
-                                    <TableRow key={key}>
-                                        <TableCell>{apiData[key]?.words?.join(', ')}</TableCell>
-                                        <TableCell>{apiData[key]?.count}</TableCell>
-                                        <TableCell>
-                                            <TextField
-                                                label="Category"
-                                                value={categories[key] || ''}
-                                                onChange={(e) => handleCategoryChange(key, e.target.value)}
-                                            />
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
+                <div className="mt-10 container mx-auto px-4">
+                    <div className="bg-white shadow-lg rounded-lg p-4 sm:p-6 max-w-6xl mx-auto">
+                        <h2 className="text-2xl font-semibold mb-4 text-gray-800">AI Categories</h2>
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full table-auto border-collapse">
+                                <thead>
+                                    <tr className="bg-gray-50">
+                                        <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">Words</th>
+                                        <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">Count</th>
+                                        <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">Category</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {Object.keys(apiData).map((key) => (
+                                        <tr key={key} className="hover:bg-gray-50">
+                                            <td className="border border-gray-300 px-4 py-2 text-sm">{apiData[key]?.words?.join(', ')}</td>
+                                            <td className="border border-gray-300 px-4 py-2 text-sm font-medium">{apiData[key]?.count}</td>
+                                            <td className="border border-gray-300 px-4 py-2">
+                                                <input
+                                                    type="text"
+                                                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                                                    placeholder="Enter category"
+                                                    value={categories[key] || ''}
+                                                    onChange={(e) => handleCategoryChange(key, e.target.value)}
+                                                />
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
-                        <SearchButton searching={loadingCategory} startSearch={handleCategorySubmit} actionText='Submit Categories' className='mt-2' />
-                        {/* <Button variant="contained" color="primary" onClick={handleCategorySubmit} sx={{ marginTop: 2 }}>
-                            Submit Categories
-                        </Button> */}
-                    </Paper>
-                </Box>
+                        <div className="mt-4">
+                            <SearchButton searching={loadingCategory} startSearch={handleCategorySubmit} actionText='Submit Categories' className='w-full sm:w-auto' />
+                            {/* <Button variant="contained" color="primary" onClick={handleCategorySubmit} sx={{ marginTop: 2 }}>
+                                Submit Categories
+                            </Button> */}
+                        </div>
+                    </div>
+                </div>
             )}
-        </Box>
+        </div>
     );
 };
 

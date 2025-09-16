@@ -136,7 +136,7 @@ export function RedressalFlagging() {
             searchDistrictWiseRanking()
     }, [selectedStateForRanking])
 
-    return <div>
+    return <div className="container mx-auto px-4 py-6">
         <Filters
             filters={filters}
             setFilters={setFilters}
@@ -150,10 +150,10 @@ export function RedressalFlagging() {
         <div className="flex justify-between my-2 items-end">
         </div>
 
-        <div className={``}>
-            <div className="flex">
+        <div className="mb-4">
+            <div className="flex flex-wrap gap-2">
                 <button type="button"
-                    className={`${buttonClasses} !ring-0 fill-blue-700 px-2 h-8 rounded-r-none ${displayTypes.includes('lower') ? buttonActiveClasses : toggleButtonHoverClasses}`}
+                    className={`${buttonClasses} !ring-0 fill-blue-700 px-4 py-2 h-auto rounded-r-none ${displayTypes.includes('lower') ? buttonActiveClasses : toggleButtonHoverClasses}`}
                     // onClick={() => displayTypes.includes('lower') ? setDisplayTypes(displayTypes.filter(type => type != 'lower')) : setDisplayTypes([...displayTypes, 'lower'])}
                     title="Search Subject Content"
                 >
@@ -161,7 +161,7 @@ export function RedressalFlagging() {
                 </button>
 
                 <button type="button"
-                    className={`${buttonClasses} !ring-0 fill-blue-700 px-2 h-8 rounded-l-none border-l-0 ${displayTypes.includes('upper') ? buttonActiveClasses : toggleButtonHoverClasses}`}
+                    className={`${buttonClasses} !ring-0 fill-blue-700 px-4 py-2 h-auto rounded-l-none border-l-0 ${displayTypes.includes('upper') ? buttonActiveClasses : toggleButtonHoverClasses}`}
                     // onClick={() => displayTypes.includes('upper') ? setDisplayTypes(displayTypes.filter(type => type != 'upper')) : setDisplayTypes([...displayTypes, 'upper'])}
                     title="Search PDF Content"
                 >
@@ -170,42 +170,46 @@ export function RedressalFlagging() {
             </div>
         </div>
 
-        <div className="flex gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {/* {
                 displayTypes.includes('lower') &&
                 lowerOutlier.length > 0 && */}
-            <div className="w-1/2 h-[80vh]">
-                <HeatMap2
-                    grievances={lowerOutlier}
-                    className={"rounded-b-md"}
-                    getDistricts={() => ''}
-                    legendSuffix="%"
-                    noFocus={true}
-                />
+            <div className="flex-1 min-h-[70vh]">
+                <div className="h-full rounded-lg overflow-hidden border">
+                    <HeatMap2
+                        grievances={lowerOutlier}
+                        className="w-full h-full"
+                        getDistricts={() => ''}
+                        legendSuffix="%"
+                        noFocus={true}
+                    />
+                </div>
             </div>
             {/* } */}
 
             {/* {
                 displayTypes.includes('upper') &&
                 upperOutlier.length > 0 && */}
-            <div className="w-1/2 h-[80vh]">
-                <HeatMap2
-                    grievances={upperOutlier}
-                    className={"rounded-b-md"}
-                    getDistricts={() => ''}
-                    legendSuffix="%"
-                    noFocus={true}
-                />
+            <div className="flex-1 min-h-[70vh]">
+                <div className="h-full rounded-lg overflow-hidden border">
+                    <HeatMap2
+                        grievances={upperOutlier}
+                        className="w-full h-full"
+                        getDistricts={() => ''}
+                        legendSuffix="%"
+                        noFocus={true}
+                    />
+                </div>
             </div>
             {/* } */}
         </div>
 
-        <Dialog open={isOpen} handler={handleOpen} size="lg">
+        <Dialog open={isOpen} handler={handleOpen} size="lg" className="max-w-6xl">
             <DialogHeader className="flex justify-between">
                 <div>Efficacy Ranking with their location-level z-scores</div>
                 <XMarkIcon height={'1rem'} width={'1rem'} onClick={handleOpen} className="cursor-pointer select-none" />
             </DialogHeader>
-            <DialogBody className="grid grid-cols-2">
+            <DialogBody className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full max-h-[80vh] overflow-hidden">
                 {
                     Object.keys(stateWiseRanking).length > 0 &&
                     <div className="font-bold">States</div>
@@ -218,12 +222,12 @@ export function RedressalFlagging() {
                     }
                 </div>
 
-                <div className="h-[80vh] overflow-scroll">
+                <div className="h-[50vh] lg:h-full overflow-y-auto pr-2">
                     {
                         Object.keys(stateWiseRanking).map(state =>
                             <div
                                 onClick={() => setSelectedStateForRanking(state)}
-                                className={`${state == selectedStateForRanking ? 'text-red-300' : ''} hover:text-red-300 cursor-pointer`}
+                                className={`${state == selectedStateForRanking ? 'text-red-300' : ''} hover:text-red-300 cursor-pointer py-1`}
                             >
                                 {capitalize(state) + `(${stateWiseRanking[state]})` + (state == selectedStateForRanking ? ' >>' : '')}
                             </div>
@@ -231,11 +235,11 @@ export function RedressalFlagging() {
                     }
                 </div>
 
-                <div className="h-[80vh] overflow-scroll ml-4">
+                <div className="h-[50vh] lg:h-full overflow-y-auto pl-4 pr-2">
                     {
                         Object.keys(districtWiseRanking).map(district =>
                             <div
-                                className={`text-red-300 cursor-pointer`}
+                                className={`text-red-300 cursor-pointer py-1`}
                                 onClick={() => showFlaggingData(district)}
                             >
                                 {capitalize(district) + `(${districtWiseRanking[district]})`}

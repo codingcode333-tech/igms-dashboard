@@ -36,6 +36,8 @@ import { UserContext, logout, getUser } from "@/context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { getHighAlerts } from "@/services/notifications";
+import NotificationBadge from "@/widgets/component/NotificationBadge";
+import { formatDate, dateBefore } from "@/helpers/date";
 
 
 export function DashboardNavbar() {
@@ -46,46 +48,13 @@ export function DashboardNavbar() {
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
   
-  // Initialize with demo alerts to show immediately
-  const demoAlertsData = [
-    {
-      registration_no: "DARPG/E/2024/00001",
-      subject: "Urgent: Pension disbursement delay affecting senior citizens",
-      recvd_date: "2024-01-15",
-      ministry: "Department of Pension",
-      priority: "High",
-      status: "Under Process",
-      name: "Rajesh Kumar",
-      state: "Uttar Pradesh",
-      district: "Lucknow"
-    },
-    {
-      registration_no: "DARPG/E/2024/00004", 
-      subject: "Critical: Power connection delay in rural area",
-      recvd_date: "2024-01-12",
-      ministry: "Power Ministry", 
-      priority: "High",
-      status: "Fresh",
-      name: "Sunita Devi",
-      state: "Bihar", 
-      district: "Patna"
-    },
-    {
-      registration_no: "DARPG/E/2024/00007",
-      subject: "Emergency: Medical facility access issues",
-      recvd_date: "2024-01-10",
-      ministry: "Health Ministry",
-      priority: "High",
-      status: "Under Process",
-      name: "Dr. Amit Sharma",
-      state: "Maharashtra",
-      district: "Mumbai"
-    }
-  ];
+  const [highAlerts, setHighAlerts] = useState([]);
+  const [alertsLoading, setAlertsLoading] = useState(true);
+  const [totalAlertsCount, setTotalAlertsCount] = useState(0);
   
-  const [highAlerts, setHighAlerts] = useState(demoAlertsData);
-  const [alertsLoading, setAlertsLoading] = useState(false);
-  const [totalAlertsCount, setTotalAlertsCount] = useState(demoAlertsData.length);
+  // Fixed date range for notifications (January 1st to present)
+  const startDateDisplay = '2025-01-01';
+  const endDateDisplay = formatDate();
   
   // const [userData, setUser] = useContext(UserContext);
   // const user = JSON.parse(userData)
@@ -102,17 +71,25 @@ export function DashboardNavbar() {
   const fetchHighAlerts = async () => {
     setAlertsLoading(true);
     try {
+      console.log('🔍 Fetching high priority alerts...');
       const response = await getHighAlerts();
+      console.log('📊 Notification API Response:', response);
       
-      if (response?.data && Array.isArray(response.data) && response.data.length > 0) {
-        // Use real data if available
+      if (response?.success && response?.data && Array.isArray(response.data)) {
+        // Use real data if API succeeds
         setHighAlerts(response.data);
-        setTotalAlertsCount(response.totalCount || response.data.length);
+        setTotalAlertsCount(response.count || response.data.length);
+        console.log(`✅ Loaded ${response.data.length} high priority alerts`);
+      } else {
+        // API returned but no data or unsuccessful
+        console.log('⚠️ API returned no data or unsuccessful response');
+        setHighAlerts([]);
+        setTotalAlertsCount(0);
       }
-      // If no real data, keep the demo data that's already loaded
     } catch (error) {
-      console.error("Error fetching high alerts:", error);
-      // Keep demo data on error (already initialized)
+      console.error("❌ Error fetching high alerts:", error);
+      setHighAlerts([]);
+      setTotalAlertsCount(0);
     } finally {
       setAlertsLoading(false);
     }
@@ -200,10 +177,11 @@ export function DashboardNavbar() {
                 >
                   <BellIcon className="h-5 w-5" />
                 </IconButton>
-                {highAlerts.length > 0 && (
-                  <div className="absolute -top-1 -right-1 min-w-[1.25rem] min-h-[1.25rem] bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center px-1">
-                    {highAlerts.length}
-                  </div>
+                {totalAlertsCount > 0 && (
+                  <NotificationBadge
+                    count={totalAlertsCount > 99 ? 99 : totalAlertsCount}
+                    className="z-50"
+                  />
                 )}
               </div>
             </MenuHandler>
@@ -211,88 +189,48 @@ export function DashboardNavbar() {
               <div className="px-3 py-2 border-b border-gray-200 dark:border-gray-600">
                 <Typography variant="h6" color={isDark ? "white" : "blue-gray"} className="flex items-center gap-2">
                   <ExclamationTriangleIcon className="h-5 w-5 text-red-500" />
-                  Urgent Alerts ({totalAlertsCount > 5 ? `5 of ${totalAlertsCount}` : highAlerts.length})
+                  High Priority Alerts
                 </Typography>
                 <Typography variant="small" color="gray" className="mt-1">
-                  Showing latest 5 high priority grievances
+                  Showing alerts from January 1, 2025 to {endDateDisplay} ({totalAlertsCount} total)
                 </Typography>
               </div>
               
               {alertsLoading ? (
                 <div className="p-4 text-center">
-                  <Typography color={isDark ? "white" : "blue-gray"}>Loading urgent alerts...</Typography>
+                  <Typography color={isDark ? "white" : "blue-gray"}>Loading alerts...</Typography>
                 </div>
               ) : highAlerts.length > 0 ? (
-                highAlerts.map((alert, index) => (
-                  <MenuItem key={index} className={`p-3 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-50'}`}>
-                    <div className="w-full">
-                      <div className="flex justify-between items-start mb-2">
-                        <Typography variant="small" className="font-semibold text-red-600">
-                          {alert.registration_no}
-                        </Typography>
-                        <Chip
-                          value="URGENT"
-                          color="red"
-                          size="sm"
-                          className="text-xs font-bold"
-                        />
+                highAlerts.map((alert, idx) => (
+                  <MenuItem key={alert.registration_no || idx} className={`p-3 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-gray-50'}`}>
+                    <div className="flex flex-col space-y-1">
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-blue-gray-800 dark:text-white text-sm">
+                          {alert.state || alert.district || 'Unknown Location'}
+                        </span>
+                        <span className="text-xs text-gray-600 dark:text-gray-300">
+                          {new Date(alert.recvd_date).toLocaleDateString('en-IN')}
+                        </span>
                       </div>
-                      <Typography variant="small" color={isDark ? "white" : "blue-gray"} className="mb-2 font-medium">
-                        {alert.subject && alert.subject.length > 80 ? `${alert.subject.slice(0, 80)}...` : alert.subject || "No subject"}
-                      </Typography>
-                      <div className="flex justify-between text-xs mb-1">
-                        <Typography color="gray" className="font-medium">
-                          👤 {alert.name || "Anonymous"}
-                        </Typography>
+                      <div className="text-xs text-gray-700 dark:text-gray-200">
+                        {alert.subject?.length > 60 ? `${alert.subject.substring(0, 60)}...` : alert.subject}
                       </div>
-                      <div className="flex justify-between text-xs">
-                        <Typography color="gray">
-                          🏛️ {alert.ministry || "Unknown Ministry"}
-                        </Typography>
-                        <Typography color="gray">
-                          📅 {alert.recvd_date ? new Date(alert.recvd_date).toLocaleDateString() : "No date"}
-                        </Typography>
-                      </div>
-                      <div className="flex justify-between text-xs mt-1">
-                        <Typography color="gray">
-                          📍 {alert.state}, {alert.district}
-                        </Typography>
-                        <Typography 
-                          color={alert.status === "Fresh" ? "red" : "orange"} 
-                          className="font-medium"
-                        >
-                          {alert.status}
-                        </Typography>
+                      <div className="text-xs text-gray-500 dark:text-gray-400 flex justify-between">
+                        <span>{alert.ministry || 'Unknown Ministry'}</span>
+                        <span className="font-medium text-red-600">{alert.priority || 'High'}</span>
                       </div>
                     </div>
                   </MenuItem>
                 ))
               ) : (
-                <div className="p-4 text-center">
-                  <Typography color={isDark ? "white" : "blue-gray"}>
-                    No urgent alerts found
+                <div className="p-4 text-center py-8">
+                  <ExclamationTriangleIcon className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                  <Typography color={isDark ? "white" : "blue-gray"} className="mb-1">
+                    No high priority alerts
                   </Typography>
-                </div>
-              )}
-              
-              {(highAlerts.length > 0 || totalAlertsCount > 5) && (
-                <div className="p-3 border-t border-gray-200 dark:border-gray-600">
-                  <Button
-                    variant="outlined"
-                    size="sm"
-                    fullWidth
-                    color="red"
-                    onClick={() => navigate('/dashboard/grievances?type=priority')}
-                    className="flex items-center justify-center gap-2"
-                  >
-                    <ExclamationTriangleIcon className="h-4 w-4" />
-                    View All Urgent Grievances
-                    {totalAlertsCount > 5 && (
-                      <span className="ml-1 bg-red-500 text-white px-2 py-1 rounded-full text-xs">
-                        +{totalAlertsCount - 5}
-                      </span>
-                    )}
-                  </Button>
+                  <Typography variant="small" color="gray">
+                    All systems operational
+                  </Typography>
                 </div>
               )}
             </MenuList>

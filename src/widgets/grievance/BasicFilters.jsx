@@ -1,6 +1,6 @@
-import { DateRangePicker, Loader, MinistryAutocomplete, MultipleMinistryAutocomplete } from "@/pages/dashboard/CategoricalTree";
+import { DateRangePicker, Loader, MinistryAutocomplete, MultipleMinistryAutocomplete, StateDistrictAutocomplete } from "@/pages/dashboard/CategoricalTree";
 import { Button, Typography, Chip } from "@material-tailwind/react"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "@/context";
 
 export function BasicFilters({
@@ -12,7 +12,13 @@ export function BasicFilters({
   setTo,
   searching = false,
   startSearch = () => '',
-  ComplementaryInfo = ({ className }) => <div className={className}></div>
+  ComplementaryInfo = ({ className }) => <div className={className}></div>,
+  className = '',
+  // Add state and district filter props
+  state = 'All',
+  setState = () => {},
+  district = 'All',
+  setDistrict = () => {}
 }) {
   const { isDark } = useTheme();
   const [dateRange, setDateRange] = useState({
@@ -25,6 +31,15 @@ export function BasicFilters({
     value: ministry
   })
 
+  // State for state/district selection
+  const [stateDistrict, setStateDistrict] = useState({
+    text: state === 'All' ? '' : state,
+    values: {
+      state: state,
+      district: district
+    }
+  })
+
   const updateDateRange = range => {
     setFrom(range.startDate)
     setTo(range.endDate)
@@ -32,12 +47,42 @@ export function BasicFilters({
   }
 
   const updateSelectedMinistry = selection => {
-    setMinistry(selection?.value)
+    setMinistry(selection?.value || 'All')
     setSelectedMinistry(selection)
   }
 
+  // Update state/district selection
+  const updateStateDistrict = (newStateDistrict) => {
+    if (newStateDistrict && newStateDistrict.values) {
+      setState(newStateDistrict.values.state || 'All')
+      setDistrict(newStateDistrict.values.district || 'All')
+    } else {
+      setState('All')
+      setDistrict('All')
+    }
+    setStateDistrict(newStateDistrict)
+  }
+
+  // Update local state when props change
+  useEffect(() => {
+    setSelectedMinistry({
+      text: ministry == 'All' ? '' : ministry,
+      value: ministry
+    })
+  }, [ministry])
+
+  useEffect(() => {
+    setStateDistrict({
+      text: state === 'All' ? '' : state,
+      values: {
+        state: state,
+        district: district
+      }
+    })
+  }, [state, district])
+
   return (
-    <FilterLayout>
+    <FilterLayout className={className}>
       <DateRangePicker
         value={dateRange}
         onChange={updateDateRange}
@@ -46,6 +91,12 @@ export function BasicFilters({
       <MultipleMinistryAutocomplete
         ministry={selectedMinistry}
         setMinistry={updateSelectedMinistry}
+      />
+
+      {/* Add State/District filter */}
+      <StateDistrictAutocomplete
+        stateDistrict={stateDistrict}
+        setStateDistrict={updateStateDistrict}
       />
 
       <div className="flex gap-2 flex-col justify-end md:flex-row md:col-start-2 xl:col-start-auto xl:justify-start">

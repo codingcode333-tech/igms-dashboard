@@ -72,6 +72,13 @@ export const routes = [
         element: <Home />,
       },
       {
+        icon: <BellIcon {...icon} />,
+        name: "Notifications",
+        path: "/notifications",
+        element: <Notifications />,
+        hidden: true,
+      },
+      {
         icon: <GlobeAltIcon {...icon} />,
         name: "Spatial Analysis",
         path: "/spatial-analysis",

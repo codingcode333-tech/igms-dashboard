@@ -119,6 +119,7 @@ export const RealTimeRCA = () => {
             const seriesData = aiTreeData.children.map(category => ({
                 x: category.topicname,
                 y: category.count,
+                z: category.doc_ids,
                 ...category
             }));
             
@@ -579,6 +580,7 @@ export const GrievanceListBox = ({
     const [pageno, setPageno] = useState(1)
     const [first, setFirst] = useState(true)
     const [searching, setSearching] = useState(false)
+    const [useCategorySearch, setUseCategorySearch] = useState(false)
 
     // Function to search grievances using CDIS API based on category title
     const searchGrievancesByCategory = useCallback(async (categoryName) => {
@@ -617,6 +619,35 @@ export const GrievanceListBox = ({
             console.warn('No valid reg_nos provided to GrievanceListBox');
             setGrievances([]);
             setSearching(false);
+            return;
+        }
+
+        // If we have a category title and want to use category-based search, do that instead
+        if (useCategorySearch && categoryTitle && categoryTitle.trim()) {
+            setSearching(true);
+            try {
+                console.log('🔄 Using category-based search for:', categoryTitle);
+                const cdisResults = await searchGrievancesByCategory(categoryTitle);
+                if (cdisResults.length > 0) {
+                    console.log('✅ CDIS category search found grievances:', cdisResults);
+                    setGrievances(cdisResults);
+                } else {
+                    // Fallback to registration number search if category search yields no results
+                    console.log('⚠️ Category search yielded no results, falling back to registration number search');
+                    setUseCategorySearch(false);
+                    // Trigger a re-fetch with registration number search
+                    setTimeout(() => getGrievances(), 0);
+                    return;
+                }
+            } catch (error) {
+                console.error('CDIS category search failed:', error);
+                // Fallback to registration number search on error
+                setUseCategorySearch(false);
+                setTimeout(() => getGrievances(), 0);
+                return;
+            } finally {
+                setSearching(false);
+            }
             return;
         }
 
@@ -719,9 +750,11 @@ export const GrievanceListBox = ({
         } finally {
             setSearching(false);
         }
-    }, [reg_nos, pageno, categoryTitle, searchGrievancesByCategory])
+    }, [reg_nos, pageno, categoryTitle, searchGrievancesByCategory, useCategorySearch])
 
     useEffect(() => {
+        // When reg_nos change, reset to registration number search
+        setUseCategorySearch(false);
         if (pageno != 1)
             setPageno(1)
         else
@@ -741,17 +774,62 @@ export const GrievanceListBox = ({
         console.log('📋 First grievance item:', grievances[0]);
     }
 
+    // Sort grievances by received date (newest first)
+    const sortedGrievances = useMemo(() => {
+        if (!grievances || !Array.isArray(grievances) || grievances.length === 0) {
+            return [];
+        }
+        
+        return [...grievances].sort((a, b) => {
+            // Try different date fields
+            const dateA = new Date(a.recvd_date || a.received_date || a.date || '1970-01-01');
+            const dateB = new Date(b.recvd_date || b.received_date || b.date || '1970-01-01');
+            
+            // Sort in descending order (newest first)
+            return dateB.getTime() - dateA.getTime();
+        });
+    }, [grievances]);
+
+    // Apply client-side filtering based on current filters context
+    // This would require access to the filter context, but for now we'll just sort
+    console.log('📅 Grievance list sorted by date (newest first)');
+    
     return (
-        <GrievanceList
-            titleBarHidden={true}
-            grievances={grievances}
-            pageno={pageno}
-            setPageno={setPageno}
-            count={reg_nos.length > pageSize ? pageSize : reg_nos.length}
-            total={reg_nos.length}
-            scrollH={'80vh'}
-            searching={searching}
-        />
+        <div>
+            {/* Toggle between registration number search and category search */}
+            {categoryTitle && categoryTitle.trim() && (
+                <div className="mb-4 p-2 bg-blue-50 rounded-lg">
+                    <div className="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            id="categorySearchToggle"
+                            checked={useCategorySearch}
+                            onChange={(e) => setUseCategorySearch(e.target.checked)}
+                            className="rounded"
+                        />
+                        <label htmlFor="categorySearchToggle" className="text-sm text-blue-800">
+                            Search by category: "{categoryTitle}" (instead of registration numbers)
+                        </label>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">
+                        {useCategorySearch 
+                            ? 'Showing grievances matching the category keywords' 
+                            : 'Showing grievances for selected registration numbers'}
+                    </p>
+                </div>
+            )}
+            
+            <GrievanceList
+                titleBarHidden={true}
+                grievances={sortedGrievances} // Use sorted grievances
+                pageno={pageno}
+                setPageno={setPageno}
+                count={reg_nos.length > pageSize ? pageSize : reg_nos.length}
+                total={reg_nos.length}
+                scrollH={'80vh'}
+                searching={searching}
+            />
+        </div>
     )
 }
 

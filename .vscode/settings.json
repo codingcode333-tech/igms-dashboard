@@ -1,3 +1,4 @@
 {
-    "css.format.enable": true
+    "css.format.enable": true,
+    "CodeGPT.apiKey": "Anthropic"
 }
